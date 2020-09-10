@@ -1,0 +1,16 @@
+mat-card {
+  min-width: 250px;
+  text-align: center;
+}
+mat-form-field {
+  display: block;
+}
+.right{
+  float:right;
+}
+.navigationButton{
+  cursor: pointer;
+}
+.navigationButton:hover{
+  color:gray;
+}

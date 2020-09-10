@@ -1,0 +1,41 @@
+<div class='center'>
+  <br>
+  <img src="../assets/logo.jpg" style="width:30%;height:30%;">
+  <h2>{{ 'Generator.PasswordGenerator' | translate }}</h2>
+</div>
+<div class='leftAlignedDiv'>
+<section>
+  <mat-checkbox [(ngModel)]="lowercase" color="primary">{{ 'Generator.LowerCase' | translate }}</mat-checkbox>
+</section>
+<section>
+  <mat-checkbox [(ngModel)]="uppercase" color="primary">{{ 'Generator.UpperCase' | translate }}</mat-checkbox>
+</section>
+<section>
+  <mat-checkbox [(ngModel)]="numbers" color="primary">{{ 'Generator.Number' | translate }}</mat-checkbox>
+</section>
+<section>
+  <mat-checkbox [(ngModel)]="symbols" color="primary">{{ 'Generator.Symbol' | translate }}</mat-checkbox>
+</section>
+<section>
+  <mat-checkbox [(ngModel)]="others" color="primary">{{ 'Generator.Others' | translate }}</mat-checkbox>
+</section>
+<section>
+  <br>
+  <input matInput type="number" [(ngModel)]="inputLength" placeholder="Password Length">
+</section>
+<br>
+<button mat-raised-button color="primary"  (click)="generatePassword()">
+  <mat-icon class="example-tab-icon">refresh</mat-icon>
+  {{ 'Generator.Generate' | translate }}</button>
+<br>
+<br>
+<div [hidden]="!password">
+<mat-form-field>
+  <input matInput type="text" [(ngModel)]="password" [hidden]='!password'>
+    <button style="padding-right:100%;" mat-button matSuffix  aria-label="search" (click)="copyText()">
+      <mat-icon>content_copy</mat-icon>
+  </button>
+</mat-form-field>
+</div>
+</div>
+<ngx-bottom-nav [items]="items"></ngx-bottom-nav>

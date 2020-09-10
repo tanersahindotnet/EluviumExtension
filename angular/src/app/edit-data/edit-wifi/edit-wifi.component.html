@@ -1,0 +1,44 @@
+<mat-toolbar color="primary">
+  <mat-icon class="navigationButton" (click)="returnResult()">arrow_back</mat-icon>
+  <span>{{ 'Common.Wifi' | translate }}</span>
+</mat-toolbar>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div style="text-align: center;">
+        <img src="../assets/logo.jpg" style="width:30%;height:30%;">
+      </div>
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="{{ 'Common.Title' | translate }}" type="text" formControlName="title" required autofocus>
+        <mat-error  >
+          {{ 'Common.ProvideTitle' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="full-width-input">
+        <input matInput type="text" formControlName="ssid" placeholder="SSID" required #ssid>
+        <mat-error  >
+          {{ 'EditWifi.ProvideSsid' | translate }}
+        </mat-error>
+        <button mat-button matSuffix aria-label="search" (click)="copyText(ssid.value)">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="full-width-input">
+        <input matInput type="password" formControlName="password" placeholder="{{ 'Common.Password' | translate }}" required #password>
+        <mat-error  >
+          {{ 'Common.ProvidePassword' | translate }}
+        </mat-error>
+        <button mat-button matSuffix aria-label="search" (click)="copyText(password.value)">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <textarea matInput placeholder="Notes" formControlName="notes"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class='right'>{{ 'Common.Submit' | translate }}</button>
+    </form>
+    <br>
+  </mat-card-content>
+</mat-card>

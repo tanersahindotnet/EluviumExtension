@@ -1,0 +1,36 @@
+<div class='center'>
+  <br>
+  <img src="../assets/logo.jpg" style="width:30%;height:30%;">
+  <h2>{{ 'Settings.ProgramSettings' | translate }}</h2>
+<mat-form-field appearance="fill" style="width:85%;">
+  <mat-label>{{ 'Settings.VaulthTimeout' | translate }}</mat-label>
+  <mat-select (selectionChange)="intervalChanged($event.value)" [value]='interval'>
+    <mat-option value="5">{{ 'Settings.Minute5' | translate }}</mat-option>
+    <mat-option value="15">{{ 'Settings.Minute15' | translate }}</mat-option>
+    <mat-option value="30">{{ 'Settings.Minute30' | translate }}</mat-option>
+    <mat-option value="60">{{ 'Settings.Minute60' | translate }}</mat-option>
+    <mat-option value="240">{{ 'Settings.Minute240' | translate }}</mat-option>
+    <mat-option value="0">{{ 'Settings.Minute0' | translate }}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill" style="width:85%;">
+  <mat-label>{{ 'Settings.ProgramLanguage' | translate }}</mat-label>
+  <mat-select (selectionChange)="languageChanged($event.value)"  [value]='language'>
+    <mat-option value='en-US'>{{ 'Settings.English' | translate }}</mat-option>
+    <mat-option value='tr-TR'>{{ 'Settings.Turkish' | translate }}</mat-option>
+  </mat-select>
+</mat-form-field>
+<button mat-raised-button style="width: 85%;" (click)="rateExtension()"  >
+  <mat-icon>star</mat-icon> {{ 'Settings.RateExtension' | translate }}</button>
+<br>
+<br>
+<button mat-raised-button style="width: 85%;" (click)="getHelp()"  >
+  <mat-icon>help</mat-icon> {{ 'Settings.HelpFeedback' | translate }}</button>
+  <br>
+  <br>
+  <button mat-raised-button style="width: 85%;" (click)="aboutDialog()"  >
+    <mat-icon>info</mat-icon>{{ 'Settings.AboutSoftware' | translate }}</button>
+</div>
+<br>
+<br>
+<ngx-bottom-nav [items]="items"></ngx-bottom-nav>

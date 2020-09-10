@@ -1,0 +1,58 @@
+.mat-card:hover {
+  background-color: #D8D8D8;
+  cursor: pointer;
+}
+.deleteIconColor{
+  color:#8B0000;
+}
+mat-icon:hover {
+  color:#3f51b5;
+
+}
+
+mat-tab-group
+{
+  min-width: 500px;
+  min-height: 400px;
+}
+
+.fabButton {
+  float:right;
+  margin-right:5%;
+  margin-bottom:2%;
+  margin-top:2%
+}
+mat-card{
+  margin:5%;
+}
+.addButtonStyle:hover{
+  color:whitesmoke;
+}
+::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+  min-width: 0!important;
+  padding: 5px!important;
+  margin: 5px!important;
+ }
+ .wrapper {
+  display: grid;
+  place-items: center;
+}
+.inner {
+  color: white;
+  padding-top: 5%;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label
+{
+  margin-left:1%;
+}
+.mat-input-element
+{
+  margin-left:1% !important;
+}
+.searchFormField
+{
+  background-color:#F8F8F8 !important;
+  width:100% !important;
+  color:black !important;
+  padding-top:1% !important;
+}

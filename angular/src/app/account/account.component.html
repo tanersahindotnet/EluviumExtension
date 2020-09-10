@@ -1,0 +1,72 @@
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">account_box</mat-icon>
+      &nbsp;
+      <p>{{ 'Account.MyAccount' | translate }}</p>
+    </ng-template>
+    <div class='center'>
+      <br>
+      <img src="../assets/user.png" style="width:30%;height:30%;">
+      <h2>{{mail}}</h2>
+      <p>{{'Account.Membership' | translate }} : {{registerDate}}</p>
+      <p>{{'Common.MailAdress' | translate }} : {{mail}}</p>
+      <p>{{ 'Account.ProductName' | translate }} : {{productId}}</p>
+      <p>{{ 'Account.ExpirationDate' | translate }} : {{expirationDate}}</p>
+      <button mat-raised-button class="whiteButton" style="width: 85%;" (click)="manageMyAccount()"  >
+        <mat-icon>account_circle</mat-icon> {{ 'Account.ManageMyAccount' | translate }}
+      </button>
+      <br>
+      <br>
+      <button mat-raised-button (click)="lock()" class="whiteButton" style="width: 85%;"  >
+        <mat-icon>lock</mat-icon> {{ 'Account.LockNow' | translate }}
+      </button>
+      <br>
+      <br>
+      <button mat-raised-button color="warn" class="redButton" style="width: 85%;" (click)="logout()"  >
+        <mat-icon>exit_to_app</mat-icon> {{ 'Account.LogoutNow' | translate }}
+      </button>
+      <br>
+    </div>
+    <br>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label  >
+      <mat-icon class="example-tab-icon">devices</mat-icon>
+      &nbsp;
+      {{ 'Account.Devices' | translate }}
+    </ng-template>
+    <div>
+      <br>
+      <img src="../assets/user.png" style="width:30%;height:30%;">
+      <h2>{{mail}}</h2>
+      <br>
+      <br>
+    </div>
+    <div style="float:left;margin-left:3%;margin-right:3%;">
+
+      <div style="text-align: left;" *ngIf="desktopDeviceName">
+        <img style="vertical-align:middle" src="../assets/computer.png">
+        <span style="vertical-align:middle">&nbsp; {{desktopDeviceName}}
+          &nbsp;
+          <button mat-mini-fab color="warn" class="redButton" style="margin-top:4%" (click)="disconnectComputer()">
+            <mat-icon>logout</mat-icon>
+          </button>
+        </span>
+      </div>
+      <br>
+
+      <div style="text-align: left"  *ngIf="mobileDeviceName">
+        <img style="vertical-align:middle" src="../assets/smartphone.png">
+        <span style="vertical-align:middle">&nbsp; {{mobileDeviceName}}
+          &nbsp;
+          <button mat-mini-fab color="warn" class="redButton" style="margin-top:4%;" (click)="disconnectPhone()">
+            <mat-icon>logout</mat-icon>
+          </button>
+        </span>
+      </div>
+      <br>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+<ngx-bottom-nav [items]="items"></ngx-bottom-nav>

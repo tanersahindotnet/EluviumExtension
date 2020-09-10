@@ -1,0 +1,201 @@
+<div [hidden]='dashboardPanelIsHidden'>
+  <mat-form-field class="searchFormField">
+    <mat-icon matSuffix style="font-size:x-large;">search</mat-icon>
+    <input matInput type="search" style="font-size:large;" placeholder="Search Record" class="search"
+      (input)="onSearchChange($event.target.value)">
+  </mat-form-field>
+  <mat-tab-group [(selectedIndex)]="tabIndex">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">tabs</mat-icon>
+        <div (click)="setCurrentPosition(0)">
+        <p>{{ 'Dashboard.LoginTab' | translate }}</p>
+        </div>
+      </ng-template>
+
+      <mat-card *ngFor="let item of activeTabs" (click)="autoFill(item);">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image">
+            <img src="../assets/password.png">
+          </div>
+          <mat-card-title>{{item.title}}</mat-card-title>
+          <mat-card-subtitle>{{item.url}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
+      <app-empty-list *ngIf="activeTabs.length===0"></app-empty-list>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">login</mat-icon>
+        <div (click)="setCurrentPosition(1)">
+        <p>{{ 'Common.Password' | translate }}</p>
+        </div>
+      </ng-template>
+      <cdk-virtual-scroll-viewport style="height:250px" itemSize="90">
+        <mat-card *cdkVirtualFor="let item of passwords" (click)="addPassword(item);">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+              <img src="../assets/password.png">
+            </div>
+            <mat-card-title>{{item.title}}
+              &nbsp;
+              <mat-icon (click)="copyText(item.userName,'Username',$event)">supervisor_account</mat-icon>
+              &nbsp;
+              <mat-icon (click)="copyText(item.sitePassword,'Password',$event)">vpn_key</mat-icon>
+              &nbsp;
+              <mat-icon class='deleteIconColor' (click)="deletePassword(item,$event)">delete</mat-icon>
+            </mat-card-title>
+            <mat-card-subtitle>{{item.url}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+          </mat-card-actions>
+        </mat-card>
+      <app-empty-list  *ngIf="passwords.length===0 && !progress"></app-empty-list>
+      </cdk-virtual-scroll-viewport>
+      <div class="wrapper">
+        <div class="inner">
+          <mat-spinner *ngIf="progress"></mat-spinner>
+        </div>
+      </div>
+      <button mat-mini-fab color="primary" class="fabButton" (click)="addPassword(null)">
+        <mat-icon class="addButtonStyle">login</mat-icon>
+      </button>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">credit_card</mat-icon>
+        <div (click)="setCurrentPosition(2)">
+        <p>{{ 'Common.CreditCard' | translate }}</p>
+        </div>
+      </ng-template>
+      <cdk-virtual-scroll-viewport style="height:250px" itemSize="90">
+        <mat-card *cdkVirtualFor="let item of creditCards" (click)="addCreditCard(item);">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+              <img src="../assets/credit-card.png">
+            </div>
+            <mat-card-title>{{item.title}}
+              &nbsp;
+              <mat-icon (click)="copyText(item.number,'Card Number',$event)">credit_card</mat-icon>
+              &nbsp;
+              <mat-icon (click)="copyText(item.code,'Card Code',$event)">vpn_key</mat-icon>
+              &nbsp;
+              <mat-icon (click)="autoFillCreditCard(item,$event)">dynamic_form</mat-icon>
+              &nbsp;
+              <mat-icon class='deleteIconColor' (click)="deleteCreditCard(item,$event)">delete</mat-icon>
+            </mat-card-title>
+            <mat-card-subtitle>{{item.url}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+          </mat-card-actions>
+        </mat-card>
+      <app-empty-list *ngIf="creditCards.length===0 && !progress"></app-empty-list>
+      </cdk-virtual-scroll-viewport>
+      <div class="wrapper">
+        <div class="inner">
+          <mat-spinner *ngIf="progress"></mat-spinner>
+        </div>
+      </div>
+      <button mat-mini-fab color="primary" class="fabButton" (click)='addCreditCard(null)'>
+        <mat-icon class="addButtonStyle">credit_card</mat-icon>
+      </button>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">wifi_lock</mat-icon>
+        <div (click)="setCurrentPosition(3)">
+          <p>{{ 'Common.Wifi' | translate }}</p>
+        </div>
+      </ng-template>
+      <cdk-virtual-scroll-viewport style="height:250px" itemSize="90">
+        <mat-card *cdkVirtualFor="let item of wifiPasswords" (click)="addWifi(item);">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+              <img src="../assets/wifi.png">
+            </div>
+            <mat-card-title>{{item.title}}
+              &nbsp;
+              <mat-icon (click)="copyText(item.password,'Password',$event)">vpn_key</mat-icon>
+              &nbsp;
+              <mat-icon class='deleteIconColor' (click)="deleteWifi(item,$event)">delete</mat-icon>
+            </mat-card-title>
+            <mat-card-subtitle>{{item.url}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+          </mat-card-actions>
+        </mat-card>
+        <app-empty-list *ngIf="wifiPasswords.length===0 && !progress"></app-empty-list>
+      </cdk-virtual-scroll-viewport>
+      <div class="wrapper">
+        <div class="inner">
+          <mat-spinner *ngIf="progress"></mat-spinner>
+        </div>
+      </div>
+      <button mat-mini-fab color="primary" class="fabButton" (click)="addWifi(null)">
+        <mat-icon class="addButtonStyle">wifi_lock</mat-icon>
+      </button>
+
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="example-tab-icon">computer</mat-icon>
+          <div (click)="setCurrentPosition(4)">
+          <p>{{ 'Common.Server' | translate }}</p>
+          </div>
+        </ng-template>
+      <cdk-virtual-scroll-viewport style="height:250px" itemSize="90">
+        <mat-card *cdkVirtualFor="let item of servers" (click)="addServer(item);">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+              <img src="../assets/server.png">
+            </div>
+            <mat-card-title>{{item.title}}
+              &nbsp;
+              <mat-icon (click)="copyText(item.userName,'Username',$event)">supervisor_account</mat-icon>
+              &nbsp;
+              <mat-icon (click)="copyText(item.sitePassword,'Password',$event)">vpn_key</mat-icon>
+              &nbsp;
+              <mat-icon (click)="copyText(item.hostName,'Hostname',$event)">computer</mat-icon>
+              &nbsp;
+              <mat-icon class='deleteIconColor' (click)="deleteServer(item,$event)">delete</mat-icon>
+            </mat-card-title>
+            <mat-card-subtitle>{{item.url}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+          </mat-card-actions>
+        </mat-card>
+        <app-empty-list *ngIf="servers.length===0 && !progress"></app-empty-list>
+      </cdk-virtual-scroll-viewport>
+      <div class="wrapper">
+        <div class="inner">
+          <mat-spinner *ngIf="progress"></mat-spinner>
+        </div>
+      </div>
+      <button mat-mini-fab color="primary" class="fabButton" (click)='addServer(null)'>
+        <mat-icon class="addButtonStyle">computer</mat-icon>
+      </button>
+
+    </mat-tab>
+  </mat-tab-group>
+  <ngx-bottom-nav [items]="items"></ngx-bottom-nav>
+</div>
+
+<div [hidden]='passwordPanelIsHidden'>
+  <app-edit-password [data]="data" [password]="_password" (stateEmitter)="stateEmitterResult($event)"
+    (saveEmitter)="saveEmitterResult($event)"></app-edit-password>
+</div>
+<div [hidden]='wifiPanelIsHidden'>
+  <app-edit-wifi [data]="data" [password]="_password" (stateEmitter)="stateEmitterResult($event)"
+    (saveEmitter)="saveEmitterResult($event)"></app-edit-wifi>
+</div>
+<div [hidden]='serverPanelIsHidden'>
+  <app-edit-server [data]="data" [password]="_password" (stateEmitter)="stateEmitterResult($event)"
+    (saveEmitter)="saveEmitterResult($event)"></app-edit-server>
+</div>
+<div [hidden]='creditCardPanelIsHidden'>
+  <app-edit-credit-card [data]="data" [password]="_password" (stateEmitter)="stateEmitterResult($event)"
+    (saveEmitter)="saveEmitterResult($event)"></app-edit-credit-card>
+</div>
