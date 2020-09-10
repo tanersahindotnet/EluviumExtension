@@ -16,7 +16,6 @@ export class AccountComponent {
   items;
   desktopDeviceName = localStorage.getItem('desktopDeviceName');
   mail = localStorage.getItem('mail');
-  expirationDate = new Date(localStorage.getItem('expirationDate')).toDateString();
   mobileDeviceName = localStorage.getItem('mobileDeviceName');
   productId = localStorage.getItem('productId');
   registerDate = new Date(localStorage.getItem('registerDate')).toDateString();

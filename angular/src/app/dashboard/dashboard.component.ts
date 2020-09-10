@@ -318,7 +318,6 @@ private CheckSession() {
   this.onePassService.LoginUser(request, 'Browser', 0).subscribe(p => {
     if (p.loginState === LoginResult.UserAuthenticated) {
       localStorage.setItem('desktopDeviceName', p.desktopDeviceName);
-      localStorage.setItem('expirationDate', p.expirationDate);
       localStorage.setItem('mobileDeviceName', p.mobileDeviceName);
       localStorage.setItem('productId', p.productId.toString());
       localStorage.setItem('registerDate', p.registerDate.toString());
