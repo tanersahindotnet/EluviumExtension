@@ -18,7 +18,12 @@
           <div mat-card-avatar class="example-header-image">
             <img src="../assets/password.png">
           </div>
-          <mat-card-title>{{item.title}}</mat-card-title>
+          <mat-card-title>{{item.title}}
+            &nbsp;
+            <mat-icon (click)="copyText(item.userName,'Username',$event)">supervisor_account</mat-icon>
+            &nbsp;
+            <mat-icon (click)="copyText(item.sitePassword,'Password',$event)">vpn_key</mat-icon>
+          </mat-card-title>
           <mat-card-subtitle>{{item.url}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-actions>
