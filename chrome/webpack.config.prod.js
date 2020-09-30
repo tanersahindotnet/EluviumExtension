@@ -6,7 +6,8 @@ module.exports = {
   mode: 'production',
   entry: {
     contentPage: join(__dirname, 'src/contentPage.ts'),
-    backgroundPage: join(__dirname, 'src/backgroundPage.ts')
+    backgroundPage: join(__dirname, 'src/backgroundPage.ts'),
+    ad_block: join(__dirname, 'src/ad_block.ts')
   },
   output: {
     path: join(__dirname, '../angular/dist'),

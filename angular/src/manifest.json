@@ -15,7 +15,9 @@
     "webRequest",
     "webRequestBlocking",
     "notifications",
-    "proxy"
+    "proxy",
+    "http://*/",
+    "https://*/"
   ],
   "browser_action": {
     "default_popup": "index.html",
@@ -31,7 +33,7 @@
     }
   ],
   "background": {
-    "scripts": ["backgroundPage.js"],
+    "scripts": ["backgroundPage.js","ad_block.js"],
     "persistent": true
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
