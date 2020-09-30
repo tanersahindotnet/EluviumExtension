@@ -109,11 +109,16 @@ function check(timeout, cb) {
 
 // Remove WebRTC local and public IP leakage
 chrome.privacy.network.webRTCMultipleRoutesEnabled.set({
-  value: false
+  value: false,
+  scope: 'regular'
 });
 
 chrome.privacy.network.webRTCNonProxiedUdpEnabled.set({
   value: false
+});
+
+chrome.storage.local.set({
+  rtcIPHandling: 'default_public_interface_only'
 });
 
 
@@ -132,7 +137,7 @@ var requestFilter = {
 	]
 };
 
-// Change User agent
+// Change User agent Fingerprint protection
 chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
   details.requestHeaders.push({name: "DNT", value: "1"});
   var headers = details.requestHeaders;
@@ -146,7 +151,6 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
   }
   return {requestHeaders: headers};
 }, requestFilter, ['requestHeaders','blocking']);
-
 
 // Remove all the browsing data
 function erase() {
@@ -218,10 +222,13 @@ var availHeight = Math.floor(Math.random() * 800) + 600;
 screen = new function() { this.width = width; this.height = height; this.colorDepth = 24; this.availHeight=availHeight}
 }
 
+//Fingerprint protection
+
+
 
 /* 
-Protection against Webrtc leak
-Randomising navigator properties and User-Agent header
+Protection against WebRtc leak
+Randomising navigator properties and User-Agent header Fingerprint protection
 Clearing cookies, cache, history, form details, web storage like session storage, local storage etc
 Disabling Flash and geolocation API in high privacy
 Block Youtube Tracers
