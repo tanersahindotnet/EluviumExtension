@@ -222,9 +222,6 @@ var availHeight = Math.floor(Math.random() * 800) + 600;
 screen = new function() { this.width = width; this.height = height; this.colorDepth = 24; this.availHeight=availHeight}
 }
 
-//Fingerprint protection
-
-
 
 /* 
 Protection against WebRtc leak
