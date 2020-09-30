@@ -20,6 +20,7 @@ chrome.tabs.onRemoved.addListener(function(tabId) {
     if (i === 0) {
       localStorage.removeItem('password');
       localStorage.removeItem('tempPass');
+      erase();
     }
   });
 });
@@ -102,3 +103,106 @@ function check(timeout, cb) {
         }
     });
 }
+ //--------------------------------------------------Security Options --------------------------------------------------
+
+// Remove WebRTC local and public IP leakage
+chrome.privacy.network.webRTCMultipleRoutesEnabled.set({
+  value: false
+});
+
+chrome.privacy.network.webRTCNonProxiedUdpEnabled.set({
+  value: false
+});
+
+
+// Chrome storage API
+chrome.storage.sync.get("data", function (items) {
+
+});
+
+var item = ["Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0"];
+
+var userAgent = item[Math.floor(Math.random()*item.length)];
+
+var requestFilter = {
+	urls: [
+		"<all_urls>"
+	]
+};
+
+// Change User agent
+chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
+  details.requestHeaders.push({name: "DNT", value: "1"});
+  var headers = details.requestHeaders;
+  for(var i = 0, l = headers.length; i < l; ++i) {
+      if( headers[i].name == 'User-Agent' ) {
+          break;
+      }
+  }
+  if(i < headers.length) {
+      headers[i].value = userAgent;
+  }
+  return {requestHeaders: headers};
+}, requestFilter, ['requestHeaders','blocking']);
+
+
+// Remove all the browsing data
+function erase() {
+      chrome.browsingData.remove({}, {
+          "appcache": true,
+          "cache": true,
+          "downloads": true,
+          "cookies": true,
+          "fileSystems": true,
+          "formData": true,
+          "history": true,
+          "indexedDB": true,
+          "serverBoundCertificates": true,
+          "pluginData": true,
+          "passwords": true,
+          "webSQL": true
+      })
+      console.log('Erased');
+}
+
+// Block all cookies except session cookies
+chrome.runtime.onInstalled.addListener(function () {
+  chrome.contentSettings.cookies.set({
+      'primaryPattern': "<all_urls>",
+      'setting': 'session_only'
+  })
+});
+
+
+//Disable flash player
+chrome.contentSettings.plugins.set({
+  primaryPattern: '<all_urls>',
+  resourceIdentifier: {
+      id: 'adobe-flash-player'
+  },
+  setting: "block"
+});
+
+//Block Youtube Ads and Trackers
+var numBlocked = 0;
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    // It is easier to ignore requests instead of modifying them - everything seems to work fine
+    // Note that get_midroll_info response contains playerAds describing all of the ads in the video
+    const ignore =
+      details.url.indexOf("/get_video_info") != -1 ||
+      details.url.indexOf("/api/stats/ads") != -1 ||
+      details.url.indexOf("/pagead/conversion") != -1 ||
+      details.url.indexOf("ad_companion") != -1 ||
+      details.url.indexOf("get_midroll_info") != -1;
+    if (ignore) {
+      numBlocked++; // keep track of blocked requests
+      chrome.browserAction.setBadgeText({text: ''});
+      chrome.browserAction.setBadgeBackgroundColor({color: "#FF0000"});
+      chrome.browserAction.setBadgeText({text: (numBlocked > 99) ? "99+" : `${numBlocked}`});
+    }
+    return {cancel: ignore};
+  },
+  {urls: ["<all_urls>"]},
+  ["blocking"]
+);

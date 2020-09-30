@@ -4,7 +4,19 @@
   "short_name": "Eluvium",
   "version": "1.1.0",
   "description": "Eluvium Extension",
-  "permissions": ["storage", "tabs", "activeTab", "<all_urls>", "*://*/*"],
+  "permissions": [
+    "activeTab",
+    "storage",
+    "privacy",
+    "tabs",
+    "browsingData",
+    "contentSettings",
+    "<all_urls>",
+    "webRequest",
+    "webRequestBlocking",
+    "notifications",
+    "proxy"
+  ],
   "browser_action": {
     "default_popup": "index.html",
     "default_title": "Eluvium Extension",
@@ -14,12 +26,20 @@
   "content_scripts": [
     {
       "js": ["contentPage.js"],
-      "matches": ["<all_urls>"]
+      "matches": ["<all_urls>"],
+      "run_at": "document_idle"
     }
   ],
   "background": {
     "scripts": ["backgroundPage.js"],
-    "persistent": false
+    "persistent": true
   },
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "web_accessible_resources": [
+    "storage",
+    "script.js",
+    "canvasing.js",
+    "battery.js",
+    "time.js"
+  ]
 }
