@@ -59,12 +59,14 @@ function setNotifyIcon(tab) {
      const matchingResult2 = activeUrlName.includes(urlList[i].toLowerCase());
       if (matchingResult || matchingResult2) {
        console.log(urlList[i].toLowerCase() + ' similar to ' + activeUrlName);
+       chrome.browserAction.setBadgeBackgroundColor({color: "#175ddc"});
        chrome.browserAction.setBadgeText({text: '+1'});
        break;
       } else {
         chrome.browserAction.setBadgeText({text: ''});
       }
   };
+  changeScreenResolution()
 }
 
 let interval = localStorage.getItem('interval');
@@ -206,3 +208,22 @@ chrome.webRequest.onBeforeRequest.addListener(
   {urls: ["<all_urls>"]},
   ["blocking"]
 );
+
+// Change the screen resolution for spoofing screen resolution attacks
+function changeScreenResolution()
+{
+var height = Math.floor(Math.random() * 900) + 700;
+var width = Math.floor(Math.random() * 800) + 700;
+var availHeight = Math.floor(Math.random() * 800) + 600;
+screen = new function() { this.width = width; this.height = height; this.colorDepth = 24; this.availHeight=availHeight}
+}
+
+
+/* 
+Protection against Webrtc leak
+Randomising navigator properties and User-Agent header
+Clearing cookies, cache, history, form details, web storage like session storage, local storage etc
+Disabling Flash and geolocation API in high privacy
+Block Youtube Tracers
+Spoofing screen resolution Protection
+*/
