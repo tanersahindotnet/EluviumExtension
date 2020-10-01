@@ -10,13 +10,13 @@ import { BottomNavItem } from 'ngx-bottom-nav';
 export class PrivacyComponent {
   items: BottomNavItem[];
   constructor(private translate: TranslateService) { this.setupNavigation(); }
-  blockAds;
-  webRtc;
-  fingerprint;
-  clearCookies;
-  disableFlash;
-  spoofingScreen;
-  browserProtection;
+  blockAds=true;
+  webRtc=true;
+  fingerprint=true;
+  clearCookies=true;
+  disableFlash=true;
+  spoofingScreen=true;
+  browserProtection=true;
   private setupNavigation() {
     let vault;
     let generator;

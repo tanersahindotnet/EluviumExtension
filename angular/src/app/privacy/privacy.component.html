@@ -1,12 +1,13 @@
 <div class='center'>
   <br>
-  <img src="../assets/logo.png" style="width:30%;height:30%;">
+  <img src="../assets/logo.png" style="width:25%;height:25%;">
   <h2>{{ 'Common.SecuritySettings' | translate }}</h2>
 </div>
 <br>
   <h3 class="center">Browser Protection</h3>
   <section class="center">
     <mat-slide-toggle
+        color="primary"
         [checked]="browserProtection"
         [disabled]="false">
     </mat-slide-toggle>
@@ -14,22 +15,22 @@
   <br>
     <div style="text-align: left;margin-left:10%;">
       <section>
-        <mat-checkbox [(ngModel)]="blockAds">{{ 'Privacy.BlockAds' | translate }}</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="blockAds">{{ 'Privacy.BlockAds' | translate }}</mat-checkbox>
       </section>
       <section>
-        <mat-checkbox  [(ngModel)]="webRtc">{{ 'Privacy.WebRTC' | translate }}</mat-checkbox>
+        <mat-checkbox color="primary"  [(ngModel)]="webRtc">{{ 'Privacy.WebRTC' | translate }}</mat-checkbox>
       </section>
       <section>
-        <mat-checkbox [(ngModel)]="fingerprint">{{ 'Privacy.Fingerprint' | translate }}</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="fingerprint">{{ 'Privacy.Fingerprint' | translate }}</mat-checkbox>
       </section>
       <section>
-        <mat-checkbox [(ngModel)]="clearCookies">{{ 'Privacy.ClearCookies' | translate }}</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="clearCookies">{{ 'Privacy.ClearCookies' | translate }}</mat-checkbox>
       </section>
       <section>
-        <mat-checkbox [(ngModel)]="disableFlash">{{ 'Privacy.DisableFlash' | translate }}</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="disableFlash">{{ 'Privacy.DisableFlash' | translate }}</mat-checkbox>
       </section>
       <section>
-        <mat-checkbox [(ngModel)]="spoofingScreen">{{ 'Privacy.SpoofingScreen' | translate }}</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="spoofingScreen">{{ 'Privacy.SpoofingScreen' | translate }}</mat-checkbox>
       </section>
     </div>
     <br>
