@@ -20,7 +20,10 @@ chrome.tabs.onRemoved.addListener(function(tabId) {
     if (i === 0) {
       localStorage.removeItem('password');
       localStorage.removeItem('tempPass');
-      erase();
+      if(localStorage.getItem('clearCookies') === null)
+      {
+        erase();
+      }
     }
   });
 });
@@ -66,7 +69,10 @@ function setNotifyIcon(tab) {
         chrome.browserAction.setBadgeText({text: ''});
       }
   };
-  changeScreenResolution()
+  if(localStorage.getItem('spoofingScreen') === null)
+  {
+    changeScreenResolution()
+  }
 }
 
 let interval = localStorage.getItem('interval');
@@ -107,7 +113,19 @@ function check(timeout, cb) {
 }
  //--------------------------------------------------Security Options --------------------------------------------------
 
+ /* 
+Protection against WebRtc leak
+Fingerprint protection
+Clearing cookies, cache, history, form details, web storage like session storage storage etc
+Block All Cookies
+Disabling Flash and geolocation API in high privacy
+Block Youtube Tracers
+Spoofing screen resolution Protection
+*/
+
 // Remove WebRTC local and public IP leakage
+if(localStorage.getItem('webRtc') === null)
+{
 chrome.privacy.network.webRTCMultipleRoutesEnabled.set({
   value: false,
   scope: 'regular'
@@ -120,24 +138,30 @@ chrome.privacy.network.webRTCNonProxiedUdpEnabled.set({
 chrome.storage.local.set({
   rtcIPHandling: 'default_public_interface_only'
 });
+}
 
-
-// Chrome storage API
-chrome.storage.sync.get("data", function (items) {
-
+//Block flash player
+if(localStorage.getItem('webRtc') === null)
+{
+chrome.contentSettings.plugins.set({
+  primaryPattern: '<all_urls>',
+  resourceIdentifier: {
+      id: 'adobe-flash-player'
+  },
+  setting: 'block'
 });
+}
 
+// Change User agent Fingerprint protection
+if(localStorage.getItem('fingerprint') === null)
+{
 var item = ["Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0"];
-
 var userAgent = item[Math.floor(Math.random()*item.length)];
-
 var requestFilter = {
 	urls: [
 		"<all_urls>"
 	]
 };
-
-// Change User agent Fingerprint protection
 chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
   details.requestHeaders.push({name: "DNT", value: "1"});
   var headers = details.requestHeaders;
@@ -151,67 +175,64 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
   }
   return {requestHeaders: headers};
 }, requestFilter, ['requestHeaders','blocking']);
+}
 
-// Remove all the browsing data
-function erase() {
-      chrome.browsingData.remove({}, {
-          "appcache": true,
-          "cache": true,
-          "downloads": true,
-          "cookies": true,
-          "fileSystems": true,
-          "formData": true,
-          "history": true,
-          "indexedDB": true,
-          "serverBoundCertificates": true,
-          "pluginData": true,
-          "passwords": true,
-          "webSQL": true
-      })
-      console.log('Erased');
+//Block Youtube Ads and Trackers
+if(localStorage.getItem('blockAds') === null)
+{
+  var numBlocked = 0;
+  chrome.webRequest.onBeforeRequest.addListener(
+    function(details) {
+      // It is easier to ignore requests instead of modifying them - everything seems to work fine
+      // Note that get_midroll_info response contains playerAds describing all of the ads in the video
+      const ignore =
+        details.url.indexOf("/get_video_info") != -1 ||
+        details.url.indexOf("/api/stats/ads") != -1 ||
+        details.url.indexOf("/pagead/conversion") != -1 ||
+        details.url.indexOf("ad_companion") != -1 ||
+        details.url.indexOf("get_midroll_info") != -1;
+      if (ignore) {
+        numBlocked++; // keep track of blocked requests
+        chrome.browserAction.setBadgeText({text: ''});
+        chrome.browserAction.setBadgeBackgroundColor({color: "#FF0000"});
+        chrome.browserAction.setBadgeText({text: (numBlocked > 99) ? "99+" : `${numBlocked}`});
+      }
+      return {cancel: ignore};
+    },
+    {urls: ["<all_urls>"]},
+    ["blocking"]
+  );
 }
 
 // Block all cookies except session cookies
+if(localStorage.getItem('blockCookies') === null)
+{
 chrome.runtime.onInstalled.addListener(function () {
   chrome.contentSettings.cookies.set({
       'primaryPattern': "<all_urls>",
       'setting': 'session_only'
   })
 });
+}
 
-
-//Disable flash player
-chrome.contentSettings.plugins.set({
-  primaryPattern: '<all_urls>',
-  resourceIdentifier: {
-      id: 'adobe-flash-player'
-  },
-  setting: "block"
-});
-
-//Block Youtube Ads and Trackers
-var numBlocked = 0;
-chrome.webRequest.onBeforeRequest.addListener(
-  function(details) {
-    // It is easier to ignore requests instead of modifying them - everything seems to work fine
-    // Note that get_midroll_info response contains playerAds describing all of the ads in the video
-    const ignore =
-      details.url.indexOf("/get_video_info") != -1 ||
-      details.url.indexOf("/api/stats/ads") != -1 ||
-      details.url.indexOf("/pagead/conversion") != -1 ||
-      details.url.indexOf("ad_companion") != -1 ||
-      details.url.indexOf("get_midroll_info") != -1;
-    if (ignore) {
-      numBlocked++; // keep track of blocked requests
-      chrome.browserAction.setBadgeText({text: ''});
-      chrome.browserAction.setBadgeBackgroundColor({color: "#FF0000"});
-      chrome.browserAction.setBadgeText({text: (numBlocked > 99) ? "99+" : `${numBlocked}`});
-    }
-    return {cancel: ignore};
-  },
-  {urls: ["<all_urls>"]},
-  ["blocking"]
-);
+// Remove all the browsing data
+function erase() {
+  chrome.browsingData.remove({}, {
+      "appcache": true,
+      "cache": true,
+      "downloads": true,
+      "cookies": true,
+      "fileSystems": true,
+      "formData": true,
+      "history": true,
+      "indexedDB": true,
+      "serverBoundCertificates": true,
+      "pluginData": true,
+      "passwords": true,
+      "webSQL": true
+  })
+  console.log('Erased');
+}
 
 // Change the screen resolution for spoofing screen resolution attacks
 function changeScreenResolution()
@@ -221,13 +242,3 @@ var width = Math.floor(Math.random() * 800) + 700;
 var availHeight = Math.floor(Math.random() * 800) + 600;
 screen = new function() { this.width = width; this.height = height; this.colorDepth = 24; this.availHeight=availHeight}
 }
-
-
-/* 
-Protection against WebRtc leak
-Fingerprint protection
-Clearing cookies, cache, history, form details, web storage like session storage storage etc
-Disabling Flash and geolocation API in high privacy
-Block Youtube Tracers
-Spoofing screen resolution Protection
-*/

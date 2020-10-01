@@ -17,8 +17,13 @@
   <br>
     <div style="text-align: left;margin-left:10%;">
       <section>
-        <mat-checkbox color="primary" [(ngModel)]="blockAds" #blockadsE (change)="blockadsOnChange(blockadsE)" >
+        <mat-checkbox color="primary" [(ngModel)]="blockAds" #blockadsE (change)="blockadsOnChange(blockadsE)">
           {{ 'Privacy.BlockAds' | translate }}
+        </mat-checkbox>
+      </section>
+      <section>
+        <mat-checkbox color="primary"  [(ngModel)]="blockCookies" #blockCookiesE (change)="blockCookiesOnChange(blockCookiesE)">
+          {{ 'Privacy.BlockCookies' | translate }}
         </mat-checkbox>
       </section>
       <section>

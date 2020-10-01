@@ -160,6 +160,7 @@
     "Fingerprint":"Parmak izi koruması",
     "ClearCookies":"Kapanırken çerezleri, önbelleği, geçmişi ve form ayrıntılarını temizle",
     "DisableFlash":"Güvenlik için Flash'ı devre dışı bırak",
-    "SpoofingScreen": "Sahte ekran çözünürlüğü koruması"
+    "SpoofingScreen": "Sahte ekran çözünürlüğü koruması",
+    "BlockCookies":"Tüm çerezleri engelle"
   }
 }

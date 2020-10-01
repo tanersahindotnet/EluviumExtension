@@ -1,14 +1,20 @@
 var numBlocked=0;
+chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
+	if (changeInfo.status == 'complete') {
+		numBlocked=0;
+		//Refresh stats after done
+	}
+  })
+  if(localStorage.getItem('blockAds') === null)
+  {
 chrome.webRequest.onBeforeRequest.addListener(
 	function(details) {
-		if(localStorage.getItem('blockAds') == null)
-		console.log("Blocking:", details.url);
-		numBlocked++;
-		chrome.browserAction.setBadgeText({text: ''});
-		chrome.browserAction.setBadgeBackgroundColor({color: "#FF0000"});
-		chrome.browserAction.setBadgeText({text: (numBlocked > 99) ? "99+" : `${numBlocked}`});
-		return {cancel: true };
-
+			console.log("Blocking:", details.url);
+			numBlocked++;
+			chrome.browserAction.setBadgeText({text: ''});
+			chrome.browserAction.setBadgeBackgroundColor({color: "#FF0000"});
+			chrome.browserAction.setBadgeText({text: (numBlocked > 99) ? "99+" : `${numBlocked}`});
+			return {cancel: true };
 	},
 	{urls:[
 "*://*.lb.usemaxserver.de/*",
@@ -36631,3 +36637,4 @@ chrome.webRequest.onBeforeRequest.addListener(
 "*://*.zv1.november-lax.com/*"]},
 	["blocking"]
 );
+}

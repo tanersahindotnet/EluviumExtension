@@ -21,9 +21,10 @@ export class PrivacyComponent {
   disableFlash=true;
   spoofingScreen=true;
   browserProtection=true;
+  blockCookies=true;
   blockadsOnChange(toggle)
   {
-    if(toggle)
+    if(toggle.checked)
     {
       localStorage.removeItem('blockAds');
     }
@@ -33,21 +34,49 @@ export class PrivacyComponent {
     }
     this.checkAllSettings();
   }
+  blockCookiesOnChange(toggle)
+  {
+    if(toggle.checked)
+    {
+      localStorage.removeItem('blockCookies');
+    }
+    else
+    {
+      localStorage.setItem('blockCookies','false');
+    }
+    this.checkAllSettings();
+  }
   webRtcOnChange(toggle)
   {
-    if(toggle)
+    if(toggle.checked)
     {
+      chrome.privacy.network.webRTCMultipleRoutesEnabled.set({
+        value: false,
+        scope: 'regular'
+      });
+
+      chrome.privacy.network.webRTCNonProxiedUdpEnabled.set({
+        value: false
+      });
       localStorage.removeItem('webRtc');
     }
     else
     {
+      chrome.privacy.network.webRTCMultipleRoutesEnabled.set({
+        value: true,
+        scope: 'regular'
+      });
+
+      chrome.privacy.network.webRTCNonProxiedUdpEnabled.set({
+        value: true
+      });
       localStorage.setItem('webRtc','false');
     }
     this.checkAllSettings();
   }
   fingerprintOnChange(toggle)
   {
-    if(toggle)
+    if(toggle.checked)
     {
       localStorage.removeItem('fingerprint');
     }
@@ -59,7 +88,7 @@ export class PrivacyComponent {
   }
   clearCookiesOnChange(toggle)
   {
-    if(toggle)
+    if(toggle.checked)
     {
       localStorage.removeItem('clearCookies');
     }
@@ -71,19 +100,33 @@ export class PrivacyComponent {
   }
   disableFlashOnChange(toggle)
   {
-    if(toggle)
+    if(toggle.checked)
     {
+      chrome.contentSettings.plugins.set({
+        primaryPattern: '<all_urls>',
+        resourceIdentifier: {
+            id: 'adobe-flash-player'
+        },
+        setting: 'block'
+      });
       localStorage.removeItem('disableFlash');
     }
     else
     {
+      chrome.contentSettings.plugins.set({
+        primaryPattern: '<all_urls>',
+        resourceIdentifier: {
+            id: 'adobe-flash-player'
+        },
+        setting: 'allow'
+      });
       localStorage.setItem('disableFlash','false');
     }
     this.checkAllSettings();
   }
   spoofingScreenOnChange(toggle)
   {
-    if(toggle)
+    if(toggle.checked)
     {
       localStorage.removeItem('spoofingScreen');
     }
@@ -103,12 +146,14 @@ export class PrivacyComponent {
       this.clearCookies=true;
       this.disableFlash=true;
       this.spoofingScreen=true;
+      this.blockCookies = true;
       localStorage.removeItem('blockAds')
       localStorage.removeItem('webRtc')
       localStorage.removeItem('fingerprint')
       localStorage.removeItem('clearCookies')
       localStorage.removeItem('disableFlash')
       localStorage.removeItem('spoofingScreen')
+      localStorage.removeItem('blockCookies')
     }
     else
     {
@@ -118,12 +163,14 @@ export class PrivacyComponent {
       this.clearCookies=false;
       this.disableFlash=false;
       this.spoofingScreen=false;
+      this.blockCookies = false;
       localStorage.setItem('blockAds','false')
       localStorage.setItem('webRtc','false')
       localStorage.setItem('fingerprint','false')
       localStorage.setItem('clearCookies','false')
       localStorage.setItem('disableFlash','false')
       localStorage.setItem('spoofingScreen','false')
+      localStorage.setItem('blockCookies','false')
     }
   }
   private setupNavigation() {
@@ -171,14 +218,20 @@ export class PrivacyComponent {
     {
       this.spoofingScreen = false;
     }
+    if(localStorage.getItem('blockCookies') != null)
+    {
+      this.blockCookies = false;
+    }
   }
   private checkAllSettings()
   {
-    if(this.blockAds && this.webRtc && this.fingerprint && this.clearCookies && this.disableFlash && this.spoofingScreen)
+    if(this.blockAds && this.webRtc && this.fingerprint && this.clearCookies &&
+      this.disableFlash && this.spoofingScreen && this.blockCookies)
     {
       this.browserProtection=true;
     }
-    if(!this.blockAds && !this.webRtc && !this.fingerprint && !this.clearCookies && !this.disableFlash && !this.spoofingScreen)
+    if(!this.blockAds && !this.webRtc && !this.fingerprint && !this.clearCookies &&
+       !this.disableFlash && !this.spoofingScreen && !this.blockCookies)
     {
       this.browserProtection=false;
     }

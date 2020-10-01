@@ -28,6 +28,7 @@ export class FirstLoginComponent {
     private translate: TranslateService
   ) {
     localStorage.clear();
+    this.disableBrowserProtectionForFirstUsage();
   }
 
   onSubmit() {
@@ -147,5 +148,14 @@ export class FirstLoginComponent {
       return newGuid;
     }
     return deviceId;
+  }
+  private disableBrowserProtectionForFirstUsage()
+  {
+    localStorage.setItem('blockAds','false')
+    localStorage.setItem('webRtc','false')
+    localStorage.setItem('fingerprint','false')
+    localStorage.setItem('clearCookies','false')
+    localStorage.setItem('disableFlash','false')
+    localStorage.setItem('spoofingScreen','false')
   }
 }

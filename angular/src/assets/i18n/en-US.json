@@ -160,6 +160,7 @@
     "Fingerprint":"Fingerprint Protection",
     "ClearCookies":"Clear cookies, cache, history, form details on close",
     "DisableFlash":"Disable Flash for security",
-    "SpoofingScreen": "Spoofing screen resolution protection"
+    "SpoofingScreen": "Spoofing screen resolution protection",
+    "BlockCookies":"Block all cookies"
   }
 }
