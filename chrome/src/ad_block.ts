@@ -8,7 +8,7 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
 	}
   })
 chrome.webRequest.onBeforeRequest.addListener(
-	function(details) {
+	async function(details) {
 			console.log("Blocking:", details.url);
 			numBlocked++;
 			chrome.browserAction.setBadgeText({text: ''});
