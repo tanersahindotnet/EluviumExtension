@@ -16,8 +16,8 @@ export class GeneratorComponent {
   lowercase = true;
   uppercase = true;
   numbers = true;
-  symbols = false;
-  others = false;
+  symbols = true;
+  others = true;
   constructor( private snackBar: MatSnackBar, private route: Router, private translate: TranslateService) {
    this.checkSession();
    this.setupNavigation();

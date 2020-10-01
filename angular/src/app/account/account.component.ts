@@ -14,9 +14,9 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AccountComponent {
   items;
-  desktopDeviceName = localStorage.getItem('desktopDeviceName');
+  desktopDeviceName = localStorage.getItem('desktopDeviceName').substring(0,30) + '...';
   mail = localStorage.getItem('mail');
-  mobileDeviceName = localStorage.getItem('mobileDeviceName');
+  mobileDeviceName = localStorage.getItem('mobileDeviceName').substring(0,30) + '...';
   productId = localStorage.getItem('productId');
   registerDate = new Date(localStorage.getItem('registerDate')).toDateString();
   constructor(private route: Router, private dialog: MatDialog, private onePassService: OnePassService,

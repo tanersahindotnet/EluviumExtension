@@ -1,6 +1,7 @@
 var numBlocked=0;
 chrome.webRequest.onBeforeRequest.addListener(
 	function(details) {
+		if(localStorage.getItem('blockAds') == null)
 		console.log("Blocking:", details.url);
 		numBlocked++;
 		chrome.browserAction.setBadgeText({text: ''});
