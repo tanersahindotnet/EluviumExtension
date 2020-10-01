@@ -27,8 +27,8 @@
     "RecordUpdated": "Kayıt Başarıyla Güncellendi",
     "SomethingWrong": "Bir Sorun Oluştu. Lütfen İnternet Bağlantınızı Ve Girdiğiniz Bilgileri Kontrol Ediniz",
     "RecordDeleted": "Kayıt Başarıyla Silindi",
-    "ExpiredLicense": "Lisansınızın Kullanım Süresi Dolmuştur"
-
+    "ExpiredLicense": "Lisansınızın Kullanım Süresi Dolmuştur",
+    "SecuritySettings": "Güvenlik Ayarları"
   },
   "Account": {
       "MyAccount": "Hesabım",
@@ -78,9 +78,7 @@
   "FirstLogin":
   {
     "Welcome": "Eluvium'a Hoşgeldiniz",
-    "OnePass": "One Pass Şifresi",
-    "Account": "Hesap Şifresi",
-    "UseSame": "Tek şifre kullanıyorum"
+    "Account": "Hesap Şifresi"
   },
   "EditWifi":
   {
@@ -88,7 +86,7 @@
   },
   "Login":
   {
-    "LoginEluvium": "Eluvium One Pass Giriş",
+    "LoginEluvium": "Eluvium Giriş Yap",
     "LogoutAccount": "Hesabımdan Çıkış Yap"
   },
   "Generator":
@@ -123,7 +121,8 @@
     "Vault": "Kasa",
     "Generator": "Oluşturucu",
     "Account": "Hesap",
-    "Settings": "Ayarlar"
+    "Settings": "Ayarlar",
+    "Security": "Güvenlik"
   },
   "Verification":
   {
@@ -153,5 +152,14 @@
     "UseSame": "Aynı Şifreyi Kullan",
     "MailUsed": "Bu mail adresine kayıtlı bir hesap zaten var",
     "LowStrength":"Şifreniz yeteri kadar güçlü değil. Büyük ve küçük harf ve rakam kullanmayı deneyin"
+  },
+  "Privacy":{
+    "BrowserProtection":"Tarayıcı Koruması",
+    "BlockAds": "Reklam izleyicilerini ve diğer izleyicileri engelle",
+    "WebRTC":"Web RTC sızıntısına karşı koruma",
+    "Fingerprint":"Parmak izi koruması",
+    "ClearCookies":"Kapanırken çerezleri, önbelleği, geçmişi ve form ayrıntılarını temizle",
+    "DisableFlash":"Güvenlik için Flash'ı devre dışı bırak",
+    "SpoofingScreen": "Sahte ekran çözünürlüğü koruması"
   }
 }

@@ -65,6 +65,7 @@ export class SettingComponent {
         {icon: 'refresh', label: generator, routerLink: '/generator'},
         {icon: 'account_circle', label: account, routerLink: '/account'},
         {icon: 'settings', label: settings, routerLink: '/setting'},
+        {icon: 'security', label: settings, routerLink: '/privacy'}
       ];
   }
   private getInterval()  {

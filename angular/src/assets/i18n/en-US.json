@@ -27,7 +27,8 @@
     "RecordUpdated": "Record Updated Successfully",
     "SomethingWrong": "Something Went Wrong. Please Check Your Connection and Informations",
     "RecordDeleted": "Record Deleted Successfully",
-    "ExpiredLicense": "Your License Expired"
+    "ExpiredLicense": "Your License Expired",
+    "SecuritySettings": "Security Settings"
   },
   "Account": {
       "MyAccount": "My Account",
@@ -81,13 +82,11 @@
   "FirstLogin":
   {
     "Welcome": "Welcome to Eluvium",
-    "OnePass": "One Pass Password",
-    "Account": "Account Password",
-    "UseSame": "Using One Password"
+    "Account": "Account Password"
   },
   "Login":
   {
-    "LoginEluvium": "Login Eluvium One Pass",
+    "LoginEluvium": "Login Eluvium",
     "LogoutAccount": "Logout From My Account"
   },
   "Generator":
@@ -122,7 +121,8 @@
     "Vault": "Vault",
     "Generator": "Generator",
     "Account": "Account",
-    "Settings": "Settings"
+    "Settings": "Settings",
+    "Security": "Security"
   },
   "Verification":
   {
@@ -152,5 +152,14 @@
     "UseSame": "Use Same Password",
     "MailUsed": "That mail associated with an Eluvium account",
     "LowStrength":"Your password is not powerful enough. Try to use lowercase and uppercase characters with numbers"
+  },
+  "Privacy":{
+    "BrowserProtection":"Browser Protection",
+    "BlockAds": "Block Ads tracers and other tracers",
+    "WebRTC":"Protection Against Web RTC Leak",
+    "Fingerprint":"Fingerprint Protection",
+    "ClearCookies":"Clear cookies, cache, history, form details on close",
+    "DisableFlash":"Disable Flash for security",
+    "SpoofingScreen": "Spoofing screen resolution protection"
   }
 }

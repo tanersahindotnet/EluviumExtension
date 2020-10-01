@@ -8,6 +8,7 @@ import { SettingComponent } from './setting/setting.component'
 import { AccountComponent } from './account/account.component';
 import { VerificationComponent } from './verification/verification.component';
 import { RegisterComponent } from './register/register.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'firstLogin', component: FirstLoginComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'setting', component: SettingComponent },
   { path: 'account', component: AccountComponent },
   { path: 'verify', component: VerificationComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'privacy', component: PrivacyComponent }
 ];
 
 @NgModule({

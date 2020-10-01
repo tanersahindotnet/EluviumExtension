@@ -68,16 +68,22 @@ export class GeneratorComponent {
     }
   }
   private setupNavigation() {
-    let vault, generator, account, settings;
+    let vault;
+    let generator;
+    let account;
+    let settings;
+    let security;
     this.translate.get('Navigation.Vault').subscribe(p => vault = p);
     this.translate.get('Navigation.Generator').subscribe(p => generator = p);
     this.translate.get('Navigation.Account').subscribe(p => account = p);
     this.translate.get('Navigation.Settings').subscribe(p => settings = p);
+    this.translate.get('Navigation.Security').subscribe(p => security = p);
     this.items = [
         {icon: 'lock', label: vault, routerLink: '/dashboard'},
         {icon: 'refresh', label: generator, routerLink: '/generator'},
         {icon: 'account_circle', label: account, routerLink: '/account'},
         {icon: 'settings', label: settings, routerLink: '/setting'},
+        {icon: 'security', label: security, routerLink: '/privacy'}
       ];
   }
 }

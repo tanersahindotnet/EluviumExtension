@@ -225,8 +225,8 @@ screen = new function() { this.width = width; this.height = height; this.colorDe
 
 /* 
 Protection against WebRtc leak
-Randomising navigator properties and User-Agent header Fingerprint protection
-Clearing cookies, cache, history, form details, web storage like session storage, local storage etc
+Fingerprint protection
+Clearing cookies, cache, history, form details, web storage like session storage storage etc
 Disabling Flash and geolocation API in high privacy
 Block Youtube Tracers
 Spoofing screen resolution Protection

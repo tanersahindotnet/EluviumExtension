@@ -1,0 +1,39 @@
+<div class='center'>
+  <br>
+  <img src="../assets/logo.png" style="width:30%;height:30%;">
+  <h2>{{ 'Common.SecuritySettings' | translate }}</h2>
+</div>
+<br>
+  <h3 class="center">Browser Protection</h3>
+  <section class="center">
+    <mat-slide-toggle
+        [checked]="false"
+        [disabled]="false">
+    </mat-slide-toggle>
+  </section>
+  <br>
+    <div style="text-align: left;margin-left:10%;">
+      <section>
+        <mat-checkbox  >{{ 'Privacy.BrowserProtection' | translate }}</mat-checkbox>
+      </section>
+      <section>
+        <mat-checkbox  >{{ 'Privacy.BlockAds' | translate }}</mat-checkbox>
+      </section>
+      <section>
+        <mat-checkbox  >{{ 'Privacy.WebRTC' | translate }}</mat-checkbox>
+      </section>
+      <section>
+        <mat-checkbox  >{{ 'Privacy.Fingerprint' | translate }}</mat-checkbox>
+      </section>
+      <section>
+        <mat-checkbox  >{{ 'Privacy.ClearCookies' | translate }}</mat-checkbox>
+      </section>
+      <section>
+        <mat-checkbox  >{{ 'Privacy.DisableFlash' | translate }}</mat-checkbox>
+      </section>
+      <section>
+        <mat-checkbox  >{{ 'Privacy.SpoofingScreen' | translate }}</mat-checkbox>
+      </section>
+    </div>
+    <br>
+<ngx-bottom-nav [items]="items"></ngx-bottom-nav>
