@@ -1,3 +1,5 @@
+if(localStorage.getItem('blockAds') === null)
+{
 var numBlocked=0;
 chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
 	if (changeInfo.status == 'complete') {
@@ -5,8 +7,6 @@ chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
 		//Refresh stats after done
 	}
   })
-  if(localStorage.getItem('blockAds') === null)
-  {
 chrome.webRequest.onBeforeRequest.addListener(
 	function(details) {
 			console.log("Blocking:", details.url);
