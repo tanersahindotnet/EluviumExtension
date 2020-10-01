@@ -1,7 +1,13 @@
+var numBlocked=0;
 chrome.webRequest.onBeforeRequest.addListener(
 	function(details) {
-		console.log("blocking:", details.url);
+		console.log("Blocking:", details.url);
+		numBlocked++;
+		chrome.browserAction.setBadgeText({text: ''});
+		chrome.browserAction.setBadgeBackgroundColor({color: "#FF0000"});
+		chrome.browserAction.setBadgeText({text: (numBlocked > 99) ? "99+" : `${numBlocked}`});
 		return {cancel: true };
+
 	},
 	{urls:[
 "*://*.lb.usemaxserver.de/*",

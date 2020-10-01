@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BottomNavItem } from 'ngx-bottom-nav';
 
@@ -7,13 +7,16 @@ import { BottomNavItem } from 'ngx-bottom-nav';
   templateUrl: './privacy.component.html',
   styleUrls: ['./privacy.component.scss']
 })
-export class PrivacyComponent implements OnInit {
+export class PrivacyComponent {
   items: BottomNavItem[];
   constructor(private translate: TranslateService) { this.setupNavigation(); }
-
-  ngOnInit() {
-
-  }
+  blockAds;
+  webRtc;
+  fingerprint;
+  clearCookies;
+  disableFlash;
+  spoofingScreen;
+  browserProtection;
   private setupNavigation() {
     let vault;
     let generator;
