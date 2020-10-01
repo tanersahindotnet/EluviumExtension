@@ -13,6 +13,7 @@ export class PrivacyComponent {
   {
     this.setupNavigation();
     this.checkSettings();
+    this.checkAllSettings();
   }
   blockAds=true;
   webRtc=true;
@@ -147,13 +148,7 @@ export class PrivacyComponent {
       this.disableFlash=true;
       this.spoofingScreen=true;
       this.blockCookies = true;
-      localStorage.removeItem('blockAds')
-      localStorage.removeItem('webRtc')
-      localStorage.removeItem('fingerprint')
-      localStorage.removeItem('clearCookies')
-      localStorage.removeItem('disableFlash')
-      localStorage.removeItem('spoofingScreen')
-      localStorage.removeItem('blockCookies')
+      this.removeItems();
     }
     else
     {
@@ -164,13 +159,7 @@ export class PrivacyComponent {
       this.disableFlash=false;
       this.spoofingScreen=false;
       this.blockCookies = false;
-      localStorage.setItem('blockAds','false')
-      localStorage.setItem('webRtc','false')
-      localStorage.setItem('fingerprint','false')
-      localStorage.setItem('clearCookies','false')
-      localStorage.setItem('disableFlash','false')
-      localStorage.setItem('spoofingScreen','false')
-      localStorage.setItem('blockCookies','false')
+      this.setItems();
     }
   }
   private setupNavigation() {
@@ -228,12 +217,34 @@ export class PrivacyComponent {
     if(this.blockAds && this.webRtc && this.fingerprint && this.clearCookies &&
       this.disableFlash && this.spoofingScreen && this.blockCookies)
     {
+      this.removeItems();
       this.browserProtection=true;
     }
     if(!this.blockAds && !this.webRtc && !this.fingerprint && !this.clearCookies &&
        !this.disableFlash && !this.spoofingScreen && !this.blockCookies)
     {
+      this.setItems();
       this.browserProtection=false;
     }
+  }
+  private removeItems()
+  {
+    localStorage.removeItem('blockAds')
+    localStorage.removeItem('webRtc')
+    localStorage.removeItem('fingerprint')
+    localStorage.removeItem('clearCookies')
+    localStorage.removeItem('disableFlash')
+    localStorage.removeItem('spoofingScreen')
+    localStorage.removeItem('blockCookies')
+  }
+  private setItems()
+  {
+    localStorage.setItem('blockAds','false')
+    localStorage.setItem('webRtc','false')
+    localStorage.setItem('fingerprint','false')
+    localStorage.setItem('clearCookies','false')
+    localStorage.setItem('disableFlash','false')
+    localStorage.setItem('spoofingScreen','false')
+    localStorage.setItem('blockCookies','false')
   }
 }

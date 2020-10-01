@@ -7,7 +7,7 @@
   <h3 class="center">Browser Protection</h3>
   <section class="center">
     <label class="toggle-switch">
-      <input type="checkbox" #toggle    [checked]="browserProtection"  (change)="protectionOnChange(toggle)">
+      <input type="checkbox" #toggle [(ngModel)]="browserProtection" (change)="protectionOnChange(toggle)">
       <div class="slider"></div>
     </label>
   </section>
