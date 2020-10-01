@@ -174,7 +174,11 @@ export class PrivacyComponent {
   }
   private checkAllSettings()
   {
-    if(!this.blockAds && !this.webRtc && !this.fingerprint && !this.clearCookies && !this.disableFlash && !this.spoofingScreen)
+    if(this.blockAds && this.webRtc && this.fingerprint && this.clearCookies && this.disableFlash && this.spoofingScreen)
+    {
+      this.browserProtection=true;
+    }
+    else
     {
       this.browserProtection=false;
     }
