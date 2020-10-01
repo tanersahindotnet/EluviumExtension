@@ -178,7 +178,7 @@ export class PrivacyComponent {
     {
       this.browserProtection=true;
     }
-    else
+    if(!this.blockAds && !this.webRtc && !this.fingerprint && !this.clearCookies && !this.disableFlash && !this.spoofingScreen)
     {
       this.browserProtection=false;
     }
