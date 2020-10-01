@@ -6,13 +6,10 @@
 <br>
   <h3 class="center">Browser Protection</h3>
   <section class="center">
-    <mat-slide-toggle
-        #toggle
-        (change)="protectionOnChange(toggle)"
-        color="primary"
-        [checked]="browserProtection"
-        [disabled]="false">
-    </mat-slide-toggle>
+    <label class="toggle-switch">
+      <input type="checkbox" #toggle    [checked]="browserProtection"  (change)="protectionOnChange(toggle)">
+      <div class="slider"></div>
+    </label>
   </section>
   <br>
     <div style="text-align: left;margin-left:10%;">
