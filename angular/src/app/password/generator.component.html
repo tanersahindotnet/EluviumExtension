@@ -21,7 +21,7 @@
 </section>
 <section>
   <br>
-  <input matInput type="number" [(ngModel)]="inputLength" placeholder="Password Length">
+  Password Length: <mat-slider thumbLabel min="8" max="128" step="1" color="primary" [(ngModel)]="inputLength" value="12"></mat-slider>{{inputLength}}
 </section>
 <br>
 <button mat-raised-button color="primary"  (click)="generatePassword()">
@@ -29,13 +29,12 @@
   {{ 'Generator.Generate' | translate }}</button>
 <br>
 <br>
-<div [hidden]="!password">
-<mat-form-field>
-  <input matInput type="text" [(ngModel)]="password" [hidden]='!password'>
+<mat-form-field style="width:100%;">
+  <input matInput type="text" [(ngModel)]="password">
     <button  mat-button matSuffix  aria-label="search" (click)="copyText()">
       <mat-icon>content_copy</mat-icon>
   </button>
 </mat-form-field>
 </div>
-</div>
+<br>
 <ngx-bottom-nav [items]="items"></ngx-bottom-nav>

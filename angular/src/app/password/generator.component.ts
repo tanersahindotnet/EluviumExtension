@@ -21,6 +21,7 @@ export class GeneratorComponent {
   constructor( private snackBar: MatSnackBar, private route: Router, private translate: TranslateService) {
    this.checkSession();
    this.setupNavigation();
+   this.generatePassword();
   }
   generatePassword() {
     const numberChars = '0123456789';
