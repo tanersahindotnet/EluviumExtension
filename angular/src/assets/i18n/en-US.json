@@ -161,6 +161,7 @@
     "ClearCookies":"Clear cookies, cache, history, form details on close",
     "DisableFlash":"Disable Flash for security",
     "SpoofingScreen": "Spoofing screen resolution protection",
-    "BlockCookies":"Block all cookies"
+    "BlockCookies":"Block all cookies",
+    "PhisAi": "Phishing Protection Powered by AI & Computer vision"
   }
 }

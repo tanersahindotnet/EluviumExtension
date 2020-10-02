@@ -24,6 +24,12 @@ export class AppComponent {
     const accountPasswordHashed = localStorage.getItem('accountPasswordHashed');
     const password = localStorage.getItem('password');
     const tempPass = localStorage.getItem('tempPass');
+    const warning = localStorage.getItem('warning');
+    if(warning !=null)
+    {
+      this.route.navigate(['warning']);
+      return;
+    }
     if (tempPass != null) {
       this.route.navigate(['verify']);
       return;

@@ -9,6 +9,7 @@ import { AccountComponent } from './account/account.component';
 import { VerificationComponent } from './verification/verification.component';
 import { RegisterComponent } from './register/register.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { WarningComponent } from './warning/warning.component';
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'firstLogin', component: FirstLoginComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent },
   { path: 'verify', component: VerificationComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'privacy', component: PrivacyComponent }
+  { path: 'privacy', component: PrivacyComponent },
+  { path: 'warning', component: WarningComponent }
 ];
 
 @NgModule({

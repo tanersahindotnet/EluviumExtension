@@ -32,6 +32,7 @@ import { RegisterComponent } from '../app/register/register.component';
 import { PasswordAdvisorService } from '../app/Services/passwordAdvisor.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { WarningComponent } from './warning/warning.component';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -60,7 +61,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   declarations: [AppComponent, FirstLoginComponent, LoginComponent, DashboardComponent, GeneratorComponent, SettingComponent,
   EditPasswordComponent, EditWifiComponent, EditServerComponent, EditCreditCardComponent, EmptyListComponent, AccountComponent,
-  DialogContentComponent, QuestionDialogComponent, AccountPromptDialogComponent, VerificationComponent, RegisterComponent,PrivacyComponent],
+  DialogContentComponent, QuestionDialogComponent, AccountPromptDialogComponent, VerificationComponent, RegisterComponent,
+  WarningComponent,PrivacyComponent],
   bootstrap: [AppComponent],
   providers: [StringEncryptionService, OnePassService, OnePassEncryptionService, PasswordAdvisorService]
 })

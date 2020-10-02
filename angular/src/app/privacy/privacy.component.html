@@ -19,6 +19,11 @@
         </mat-checkbox>
       </section>
       <section>
+        <mat-checkbox color="primary" [(ngModel)]="phisAi" #phisAiE (change)="phisAiOnChange(phisAiE)">
+          {{ 'Privacy.PhisAi' | translate }}
+        </mat-checkbox>
+      </section>
+      <section>
         <mat-checkbox color="primary"  [(ngModel)]="blockCookies" #blockCookiesE (change)="blockCookiesOnChange(blockCookiesE)">
           {{ 'Privacy.BlockCookies' | translate }}
         </mat-checkbox>

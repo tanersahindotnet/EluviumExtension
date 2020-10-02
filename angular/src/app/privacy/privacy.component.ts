@@ -23,6 +23,7 @@ export class PrivacyComponent {
   spoofingScreen=true;
   browserProtection=true;
   blockCookies=true;
+  phisAi = true;
   blockadsOnChange(toggle)
   {
     if(toggle.checked)
@@ -32,6 +33,18 @@ export class PrivacyComponent {
     else
     {
       localStorage.setItem('blockAds','false');
+    }
+    this.checkAllSettings();
+  }
+  phisAiOnChange(toggle)
+  {
+    if(toggle.checked)
+    {
+      localStorage.removeItem('phisAi');
+    }
+    else
+    {
+      localStorage.setItem('phisAi','false');
     }
     this.checkAllSettings();
   }
@@ -148,6 +161,7 @@ export class PrivacyComponent {
       this.disableFlash=true;
       this.spoofingScreen=true;
       this.blockCookies = true;
+      this.phisAi = true;
       this.removeItems();
     }
     else
@@ -159,6 +173,7 @@ export class PrivacyComponent {
       this.disableFlash=false;
       this.spoofingScreen=false;
       this.blockCookies = false;
+      this.phisAi = false;
       this.setItems();
     }
   }
@@ -211,17 +226,21 @@ export class PrivacyComponent {
     {
       this.blockCookies = false;
     }
+    if(localStorage.getItem('phisAi') != null)
+    {
+      this.phisAi = false;
+    }
   }
   private checkAllSettings()
   {
     if(this.blockAds && this.webRtc && this.fingerprint && this.clearCookies &&
-      this.disableFlash && this.spoofingScreen && this.blockCookies)
+      this.disableFlash && this.spoofingScreen && this.blockCookies && this.phisAi)
     {
       this.removeItems();
       this.browserProtection=true;
     }
     if(!this.blockAds && !this.webRtc && !this.fingerprint && !this.clearCookies &&
-       !this.disableFlash && !this.spoofingScreen && !this.blockCookies)
+       !this.disableFlash && !this.spoofingScreen && !this.blockCookies && !this.phisAi)
     {
       this.setItems();
       this.browserProtection=false;
@@ -236,6 +255,7 @@ export class PrivacyComponent {
     localStorage.removeItem('disableFlash')
     localStorage.removeItem('spoofingScreen')
     localStorage.removeItem('blockCookies')
+    localStorage.removeItem('phisAi')
   }
   private setItems()
   {
@@ -246,5 +266,6 @@ export class PrivacyComponent {
     localStorage.setItem('disableFlash','false')
     localStorage.setItem('spoofingScreen','false')
     localStorage.setItem('blockCookies','false')
+    localStorage.setItem('phisAi','false')
   }
 }
