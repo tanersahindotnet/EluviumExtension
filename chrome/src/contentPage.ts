@@ -1,3 +1,4 @@
+window.opener = null;
 // Webapp content that is the youtube app #content(style-scope ytd-app)
 const content = document.getElementsByTagName("ytd-app")[0];
 

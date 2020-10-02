@@ -1,4 +1,3 @@
-
 chrome.windows.onRemoved.addListener(function(windowid) {
   localStorage.removeItem('password');
   localStorage.removeItem('tempPass');

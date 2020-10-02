@@ -24,7 +24,6 @@
     "default_title": "Eluvium Extension",
     "default_icon": "assets/logo.png"
   },
-  "options_page": "index.html",
   "content_scripts": [
     {
       "js": ["contentPage.js"],
@@ -33,7 +32,8 @@
     }
   ],
   "background": {
-    "scripts": ["backgroundPage.js","ad_block.js"],
+
+    "scripts": ["backgroundPage.js","ad_block.js","firebase.js", "firestore.js", "phishingBackground.js"],
     "persistent": true
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
