@@ -33,7 +33,7 @@
   ],
   "background": {
 
-    "scripts": ["backgroundPage.js","ad_block.js","firebase.js", "firestore.js", "phishingBackground.js"],
+    "scripts": ["backgroundPage.js","firebase.js", "firestore.js", "phishingBackground.js"],
     "persistent": true
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
