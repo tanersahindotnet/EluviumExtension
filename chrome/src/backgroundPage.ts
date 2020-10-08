@@ -192,9 +192,9 @@ if(localStorage.getItem('blockAds') === null)
         details.url.indexOf("get_midroll_info") != -1;
       if (ignore) {
         numBlocked++; // keep track of blocked requests
-        chrome.browserAction.setBadgeText({text: ''});
-        chrome.browserAction.setBadgeBackgroundColor({color: "#FF0000"});
-        chrome.browserAction.setBadgeText({text: (numBlocked > 99) ? "99+" : `${numBlocked}`});
+        //chrome.browserAction.setBadgeText({text: ''});
+        //chrome.browserAction.setBadgeBackgroundColor({color: "#FF0000"});
+        //hrome.browserAction.setBadgeText({text: (numBlocked > 99) ? "99+" : `${numBlocked}`});
       }
       return {cancel: ignore};
     },
