@@ -15,7 +15,6 @@ export class PrivacyComponent {
     this.checkSettings();
     this.checkAllSettings();
   }
-  blockAds=true;
   webRtc=true;
   fingerprint=true;
   clearCookies=true;
@@ -24,18 +23,6 @@ export class PrivacyComponent {
   browserProtection=true;
   blockCookies=true;
   phisAi = true;
-  blockadsOnChange(toggle)
-  {
-    if(toggle.checked)
-    {
-      localStorage.removeItem('blockAds');
-    }
-    else
-    {
-      localStorage.setItem('blockAds','false');
-    }
-    this.checkAllSettings();
-  }
   phisAiOnChange(toggle)
   {
     if(toggle.checked)
@@ -154,7 +141,6 @@ export class PrivacyComponent {
   {
     if(toggle.checked)
     {
-      this.blockAds=true;
       this.webRtc=true;
       this.fingerprint=true;
       this.clearCookies=true;
@@ -166,7 +152,6 @@ export class PrivacyComponent {
     }
     else
     {
-      this.blockAds=false;
       this.webRtc=false;
       this.fingerprint=false;
       this.clearCookies=false;
@@ -198,10 +183,6 @@ export class PrivacyComponent {
   }
   private checkSettings()
   {
-    if(localStorage.getItem('blockAds') != null)
-    {
-      this.blockAds = false;
-    }
     if(localStorage.getItem('webRtc') != null)
     {
       this.webRtc = false;
@@ -233,13 +214,13 @@ export class PrivacyComponent {
   }
   private checkAllSettings()
   {
-    if(this.blockAds && this.webRtc && this.fingerprint && this.clearCookies &&
+    if(this.webRtc && this.fingerprint && this.clearCookies &&
       this.disableFlash && this.spoofingScreen && this.blockCookies && this.phisAi)
     {
       this.removeItems();
       this.browserProtection=true;
     }
-    if(!this.blockAds && !this.webRtc && !this.fingerprint && !this.clearCookies &&
+    if(!this.webRtc && !this.fingerprint && !this.clearCookies &&
        !this.disableFlash && !this.spoofingScreen && !this.blockCookies && !this.phisAi)
     {
       this.setItems();
@@ -248,7 +229,6 @@ export class PrivacyComponent {
   }
   private removeItems()
   {
-    localStorage.removeItem('blockAds')
     localStorage.removeItem('webRtc')
     localStorage.removeItem('fingerprint')
     localStorage.removeItem('clearCookies')
@@ -259,7 +239,6 @@ export class PrivacyComponent {
   }
   private setItems()
   {
-    localStorage.setItem('blockAds','false')
     localStorage.setItem('webRtc','false')
     localStorage.setItem('fingerprint','false')
     localStorage.setItem('clearCookies','false')
