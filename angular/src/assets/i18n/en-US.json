@@ -43,7 +43,12 @@
       "DisconnectedPhone": "Phone Disconnected"
   },
   "Dashboard":{
-    "LoginTab": "Login Tab"
+    "LoginTab": "Login Tab",
+    "NoActiveLogin":"There is no active login for now",
+    "NoPassword":"There is no registered password",
+    "NoCreditCard":"There is no registered credit card",
+    "NoWifi":"There is no registered wifi password",
+    "NoServer": "There is no registered server information"
   },
   "AccountPrompt":{
     "EnterPasswordToContinue": "Enter Your Eluvium Password Before Continue to Process"

@@ -43,7 +43,12 @@
       "DisconnectedPhone": "Bağlı Mobil Cihaz Kaldırıldı"
   },
   "Dashboard":{
-    "LoginTab": "Giriş Sekmesi"
+    "LoginTab": "Giriş Sekmesi",
+    "NoActiveLogin":"Şuanda aktif bir giriş bilgisi bulunmuyor",
+    "NoPassword":"Kayıtlı şifre bulunmamaktadır",
+    "NoCreditCard":"Kayıtlı kredi kartı bulunmamaktadır",
+    "NoWifi":"Kayıtlı wifi şifresi bulunmamaktadır",
+    "NoServer": "Kayıtlı sunucu bilgisi bulunmamaktadır"
   },
   "AccountPrompt":{
     "EnterPasswordToContinue": "İşleme devam etmek için Eluvium hesap şifrenizi giriniz"

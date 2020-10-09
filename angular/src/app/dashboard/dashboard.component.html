@@ -29,7 +29,10 @@
         <mat-card-actions>
         </mat-card-actions>
       </mat-card>
-      <app-empty-list *ngIf="activeTabs.length===0"></app-empty-list>
+      <div class='imgAlign' *ngIf="activeTabs.length===0">
+        <img src="../../assets/passwordEmpty.png">
+        <h3>{{ 'Dashboard.NoActiveLogin' | translate }}</h3>
+      </div>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
@@ -57,8 +60,11 @@
           <mat-card-actions>
           </mat-card-actions>
         </mat-card>
-      <app-empty-list  *ngIf="passwords.length===0 && !progress"></app-empty-list>
-      </cdk-virtual-scroll-viewport>
+        <div class='imgAlign'  *ngIf="passwords.length===0 && !progress">
+          <img src="../../assets/creditEmpty.png">
+          <h3>{{ 'Dashboard.NoPassword' | translate }}</h3>
+        </div>
+    </cdk-virtual-scroll-viewport>
       <div class="wrapper">
         <div class="inner">
           <mat-spinner *ngIf="progress"></mat-spinner>
@@ -96,7 +102,10 @@
           <mat-card-actions>
           </mat-card-actions>
         </mat-card>
-      <app-empty-list *ngIf="creditCards.length===0 && !progress"></app-empty-list>
+      <div class='imgAlign' *ngIf="creditCards.length===0 && !progress">
+        <img src="../../assets/creditEmpty.png">
+        <h3>{{ 'Dashboard.NoCreditCard' | translate }}</h3>
+      </div>
       </cdk-virtual-scroll-viewport>
       <div class="wrapper">
         <div class="inner">
@@ -131,7 +140,10 @@
           <mat-card-actions>
           </mat-card-actions>
         </mat-card>
-        <app-empty-list *ngIf="wifiPasswords.length===0 && !progress"></app-empty-list>
+        <div class='imgAlign' *ngIf="wifiPasswords.length===0 && !progress">
+          <img src="../../assets/wifiEmpty.png">
+          <h3>{{ 'Dashboard.NoWifi' | translate }}</h3>
+        </div>
       </cdk-virtual-scroll-viewport>
       <div class="wrapper">
         <div class="inner">
@@ -172,7 +184,10 @@
           <mat-card-actions>
           </mat-card-actions>
         </mat-card>
-        <app-empty-list *ngIf="servers.length===0 && !progress"></app-empty-list>
+        <div class='imgAlign' *ngIf="servers.length===0 && !progress">
+          <img src="../../assets/serverEmpty.png">
+          <h3>{{ 'Dashboard.NoServer' | translate }}</h3>
+        </div>
       </cdk-virtual-scroll-viewport>
       <div class="wrapper">
         <div class="inner">

@@ -20,7 +20,6 @@ import { EditWifiComponent } from './edit-data/edit-wifi/edit-wifi.component';
 import { EditServerComponent } from './edit-data/edit-server/edit-server.component';
 import { EditCreditCardComponent } from './edit-data/edit-credit-card/edit-credit-card.component'
 import { OnePassEncryptionService } from './Services/onePassEncryption.service'
-import { EmptyListComponent } from './dialog/empty-list/empty-list.component';
 import { AccountComponent } from './account/account.component';
 import { DialogContentComponent } from './dialog/about-dialog/about-dialog.component';
 import { QuestionDialogComponent } from './dialog/question-dialog/question-dialog.component';
@@ -60,7 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   })
   ],
   declarations: [AppComponent, FirstLoginComponent, LoginComponent, DashboardComponent, GeneratorComponent, SettingComponent,
-  EditPasswordComponent, EditWifiComponent, EditServerComponent, EditCreditCardComponent, EmptyListComponent, AccountComponent,
+  EditPasswordComponent, EditWifiComponent, EditServerComponent, EditCreditCardComponent, AccountComponent,
   DialogContentComponent, QuestionDialogComponent, AccountPromptDialogComponent, VerificationComponent, RegisterComponent,
   WarningComponent,PrivacyComponent],
   bootstrap: [AppComponent],
