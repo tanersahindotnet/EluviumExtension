@@ -327,6 +327,7 @@ private CheckSession() {
       localStorage.setItem('mobileDeviceName', p.mobileDeviceName);
       localStorage.setItem('productId', p.productId.toString());
       localStorage.setItem('registerDate', p.registerDate.toString());
+      localStorage.setItem('fullName', p.nameSurname);
       this.getOnePassData();
     } else {
       localStorage.removeItem('mail');

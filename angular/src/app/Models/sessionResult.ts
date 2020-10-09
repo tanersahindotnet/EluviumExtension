@@ -10,4 +10,5 @@ export class SessionResult {
   havePasswordBox: boolean;
   pwdhsh: string;
   onePassPwdhsh: string;
+  nameSurname:string;
 }
