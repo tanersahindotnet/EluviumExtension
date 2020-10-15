@@ -45,8 +45,9 @@
     <cdk-virtual-scroll-viewport style="height:250px" itemSize="90">
     <div style="float:left;margin-left:6%;margin-right:6%;">
       <div style="text-align: left" *ngFor="let item of devices">
+        <img *ngIf="item.deviceType === 0" style="vertical-align:middle" src="../assets/browser.png">
         <img *ngIf="item.deviceType === 1" style="vertical-align:middle" src="../assets/smartphone.png">
-        <img *ngIf="item.deviceType === 1" style="vertical-align:middle" src="../assets/desktop.png">
+        <img *ngIf="item.deviceType === 2" style="vertical-align:middle" src="../assets/desktop.png">
         <span style="vertical-align:middle">&nbsp; {{item.deviceName}}
           &nbsp;
           <button mat-mini-fab color="warn" class="redButton" style="margin-top:4%;" (click)="disconnectDevice(item.deviceId)">
