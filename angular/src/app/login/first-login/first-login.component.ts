@@ -57,7 +57,7 @@ export class FirstLoginComponent {
     requestModel.deviceId = this.getDeviceId();
     requestModel.password = accountPassword;
     requestModel.token = localStorage.getItem('token');
-    const chromeVersion = "Web Browser " + /Chrome\/([0-9.]+)/.exec(navigator.userAgent)[1];
+    const chromeVersion = 'Web Browser ' + /Chrome\/([0-9.]+)/.exec(navigator.userAgent)[1];
     this.onePassService.LoginUser(requestModel, chromeVersion, 0).subscribe((p) => {
       if (
         p.loginState === LoginResult.WrongPassword ||

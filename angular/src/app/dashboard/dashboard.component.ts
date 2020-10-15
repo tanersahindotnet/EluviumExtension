@@ -321,7 +321,7 @@ private returnRequestModel(): ApiRequestModel {
 private CheckSession() {
   const request = this.returnRequestModel();
   request.password = localStorage.getItem('password');
-  const chromeVersion = "Web Browser " + /Chrome\/([0-9.]+)/.exec(navigator.userAgent)[1];
+  const chromeVersion = 'Web Browser ' + /Chrome\/([0-9.]+)/.exec(navigator.userAgent)[1];
   this.onePassService.LoginUser(request, chromeVersion, 0).subscribe(p => {
     if (p.loginState === LoginResult.UserAuthenticated) {
       localStorage.setItem('devices', JSON.stringify(p.deviceList));
