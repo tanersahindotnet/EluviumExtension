@@ -57,7 +57,9 @@ export class FirstLoginComponent {
     requestModel.deviceId = this.getDeviceId();
     requestModel.password = accountPassword;
     requestModel.token = localStorage.getItem('token');
-    this.onePassService.LoginUser(requestModel, 'Browser', 0).subscribe((p) => {
+    const chromeVersion = "Web Browser " + /Chrome\/([0-9.]+)/.exec(navigator.userAgent)[1];
+    this.onePassService.LoginUser(requestModel, chromeVersion, 0).subscribe((p) => {
+      console.log(p);
       if (
         p.loginState === LoginResult.WrongPassword ||
         p.loginState === LoginResult.WrongLicense
@@ -72,24 +74,13 @@ export class FirstLoginComponent {
         });
         this.disableLoginButton = false;
       }
-      if (p.loginState === LoginResult.ExpiredLicense) {
-        let expiredLicense, fail;
-        this.translate
-          .get('Common.ExpiredLicense')
-          .subscribe((p) => (expiredLicense = p));
-        this.translate.get('Common.Fail').subscribe((p) => (fail = p));
-        this.snackBar.open(expiredLicense, fail, {
-          duration: 2000,
-        });
-        this.disableLoginButton = false;
-      }
       if (p.loginState === LoginResult.MailCodeSend) {
         localStorage.setItem('mail', mail);
         localStorage.setItem('accountPasswordHashed', accountPasswordHashed);
         localStorage.setItem('tempPass', accountPassword);
         this.sendMail();
       }
-      if (p.loginState === LoginResult.UserAuthenticated) {
+      if (p.loginState === LoginResult.UserAuthenticated || LoginResult.NoDevice ) {
         localStorage.setItem('mail', mail);
         localStorage.setItem('accountPasswordHashed', accountPasswordHashed);
         localStorage.setItem('password', accountPassword);

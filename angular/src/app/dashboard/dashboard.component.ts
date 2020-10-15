@@ -321,10 +321,10 @@ private returnRequestModel(): ApiRequestModel {
 private CheckSession() {
   const request = this.returnRequestModel();
   request.password = localStorage.getItem('password');
-  this.onePassService.LoginUser(request, 'Browser', 0).subscribe(p => {
+  const chromeVersion = "Web Browser " + /Chrome\/([0-9.]+)/.exec(navigator.userAgent)[1];
+  this.onePassService.LoginUser(request, chromeVersion, 0).subscribe(p => {
     if (p.loginState === LoginResult.UserAuthenticated) {
-      localStorage.setItem('desktopDeviceName', p.desktopDeviceName);
-      localStorage.setItem('mobileDeviceName', p.mobileDeviceName);
+      localStorage.setItem('devices', JSON.stringify(p.deviceList));
       localStorage.setItem('productId', p.productId.toString());
       localStorage.setItem('registerDate', p.registerDate.toString());
       localStorage.setItem('fullName', p.nameSurname);

@@ -19,8 +19,9 @@ export class VerificationComponent {
   verify() {
       this.verifyButtonDisabled = true;
       const guid = Guid.parse(localStorage.getItem('guid'));
+      const chromeVersion = 'Web Browser ' + /Chrome\/([0-9.]+)/.exec(navigator.userAgent)[1];
       const apiRequestModel = this.getRequestModel();
-      this.onePassService.UpdateBrowserToken(apiRequestModel, guid, this.code).subscribe(p=> {
+      this.onePassService.Verify(apiRequestModel, guid, this.code,chromeVersion,0).subscribe(p=> {
         if (p) {
           localStorage.removeItem('tempPass');
           this.router.navigate(['login']);

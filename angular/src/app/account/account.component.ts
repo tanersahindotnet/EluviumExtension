@@ -7,6 +7,7 @@ import { StringEncryptionService } from '../Services/stringEncryption.service';
 import { ApiRequestModel } from '../Models/apiRequestModel';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TranslateService} from '@ngx-translate/core';
+import { DevicesResult } from '../Models/deviceList';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -14,9 +15,8 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AccountComponent {
   items;
-  desktopDeviceName = localStorage.getItem('desktopDeviceName').substring(0,30) + '...';
+  devices: DevicesResult[] = JSON.parse(localStorage.getItem('devices'));
   mail = localStorage.getItem('mail');
-  mobileDeviceName = localStorage.getItem('mobileDeviceName').substring(0,30) + '...';
   productId = localStorage.getItem('productId');
   registerDate = new Date(localStorage.getItem('registerDate')).toDateString();
   fullName = localStorage.getItem('fullName');
@@ -37,7 +37,7 @@ export class AccountComponent {
   manageMyAccount() {
     window.open('http://eluvium.info/', '_blank');
   }
-  disconnectComputer() {
+  disconnectDevice(deviceId) {
     const dialogRef = this.dialog.open(AccountPromptDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -46,11 +46,9 @@ export class AccountComponent {
         this.translate.get('Common.Success').subscribe(p => success = p);
         this.translate.get('Common.Fail').subscribe(p => fail = p);
         this.translate.get('Account.DisconnectedComputer').subscribe(p => disconnect = p);
-
         const accountPasswordHashed = localStorage.getItem('accountPasswordHashed');
         const mail = localStorage.getItem('mail');
         const token = localStorage.getItem('token');
-        const deviceId = localStorage.getItem('deviceId');
         const hashedPassword = this.encryptionService.encryptSha(result);
         if (accountPasswordHashed === hashedPassword) {
           const request = new ApiRequestModel();
@@ -58,48 +56,10 @@ export class AccountComponent {
           request.password = result;
           request.token = token;
           request.deviceId = deviceId;
-          this.onePassService.LogoutDesktopDevice(request).subscribe(p => {
+          this.onePassService.RemoveDevice(request).subscribe(p => {
             if (p) {
-              this.snackBar.open(disconnect, success, {
-                duration: 2000
-              });
-            } else {
-              this.snackBar.open(wrongInfo, fail, {
-                duration: 2000
-              });
-            }
-          });
-        } else {
-          this.snackBar.open(wrongInfo, fail, {
-            duration: 2000
-          });
-        }
-      }
-    });
-  }
-  disconnectPhone() {
-    const dialogRef = this.dialog.open(AccountPromptDialogComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        let success, fail, disconnect, wrongInfo;
-        this.translate.get('Common.WrongInfo').subscribe(p => wrongInfo = p);
-        this.translate.get('Common.Success').subscribe(p => success = p);
-        this.translate.get('Common.Fail').subscribe(p => fail = p);
-        this.translate.get('Account.DisconnectedPhone').subscribe(p => disconnect = p);
-
-        const accountPasswordHashed = localStorage.getItem('accountPasswordHashed');
-        const mail = localStorage.getItem('mail');
-        const token = localStorage.getItem('token');
-        const deviceId = localStorage.getItem('deviceId');
-        const hashedPassword = this.encryptionService.encryptSha(result);
-        if (accountPasswordHashed === hashedPassword) {
-          const request = new ApiRequestModel();
-          request.mail = mail;
-          request.password = result;
-          request.token = token;
-          request.deviceId = deviceId;
-          this.onePassService.LogoutPhoneDevice(request).subscribe(p => {
-            if (p) {
+              this.devices = this.devices.filter(x=>x.deviceId === deviceId)
+              localStorage.setItem('devices', JSON.stringify(this.devices));
               this.snackBar.open(disconnect, success, {
                 duration: 2000
               });

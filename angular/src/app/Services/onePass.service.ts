@@ -26,10 +26,9 @@ export class OnePassService {
   private addOrUpdateServer = 'AddOrUpdateServer';
   private addOrUpdateWifiPassword = 'AddOrUpdateWifiPassword';
   private addOrUpdateCreditCard = 'AddOrUpdateCreditCard';
-  private updateDesktopDeviceInfo = 'UpdateDesktopDeviceInfo';
-  private updatePhoneDeviceInfo = 'UpdatePhoneDeviceInfo';
   private sendCode = 'SendCode';
-  private updateBrowserToken = 'UpdateBrowserToken';
+  private verify = 'Verify';
+  private removeDevice = 'RemoveDevice';
   private register = 'Register';
   private token = 'token';
   constructor(private http: HttpClient) {}
@@ -237,31 +236,11 @@ export class OnePassService {
     const result = this.http.post(requestedUrl, null, {responseType: 'text'});
     return result;
   }
-
-  LogoutPhoneDevice(model: ApiRequestModel): Observable<boolean> {
+  RemoveDevice(model: ApiRequestModel): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumApiController +
-      this.updatePhoneDeviceInfo +
-      '/' +
-      model.deviceId +
-      '/' +
-      model.mail +
-      '/' +
-      model.password;
-    const reqHeader = new HttpHeaders({
-      Authorization: 'Bearer ' + model.token,
-      'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, model, { headers: reqHeader });
-    return result;
-  }
-
-  LogoutDesktopDevice(model: ApiRequestModel): Observable<boolean> {
-    const requestedUrl =
-      Constants.apiUrl +
-      Constants.eluviumApiController +
-      this.updateDesktopDeviceInfo +
+      this.removeDevice +
       '/' +
       model.deviceId +
       '/' +
@@ -296,11 +275,11 @@ export class OnePassService {
     return result;
   }
 
-  UpdateBrowserToken(model: ApiRequestModel, guid: Guid, code: number): Observable<boolean> {
+  Verify(model: ApiRequestModel, guid: Guid, code: number, deviceName:string,deviceType:number): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumApiController +
-      this.updateBrowserToken +
+      this.verify +
       '/' +
       model.deviceId +
       '/' +
@@ -310,7 +289,11 @@ export class OnePassService {
       '/' +
       code +
       '/' +
-      guid;
+      guid +
+      '/'+
+      deviceName +
+      '/' +
+      deviceType;
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'

@@ -2,6 +2,8 @@ export class ApiUser {
 fullName: string;
 mail: string;
 password: string;
-mobileDeviceName: string;
+deviceName: string;
+deviceType:number;
+deviceId:string;
 language: string;
 }

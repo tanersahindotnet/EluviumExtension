@@ -11,6 +11,7 @@ import { ThemePalette } from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
 import { RegisterEnum } from '../Constants/registerEnum';
 import { StringEncryptionService } from '../Services/stringEncryption.service';
+import { Guid } from 'guid-typescript';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -51,12 +52,16 @@ export class RegisterComponent implements OnInit {
       });
       return;
     }
+      const chromeVersion = 'Web Browser ' + /Chrome\/([0-9.]+)/.exec(navigator.userAgent)[1];
       const apiUser = new ApiUser();
       const accountEncrypted = this.stringEncryption.encryptSha(accountPassword.value);
       apiUser.language = 'en-US';
       apiUser.mail = mail.value
       apiUser.fullName = fullName.value
       apiUser.password = accountPassword.value;
+      apiUser.deviceId = this.getDeviceId();
+      apiUser.deviceName = chromeVersion;
+      apiUser.deviceType = 0;
       this.buttonDisabled = true;
       this.onePassService.Register(apiUser).subscribe(p => {
         if (p === RegisterEnum.Success) {
@@ -119,5 +124,14 @@ export class RegisterComponent implements OnInit {
       this.translate.get('Register.VeryStrong').subscribe(p => this.accountPassStrengthText = p);
       this.accountPassStrength = 100;
     }
+  }
+  private getDeviceId() {
+    const deviceId = localStorage.getItem('deviceId');
+    if (deviceId === null) {
+      const newGuid = Guid.create().toString();
+      localStorage.setItem('deviceId', newGuid);
+      return newGuid;
+    }
+    return deviceId;
   }
 }
