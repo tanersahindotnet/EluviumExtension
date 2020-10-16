@@ -56,7 +56,7 @@ export class AccountComponent {
           request.password = result;
           request.token = token;
           request.deviceId = deviceId;
-          this.onePassService.RemoveDevice(request).subscribe(p => {
+          this.onePassService.DeleteDevice(request).subscribe(p => {
             if (p) {
               this.devices = this.devices.filter(x=>x.deviceId === deviceId)
               localStorage.setItem('devices', JSON.stringify(this.devices));

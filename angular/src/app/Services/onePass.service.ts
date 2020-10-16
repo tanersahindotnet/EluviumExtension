@@ -28,7 +28,7 @@ export class OnePassService {
   private addOrUpdateCreditCard = 'AddOrUpdateCreditCard';
   private sendCode = 'SendCode';
   private verify = 'Verify';
-  private removeDevice = 'RemoveDevice';
+  private deleteDevice = 'DeleteDevice';
   private register = 'Register';
   private token = 'token';
   constructor(private http: HttpClient) {}
@@ -236,11 +236,11 @@ export class OnePassService {
     const result = this.http.post(requestedUrl, null, {responseType: 'text'});
     return result;
   }
-  RemoveDevice(model: ApiRequestModel): Observable<boolean> {
+  DeleteDevice(model: ApiRequestModel): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumApiController +
-      this.removeDevice +
+      this.deleteDevice +
       '/' +
       model.deviceId +
       '/' +
