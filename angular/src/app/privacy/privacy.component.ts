@@ -183,31 +183,31 @@ export class PrivacyComponent {
   }
   private checkSettings()
   {
-    if(localStorage.getItem('webRtc') != null)
+    if(localStorage.getItem('webRtc') !== null)
     {
       this.webRtc = false;
     }
-    if(localStorage.getItem('fingerprint') != null)
+    if(localStorage.getItem('fingerprint') !== null)
     {
       this.fingerprint = false;
     }
-    if(localStorage.getItem('clearCookies') != null)
+    if(localStorage.getItem('clearCookies') !== null)
     {
       this.clearCookies = false;
     }
-    if(localStorage.getItem('disableFlash') != null)
+    if(localStorage.getItem('disableFlash') !== null)
     {
       this.disableFlash = false;
     }
-    if(localStorage.getItem('spoofingScreen') != null)
+    if(localStorage.getItem('spoofingScreen') !== null)
     {
       this.spoofingScreen = false;
     }
-    if(localStorage.getItem('blockCookies') != null)
+    if(localStorage.getItem('blockCookies') !== null)
     {
       this.blockCookies = false;
     }
-    if(localStorage.getItem('phisAi') != null)
+    if(localStorage.getItem('phisAi') !== null)
     {
       this.phisAi = false;
     }
