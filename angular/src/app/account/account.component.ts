@@ -59,7 +59,7 @@ export class AccountComponent {
           request.deviceId = deviceId;
           this.onePassService.DeleteDevice(request).subscribe(p => {
             if (p) {
-              this.devices = this.devices.filter(x=>x.deviceId === deviceId)
+              this.devices = this.devices.filter(x=>x.deviceId !== deviceId)
               localStorage.setItem('devices', JSON.stringify(this.devices));
               this.snackBar.open(disconnect, success, {
                 duration: 2000
