@@ -15,10 +15,7 @@ export class VerificationComponent {
   code: number;
   verifyButtonDisabled = false;
   constructor(private router: Router, private snackBar: MatSnackBar,
-  private onePassService: OnePassService, private translate: TranslateService)
-  {
-    this.resend();
-  }
+  private onePassService: OnePassService, private translate: TranslateService) { }
   verify() {
       this.verifyButtonDisabled = true;
       const guid = Guid.parse(localStorage.getItem('guid'));
