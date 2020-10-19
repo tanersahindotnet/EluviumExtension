@@ -80,7 +80,7 @@ export class FirstLoginComponent {
           localStorage.setItem('mail', mail);
           localStorage.setItem('accountPasswordHashed', accountPasswordHashed);
           localStorage.setItem('tempPass', accountPassword);
-          this.sendMail();
+          this.redirectCodePage();
           return;
         }
         if (
@@ -103,15 +103,13 @@ export class FirstLoginComponent {
       localStorage.setItem('expire', date.toString());
     }
   }
-  private sendMail() {
+  private redirectCodePage() {
     const accountPassword = this.form.controls['accountPassword'].value;
     const mail = this.form.controls['mail'].value;
     const request = new ApiRequestModel();
     request.mail = mail;
     request.password = accountPassword;
     request.token = localStorage.getItem('token');
-    const guid = Guid.create();
-    localStorage.setItem('guid', guid.toString());
     this.router.navigate(['verify']);
   }
   private getDeviceId() {

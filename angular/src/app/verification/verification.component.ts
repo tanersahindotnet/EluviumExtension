@@ -15,7 +15,10 @@ export class VerificationComponent {
   code: number;
   verifyButtonDisabled = false;
   constructor(private router: Router, private snackBar: MatSnackBar,
-  private onePassService: OnePassService, private translate: TranslateService) { }
+  private onePassService: OnePassService, private translate: TranslateService)
+  {
+    this.checkGuid();
+  }
   verify() {
       this.verifyButtonDisabled = true;
       const guid = Guid.parse(localStorage.getItem('guid'));
@@ -76,5 +79,15 @@ export class VerificationComponent {
       apiRequestModel.mail = localStorage.getItem('mail');
       apiRequestModel.token = localStorage.getItem('token');
       return apiRequestModel;
+    }
+    private checkGuid()
+    {
+      const guid = localStorage.getItem('guid');
+      if(guid === null)
+      {
+        const guidd = Guid.create();
+        localStorage.setItem('guid', guidd.toString());
+        this.resend();
+      }
     }
   }
