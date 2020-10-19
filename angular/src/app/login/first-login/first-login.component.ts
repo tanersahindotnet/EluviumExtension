@@ -8,7 +8,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { LoginResult } from '../../Constants/loginResult';
 import { Guid } from 'guid-typescript';
-import { Languages } from '../../Constants/languages';
 @Component({
   selector: 'app-first-login',
   templateUrl: './first-login.component.html',
@@ -57,36 +56,44 @@ export class FirstLoginComponent {
     requestModel.deviceId = this.getDeviceId();
     requestModel.password = accountPassword;
     requestModel.token = localStorage.getItem('token');
-    const chromeVersion = 'Web Browser ' + /Chrome\/([0-9.]+)/.exec(navigator.userAgent)[1];
-    this.onePassService.LoginUser(requestModel, chromeVersion, 0).subscribe((p) => {
-      if (
-        p.loginState === LoginResult.WrongPassword ||
-        p.loginState === LoginResult.WrongLicense
-      ) {
-        let wrongInfo, fail;
-        this.translate
-          .get('Common.WrongInfo')
-          .subscribe((p) => (wrongInfo = p));
-        this.translate.get('Common.Fail').subscribe((p) => (fail = p));
-        this.snackBar.open(wrongInfo, fail, {
-          duration: 2000,
-        });
-        this.disableLoginButton = false;
-      }
-      if (p.loginState === LoginResult.MailCodeSend) {
-        localStorage.setItem('mail', mail);
-        localStorage.setItem('accountPasswordHashed', accountPasswordHashed);
-        localStorage.setItem('tempPass', accountPassword);
-        this.sendMail();
-      }
-      if (p.loginState === LoginResult.UserAuthenticated || LoginResult.NoDevice ) {
-        localStorage.setItem('mail', mail);
-        localStorage.setItem('accountPasswordHashed', accountPasswordHashed);
-        localStorage.setItem('password', accountPassword);
-        this.setTimer();
-        this.router.navigate(['dashboard']);
-      }
-    });
+    const chromeVersion =
+      'Web Browser ' + /Chrome\/([0-9.]+)/.exec(navigator.userAgent)[1];
+    this.onePassService
+      .LoginUser(requestModel, chromeVersion, 0)
+      .subscribe((p) => {
+        if (
+          p.loginState === LoginResult.WrongPassword ||
+          p.loginState === LoginResult.WrongLicense
+        ) {
+          let wrongInfo, fail;
+          this.translate
+            .get('Common.WrongInfo')
+            .subscribe((p) => (wrongInfo = p));
+          this.translate.get('Common.Fail').subscribe((p) => (fail = p));
+          this.snackBar.open(wrongInfo, fail, {
+            duration: 2000,
+          });
+          this.disableLoginButton = false;
+          return;
+        }
+        if (p.loginState === LoginResult.MailCodeSend) {
+          localStorage.setItem('mail', mail);
+          localStorage.setItem('accountPasswordHashed', accountPasswordHashed);
+          localStorage.setItem('tempPass', accountPassword);
+          this.sendMail();
+          return;
+        }
+        if (
+          p.loginState === LoginResult.UserAuthenticated ||
+          LoginResult.NoDevice
+        ) {
+          localStorage.setItem('mail', mail);
+          localStorage.setItem('accountPasswordHashed', accountPasswordHashed);
+          localStorage.setItem('password', accountPassword);
+          this.setTimer();
+          this.router.navigate(['dashboard']);
+        }
+      });
   }
   private setTimer() {
     const interval = localStorage.getItem('interval');
@@ -96,13 +103,6 @@ export class FirstLoginComponent {
       localStorage.setItem('expire', date.toString());
     }
   }
-  private getProgramLanguage(): string {
-    const lang = localStorage.getItem('language');
-    if (lang === null) {
-      localStorage.setItem('language', Languages.English);
-    }
-    return localStorage.getItem('language');
-  }
   private sendMail() {
     const accountPassword = this.form.controls['accountPassword'].value;
     const mail = this.form.controls['mail'].value;
@@ -111,24 +111,8 @@ export class FirstLoginComponent {
     request.password = accountPassword;
     request.token = localStorage.getItem('token');
     const guid = Guid.create();
-    const language = this.getProgramLanguage();
     localStorage.setItem('guid', guid.toString());
-    this.onePassService.SendCode(request, guid, language).subscribe((p) => {
-      if (p) {
-        this.router.navigate(['verify']);
-        this.disableLoginButton = false;
-      } else {
-        let fail, somethingWentWrong;
-        this.translate
-          .get('Common.SomethingWrong')
-          .subscribe((p) => (somethingWentWrong = p));
-        this.translate.get('Common.Fail').subscribe((p) => (fail = p));
-        this.snackBar.open(somethingWentWrong, fail, {
-          duration: 2000,
-        });
-        this.disableLoginButton = false;
-      }
-    });
+    this.router.navigate(['verify']);
   }
   private getDeviceId() {
     const deviceId = localStorage.getItem('deviceId');
@@ -139,13 +123,12 @@ export class FirstLoginComponent {
     }
     return deviceId;
   }
-  private disableBrowserProtectionForFirstUsage()
-  {
-    localStorage.setItem('blockAds','false')
-    localStorage.setItem('webRtc','false')
-    localStorage.setItem('fingerprint','false')
-    localStorage.setItem('clearCookies','false')
-    localStorage.setItem('disableFlash','false')
-    localStorage.setItem('spoofingScreen','false')
+  private disableBrowserProtectionForFirstUsage() {
+    localStorage.setItem('blockAds', 'false');
+    localStorage.setItem('webRtc', 'false');
+    localStorage.setItem('fingerprint', 'false');
+    localStorage.setItem('clearCookies', 'false');
+    localStorage.setItem('disableFlash', 'false');
+    localStorage.setItem('spoofingScreen', 'false');
   }
 }
