@@ -20,6 +20,7 @@ export class AccountComponent {
   productId = localStorage.getItem('productId');
   registerDate = new Date(localStorage.getItem('registerDate')).toDateString();
   fullName = localStorage.getItem('fullName');
+  deviceId = localStorage.getItem('deviceId');
   constructor(private route: Router, private dialog: MatDialog, private onePassService: OnePassService,
   private encryptionService: StringEncryptionService, private snackBar: MatSnackBar, private translate: TranslateService) {
     this.checkSession();

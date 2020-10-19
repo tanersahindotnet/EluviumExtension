@@ -48,7 +48,9 @@
         <img *ngIf="item.deviceType === 0" style="vertical-align:middle" src="../assets/browser.png">
         <img *ngIf="item.deviceType === 1" style="vertical-align:middle" src="../assets/smartphone.png">
         <img *ngIf="item.deviceType === 2" style="vertical-align:middle" src="../assets/desktop.png">
-        <span style="vertical-align:middle">&nbsp; {{item.deviceName}}
+        <span style="vertical-align:middle">&nbsp;
+          <img *ngIf="item.deviceId === deviceId"  src="../assets/online.png">
+          {{item.deviceName}}
           &nbsp;
           <button mat-mini-fab color="warn" class="redButton" style="margin-top:4%;" (click)="disconnectDevice(item.deviceId)">
             <mat-icon>logout</mat-icon>
