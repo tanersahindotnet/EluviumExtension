@@ -47,7 +47,7 @@
       <div style="text-align: left" *ngFor="let item of devices">
         <img *ngIf="item.deviceType === 0" style="vertical-align:middle" src="../assets/browser.png">
         <img *ngIf="item.deviceType === 1" style="vertical-align:middle" src="../assets/smartphone.png">
-        <img *ngIf="item.deviceType === 2" style="vertical-align:middle" src="../assets/desktop.png">
+        <img *ngIf="item.deviceType === 2" style="vertical-align:middle" src="../assets/computer.png">
         <span style="vertical-align:middle">&nbsp;
           <img *ngIf="item.deviceId === deviceId"  src="../assets/online.png">
           {{item.deviceName}}
