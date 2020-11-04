@@ -18,7 +18,6 @@ export class PrivacyComponent {
   webRtc=true;
   fingerprint=true;
   clearCookies=true;
-  disableFlash=true;
   spoofingScreen=true;
   browserProtection=true;
   blockCookies=true;
@@ -99,32 +98,6 @@ export class PrivacyComponent {
     }
     this.checkAllSettings();
   }
-  disableFlashOnChange(toggle)
-  {
-    if(toggle.checked)
-    {
-      chrome.contentSettings.plugins.set({
-        primaryPattern: '<all_urls>',
-        resourceIdentifier: {
-            id: 'adobe-flash-player'
-        },
-        setting: 'block'
-      });
-      localStorage.removeItem('disableFlash');
-    }
-    else
-    {
-      chrome.contentSettings.plugins.set({
-        primaryPattern: '<all_urls>',
-        resourceIdentifier: {
-            id: 'adobe-flash-player'
-        },
-        setting: 'allow'
-      });
-      localStorage.setItem('disableFlash','false');
-    }
-    this.checkAllSettings();
-  }
   spoofingScreenOnChange(toggle)
   {
     if(toggle.checked)
@@ -144,7 +117,6 @@ export class PrivacyComponent {
       this.webRtc=true;
       this.fingerprint=true;
       this.clearCookies=true;
-      this.disableFlash=true;
       this.spoofingScreen=true;
       this.blockCookies = true;
       this.phisAi = true;
@@ -155,7 +127,6 @@ export class PrivacyComponent {
       this.webRtc=false;
       this.fingerprint=false;
       this.clearCookies=false;
-      this.disableFlash=false;
       this.spoofingScreen=false;
       this.blockCookies = false;
       this.phisAi = false;
@@ -195,10 +166,6 @@ export class PrivacyComponent {
     {
       this.clearCookies = false;
     }
-    if(localStorage.getItem('disableFlash') !== null)
-    {
-      this.disableFlash = false;
-    }
     if(localStorage.getItem('spoofingScreen') !== null)
     {
       this.spoofingScreen = false;
@@ -215,13 +182,13 @@ export class PrivacyComponent {
   private checkAllSettings()
   {
     if(this.webRtc && this.fingerprint && this.clearCookies &&
-      this.disableFlash && this.spoofingScreen && this.blockCookies && this.phisAi)
+      this.spoofingScreen && this.blockCookies && this.phisAi)
     {
       this.removeItems();
       this.browserProtection=true;
     }
     if(!this.webRtc && !this.fingerprint && !this.clearCookies &&
-       !this.disableFlash && !this.spoofingScreen && !this.blockCookies && !this.phisAi)
+       !this.spoofingScreen && !this.blockCookies && !this.phisAi)
     {
       this.setItems();
       this.browserProtection=false;

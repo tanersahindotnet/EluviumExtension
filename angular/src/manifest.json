@@ -14,8 +14,6 @@
     "<all_urls>",
     "webRequest",
     "webRequestBlocking",
-    "notifications",
-    "proxy",
     "http://*/",
     "https://*/"
   ],
