@@ -140,17 +140,6 @@ if (localStorage.getItem("webRtc") === null) {
   });
 }
 
-//Block flash player
-if (localStorage.getItem("webRtc") === null) {
-  chrome.contentSettings.plugins.set({
-    primaryPattern: "<all_urls>",
-    resourceIdentifier: {
-      id: "adobe-flash-player",
-    },
-    setting: "block",
-  });
-}
-
 // Change User agent Fingerprint protection
 if (localStorage.getItem("fingerprint") === null) {
   var item = [
