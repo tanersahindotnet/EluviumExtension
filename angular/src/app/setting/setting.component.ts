@@ -23,7 +23,7 @@ export class SettingComponent {
   }
 
   getHelp() {
-    window.open('http://eluvium.info/', '_blank');
+    window.open('http://eluvium.info/Home/Faq', '_blank');
   }
   aboutDialog() {
     const dialogRef = this.dialog.open(DialogContentComponent);
@@ -44,7 +44,9 @@ export class SettingComponent {
     this.cdRef.detectChanges();
   }
 
-  rateExtension() {}
+  rateExtension() {
+    window.open('https://chrome.google.com/webstore/detail/eluvium/knfgoejdefgibebmjpejljjbgiacphea', '_blank');
+  }
 
   private checkSession() {
     const password = localStorage.getItem('password');
