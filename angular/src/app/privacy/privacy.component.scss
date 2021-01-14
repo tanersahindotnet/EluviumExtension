@@ -19,6 +19,7 @@
     }
   }
   .slider {
+    border-radius: 25px;
     position: absolute;
     left: 0;
     top: 0;
@@ -32,6 +33,7 @@
       height: 28px;
       width: 28px;
       background-color: white;
+      border-radius: 25px;
       left: 4px;
       bottom: 4px;
       transition: 2s;
