@@ -39,6 +39,7 @@
       "LockNow": "Lock Now",
       "LogoutNow": "Logout Now",
       "Devices": "Devices",
+      "Disconnected":"Disconnected From Device",
       "DisconnectedComputer": "Computer Disconnected",
       "DisconnectedPhone": "Phone Disconnected"
   },

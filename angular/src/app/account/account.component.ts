@@ -25,7 +25,6 @@ export class AccountComponent {
   private encryptionService: StringEncryptionService, private snackBar: MatSnackBar, private translate: TranslateService) {
     this.checkSession();
     this.setupNavigation();
-    this.setProductType(this.productId);
   }
   lock() {
     localStorage.removeItem('password');
@@ -46,7 +45,7 @@ export class AccountComponent {
         this.translate.get('Common.WrongInfo').subscribe(p => wrongInfo = p);
         this.translate.get('Common.Success').subscribe(p => success = p);
         this.translate.get('Common.Fail').subscribe(p => fail = p);
-        this.translate.get('Account.DisconnectedComputer').subscribe(p => disconnect = p);
+        this.translate.get('Account.Disconnected').subscribe(p => disconnect = p);
         const accountPasswordHashed = localStorage.getItem('accountPasswordHashed');
         const mail = localStorage.getItem('mail');
         const token = localStorage.getItem('token');
@@ -82,20 +81,6 @@ export class AccountComponent {
     const password = localStorage.getItem('password');
     if (password === null) {
       this.route.navigate(['login']);
-    }
-  }
-  private setProductType(product) {
-    if (product === '0') {
-      this.productId = 'Eluvium Premium Trial';
-    }
-    if (product === '1') {
-      this.productId = 'Eluvium Free';
-    }
-    if (product === '2') {
-      this.productId = 'Eluvium Premium';
-    }
-    if (product === '3') {
-      this.productId = 'Eluvium Business';
     }
   }
   private setupNavigation() {

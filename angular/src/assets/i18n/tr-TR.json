@@ -39,6 +39,7 @@
       "LockNow": "Kilitle",
       "LogoutNow": "Çıkış Yap",
       "Devices": "Cihazlar",
+      "Disconnected":"Cihazdan Çıkış Yapıldı",
       "DisconnectedComputer": "Bağlı Bilgisayar Kaldırıldı",
       "DisconnectedPhone": "Bağlı Mobil Cihaz Kaldırıldı"
   },
