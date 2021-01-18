@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PasswordAdvisorService } from '../Services/passwordAdvisor.service';
-import { PasswordCheckStrength } from '../Constants/passwordCheckStrength';
+import { PasswordAdvisorService } from '../../services/password-advisor.service';
+import { PasswordCheckStrength } from '../../enums/password-strength.enum';
 import { TranslateService } from '@ngx-translate/core';
-import { OnePassService } from '../Services/onePass.service';
-import { ApiUser } from '../Models/apiUser';
+import { OnePassService } from '../../services/onepass.service';
+import { ApiUser } from '../../models/api-user.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ThemePalette } from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
-import { RegisterEnum } from '../Constants/registerEnum';
-import { StringEncryptionService } from '../Services/stringEncryption.service';
+import { RegisterEnum } from '../../enums/register.enum';
+import { StringEncryptionService } from '../../services/string-encryption.service';
 import { Guid } from 'guid-typescript';
 @Component({
   selector: 'app-register',

@@ -1,16 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Constants } from '../Constants/Constants';
-import { RegisterEnum } from '../Constants/registerEnum';
-import { ApiRequestModel } from '../Models/apiRequestModel';
+import { Constants } from '../constants/constants';
+import { RegisterEnum } from '../enums/register.enum';
+import { ApiRequestModel } from '../models/api-request.model';
 import { Injectable } from '@angular/core';
-import { SessionResult } from '../Models/sessionResult'
-import {OnePassDataResult} from '../Models/onePassDataResult'
-import { CreditCard } from '../Models/creditCard';
-import { WifiPassword } from '../Models/wifiPassword';
-import { Server } from '../Models/server';
-import { Password } from '../Models/password';
-import { ApiUser } from '../Models/apiUser';
+import { SessionResult } from '../models/session-result.model'
+import {OnePassDataResult} from '../models/onepass-data.model'
+import { CreditCard } from '../models/credit-card.model';
+import { WifiPassword } from '../models/wifi-password.model';
+import { Server } from '../models/server.model';
+import { Password } from '../models/password.model';
+import { ApiUser } from '../models/api-user.model';
 import { Guid } from 'guid-typescript';
 @Injectable({
   providedIn: 'root',

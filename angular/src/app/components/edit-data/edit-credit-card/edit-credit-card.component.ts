@@ -1,40 +1,46 @@
-import { Component, Output, EventEmitter, OnChanges, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
+import { CreditCard } from '../../../models/credit-card.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { WifiPassword } from '../../Models/wifiPassword';
-import { OnePassService } from '../../Services/onePass.service'
-import { ApiRequestModel } from '../../Models/apiRequestModel';
+import { OnePassService } from '../../../services/onepass.service'
+import { ApiRequestModel } from '../../../models/api-request.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { OnePassEncryptionService } from '../../Services/onePassEncryption.service';
+import { OnePassEncryptionService } from '../../../services/onepass-encryption.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-edit-wifi',
-  templateUrl: './edit-wifi.component.html',
-  styleUrls: ['./edit-wifi.component.scss']
+  selector: 'app-edit-credit-card',
+  templateUrl: './edit-credit-card.component.html',
+  styleUrls: ['./edit-credit-card.component.scss']
 })
-export class EditWifiComponent implements OnChanges {
-  @Input() data: WifiPassword;
+export class EditCreditCardComponent implements OnChanges {
+  @Input() data: CreditCard;
   @Input() password: string;
   @Output() stateEmitter: EventEmitter<boolean> = new EventEmitter();
   @Output() saveEmitter: EventEmitter<boolean> = new EventEmitter();
   form: FormGroup = new FormGroup({
     title: new FormControl('', Validators.required),
-    ssid: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    notes: new FormControl(''),
+    cardHolder: new FormControl('', Validators.required),
+    cardNumber: new FormControl('', Validators.required),
+    month: new FormControl('', Validators.required),
+    year: new FormControl('', Validators.required),
+    code: new FormControl('', Validators.required),
+    notes: new FormControl('')
   });
   constructor(private onePassService: OnePassService, private snackBar: MatSnackBar,
-  private encryptionService: OnePassEncryptionService, private route: Router,  private translate: TranslateService) {
+  private encryptionService: OnePassEncryptionService, private route: Router, private translate: TranslateService) {
     this.checkSession();
-   }
+  }
   returnResult() {
     this.stateEmitter.emit(true);
   }
   ngOnChanges() {
     if (this.data !== null) {
       this.form.controls['title'].setValue(this.data.title);
-      this.form.controls['ssid'].setValue(this.data.ssid);
-      this.form.controls['password'].setValue(this.data.password);
+      this.form.controls['cardHolder'].setValue(this.data.cardholderName);
+      this.form.controls['cardNumber'].setValue(this.data.number);
+      this.form.controls['month'].setValue(this.data.expMonth);
+      this.form.controls['year'].setValue(this.data.expYear);
+      this.form.controls['code'].setValue(this.data.code);
       this.form.controls['notes'].setValue(this.data.notes);
     } else {
       this.clearFormControls();
@@ -42,29 +48,32 @@ export class EditWifiComponent implements OnChanges {
   }
   onSubmit() {
     if (this.form.valid) {
-      let wifiPassword = new WifiPassword();
+      let creditCard = new CreditCard();
       const token = localStorage.getItem('token');
-      const mail = localStorage.getItem('mail');
+      const mail = localStorage.getItem('mail')
       const deviceId = localStorage.getItem('deviceId');
       const accountPasswordHashed = localStorage.getItem('accountPasswordHashed');
       const request = new ApiRequestModel();
       request.mail = mail;
       if (this.data !== null) {
         request.password = this.password
-        wifiPassword = this.data;
+        creditCard = this.data;
       } else {
         request.password = accountPasswordHashed;
-        wifiPassword.id = 0;
+        creditCard.id = 0;
       }
       request.token = token;
       request.deviceId = deviceId;
-      wifiPassword.title = this.form.controls['title'].value;
-      wifiPassword.ssid = this.form.controls['ssid'].value.toString();
-      wifiPassword.password = this.form.controls['password'].value;
-      wifiPassword.notes = this.form.controls['notes'].value;
-      const encryptedWifiPassword = this.encryptionService.encryptWifi(wifiPassword, this.password);
+      creditCard.title = this.form.controls['title'].value;
+      creditCard.cardholderName = this.form.controls['cardHolder'].value;
+      creditCard.number = this.form.controls['cardNumber'].value.toString();
+      creditCard.expMonth = this.form.controls['month'].value.toString();
+      creditCard.expYear = this.form.controls['year'].value.toString();
+      creditCard.code = this.form.controls['code'].value.toString();
+      creditCard.notes = this.form.controls['notes'].value;
+      const encryptedCreditCard = this.encryptionService.encryptCreditCards(creditCard, this.password);
 
-      this.onePassService.AddOrUpdateWifiPassword(request, encryptedWifiPassword).subscribe(p => {
+      this.onePassService.AddOrUpdateCreditCard(request, encryptedCreditCard).subscribe(p => {
         let success, fail, added, updated, somethingWrong;
         this.translate.get('Common.Fail').subscribe(p => fail = p);
         this.translate.get('Common.Success').subscribe(p => success = p);
@@ -112,8 +121,11 @@ export class EditWifiComponent implements OnChanges {
   }
   private clearFormControls() {
     this.form.controls['title'].setValue('');
-      this.form.controls['ssid'].setValue('');
-      this.form.controls['password'].setValue('');
-      this.form.controls['notes'].setValue('');
+    this.form.controls['cardHolder'].setValue('');
+    this.form.controls['cardNumber'].setValue('');
+    this.form.controls['month'].setValue('');
+    this.form.controls['year'].setValue('');
+    this.form.controls['code'].setValue('');
+    this.form.controls['notes'].setValue('');
   }
 }

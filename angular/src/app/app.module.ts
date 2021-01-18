@@ -4,34 +4,34 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from './app.material.module';
 import { AppComponent } from './app.component';
-import { FirstLoginComponent} from './login/first-login/first-login.component'
-import { LoginComponent } from './login/quick-login/login.component';
+import { FirstLoginComponent} from './components/login/first-login/first-login.component'
+import { LoginComponent } from './components/login/quick-login/login.component';
 import { HttpClientModule, HttpClient} from '@angular/common/http';
-import { StringEncryptionService } from './Services/stringEncryption.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { StringEncryptionService } from './services/string-encryption.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module'
 import { RouterModule } from '@angular/router';
 import {BottomNavModule} from 'ngx-bottom-nav';
-import { GeneratorComponent } from './password/generator.component'
-import { SettingComponent } from './setting/setting.component';
-import { OnePassService} from './Services/onePass.service';
-import { EditPasswordComponent } from './edit-data/edit-password/edit-password.component';
-import { EditWifiComponent } from './edit-data/edit-wifi/edit-wifi.component';
-import { EditServerComponent } from './edit-data/edit-server/edit-server.component';
-import { EditCreditCardComponent } from './edit-data/edit-credit-card/edit-credit-card.component'
-import { OnePassEncryptionService } from './Services/onePassEncryption.service'
-import { AccountComponent } from './account/account.component';
+import { GeneratorComponent } from './components/password/generator.component'
+import { SettingComponent } from './components/setting/setting.component';
+import { OnePassService} from './services/onepass.service';
+import { EditPasswordComponent } from './components/edit-data/edit-password/edit-password.component';
+import { EditWifiComponent } from './components/edit-data/edit-wifi/edit-wifi.component';
+import { EditServerComponent } from './components/edit-data/edit-server/edit-server.component';
+import { EditCreditCardComponent } from './components/edit-data/edit-credit-card/edit-credit-card.component'
+import { OnePassEncryptionService } from './services/onepass-encryption.service'
+import { AccountComponent } from './components/account/account.component';
 import { DialogContentComponent } from './dialog/about-dialog/about-dialog.component';
 import { QuestionDialogComponent } from './dialog/question-dialog/question-dialog.component';
 import { AccountPromptDialogComponent } from './dialog/account-prompt-dialog/account-prompt-dialog.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { VerificationComponent } from './verification/verification.component';
-import { RegisterComponent } from '../app/register/register.component';
-import { PasswordAdvisorService } from '../app/Services/passwordAdvisor.service';
+import { VerificationComponent } from './components/verification/verification.component';
+import { RegisterComponent } from './components/register/register.component';
+import { PasswordAdvisorService } from './services/password-advisor.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { PrivacyComponent } from './privacy/privacy.component';
-import { WarningComponent } from './warning/warning.component';
+import { PrivacyComponent } from './components/privacy/privacy.component';
+import { WarningComponent } from './components/warning/warning.component';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);

@@ -1,4 +1,4 @@
-import { DevicesResult } from './deviceList';
+import { DevicesResult } from './device-list.model';
 
 export class SessionResult {
   registerDate: Date;

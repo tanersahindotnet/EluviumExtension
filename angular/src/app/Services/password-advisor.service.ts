@@ -1,4 +1,4 @@
-import { PasswordCheckStrength } from '../Constants/passwordCheckStrength';
+import { PasswordCheckStrength } from '../enums/password-strength.enum';
 // Object to check password strengths and various properties
 export class PasswordAdvisorService {
 

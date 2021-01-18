@@ -1,8 +1,8 @@
-import { Password } from '../Models/password';
-import { StringEncryptionService } from './stringEncryption.service';
-import { CreditCard } from '../Models/creditCard';
-import { Server } from '../Models/server';
-import { WifiPassword } from '../Models/wifiPassword';
+import { Password } from '../models/password.model';
+import { StringEncryptionService } from './string-encryption.service';
+import { CreditCard } from '../models/credit-card.model';
+import { Server } from '../models/server.model';
+import { WifiPassword } from '../models/wifi-password.model';
 import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',

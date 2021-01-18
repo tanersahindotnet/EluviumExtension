@@ -1,10 +1,10 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { BottomNavItem } from 'ngx-bottom-nav';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogContentComponent } from '../dialog/about-dialog/about-dialog.component';
+import { DialogContentComponent } from '../../dialog/about-dialog/about-dialog.component';
 import { Router } from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
-import { Languages } from '../Constants/languages';
+import { Languages } from '../../constants/languages';
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',

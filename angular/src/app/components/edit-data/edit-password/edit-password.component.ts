@@ -1,34 +1,32 @@
-import { Component, Output, EventEmitter, Input, OnChanges } from '@angular/core';
-import { CreditCard } from '../../Models/creditCard';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Password } from '../../../models/password.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { OnePassService } from '../../Services/onePass.service'
-import { ApiRequestModel } from '../../Models/apiRequestModel';
+import { OnePassService } from '../../../services/onepass.service'
+import { ApiRequestModel } from '../../../models/api-request.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { OnePassEncryptionService } from '../../Services/onePassEncryption.service';
+import { OnePassEncryptionService } from '../../../services/onepass-encryption.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-edit-credit-card',
-  templateUrl: './edit-credit-card.component.html',
-  styleUrls: ['./edit-credit-card.component.scss']
+  selector: 'app-edit-password',
+  templateUrl: './edit-password.component.html',
+  styleUrls: ['./edit-password.component.scss']
 })
-export class EditCreditCardComponent implements OnChanges {
-  @Input() data: CreditCard;
+export class EditPasswordComponent implements OnChanges {
+  @Input() data: Password;
   @Input() password: string;
   @Output() stateEmitter: EventEmitter<boolean> = new EventEmitter();
   @Output() saveEmitter: EventEmitter<boolean> = new EventEmitter();
   form: FormGroup = new FormGroup({
     title: new FormControl('', Validators.required),
-    cardHolder: new FormControl('', Validators.required),
-    cardNumber: new FormControl('', Validators.required),
-    month: new FormControl('', Validators.required),
-    year: new FormControl('', Validators.required),
-    code: new FormControl('', Validators.required),
-    notes: new FormControl('')
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    url: new FormControl('', Validators.required),
+    notes: new FormControl(''),
   });
   constructor(private onePassService: OnePassService, private snackBar: MatSnackBar,
   private encryptionService: OnePassEncryptionService, private route: Router, private translate: TranslateService) {
-    this.checkSession();
+   this.checkSession();
   }
   returnResult() {
     this.stateEmitter.emit(true);
@@ -36,44 +34,42 @@ export class EditCreditCardComponent implements OnChanges {
   ngOnChanges() {
     if (this.data !== null) {
       this.form.controls['title'].setValue(this.data.title);
-      this.form.controls['cardHolder'].setValue(this.data.cardholderName);
-      this.form.controls['cardNumber'].setValue(this.data.number);
-      this.form.controls['month'].setValue(this.data.expMonth);
-      this.form.controls['year'].setValue(this.data.expYear);
-      this.form.controls['code'].setValue(this.data.code);
+      this.form.controls['username'].setValue(this.data.userName);
+      this.form.controls['password'].setValue(this.data.sitePassword);
+      this.form.controls['url'].setValue(this.data.url);
       this.form.controls['notes'].setValue(this.data.notes);
     } else {
       this.clearFormControls();
+      const url = localStorage.getItem('activeUrl');
+      this.form.controls['url'].setValue(url);
     }
   }
   onSubmit() {
     if (this.form.valid) {
-      let creditCard = new CreditCard();
+      let password = new Password();
       const token = localStorage.getItem('token');
-      const mail = localStorage.getItem('mail')
+      const mail = localStorage.getItem('mail');
       const deviceId = localStorage.getItem('deviceId');
       const accountPasswordHashed = localStorage.getItem('accountPasswordHashed');
       const request = new ApiRequestModel();
       request.mail = mail;
       if (this.data !== null) {
         request.password = this.password
-        creditCard = this.data;
+        password = this.data;
       } else {
         request.password = accountPasswordHashed;
-        creditCard.id = 0;
+        password.id = 0;
       }
       request.token = token;
-      request.deviceId = deviceId;
-      creditCard.title = this.form.controls['title'].value;
-      creditCard.cardholderName = this.form.controls['cardHolder'].value;
-      creditCard.number = this.form.controls['cardNumber'].value.toString();
-      creditCard.expMonth = this.form.controls['month'].value.toString();
-      creditCard.expYear = this.form.controls['year'].value.toString();
-      creditCard.code = this.form.controls['code'].value.toString();
-      creditCard.notes = this.form.controls['notes'].value;
-      const encryptedCreditCard = this.encryptionService.encryptCreditCards(creditCard, this.password);
+      request.deviceId = deviceId
+      password.title = this.form.controls['title'].value;
+      password.userName = this.form.controls['username'].value;
+      password.sitePassword = this.form.controls['password'].value;
+      password.url = this.form.controls['url'].value;
+      password.notes = this.form.controls['notes'].value;
+      const encryptedPassword = this.encryptionService.encryptPassword(password, this.password);
 
-      this.onePassService.AddOrUpdateCreditCard(request, encryptedCreditCard).subscribe(p => {
+      this.onePassService.AddOrUpdatePassword(request, encryptedPassword).subscribe(p => {
         let success, fail, added, updated, somethingWrong;
         this.translate.get('Common.Fail').subscribe(p => fail = p);
         this.translate.get('Common.Success').subscribe(p => success = p);
@@ -121,11 +117,9 @@ export class EditCreditCardComponent implements OnChanges {
   }
   private clearFormControls() {
     this.form.controls['title'].setValue('');
-    this.form.controls['cardHolder'].setValue('');
-    this.form.controls['cardNumber'].setValue('');
-    this.form.controls['month'].setValue('');
-    this.form.controls['year'].setValue('');
-    this.form.controls['code'].setValue('');
+    this.form.controls['username'].setValue('');
+    this.form.controls['password'].setValue('');
+    this.form.controls['url'].setValue('');
     this.form.controls['notes'].setValue('');
   }
 }

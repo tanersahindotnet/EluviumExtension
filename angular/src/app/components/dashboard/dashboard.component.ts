@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { BottomNavItem } from 'ngx-bottom-nav';
-import { OnePassService } from '../Services/onePass.service';
-import { ApiRequestModel } from '../Models/apiRequestModel';
-import { OnePassEncryptionService } from '../Services/onePassEncryption.service';
-import { Password } from '../Models/password';
-import { CreditCard } from '../Models/creditCard';
-import { Server } from '../Models/server';
-import { WifiPassword } from '../Models/wifiPassword';
+import { OnePassService } from '../../services/onepass.service';
+import { ApiRequestModel } from '../../models/api-request.model';
+import { OnePassEncryptionService } from '../../services/onepass-encryption.service';
+import { Password } from '../../models/password.model';
+import { CreditCard } from '../../models/credit-card.model';
+import { Server } from '../../models/server.model';
+import { WifiPassword } from '../../models/wifi-password.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { LoginResult } from '../Constants/loginResult';
+import { LoginResult } from '../../enums/login-result.enum';
 import {MatDialog} from '@angular/material/dialog';
-import { QuestionDialogComponent } from '../dialog/question-dialog/question-dialog.component';
+import { QuestionDialogComponent } from '../../dialog/question-dialog/question-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-dashboard',

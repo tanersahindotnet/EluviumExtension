@@ -1,10 +1,10 @@
 import { Component, OnInit, EventEmitter, Output, Input, OnChanges } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Server } from '../../Models/server';
-import { OnePassService } from '../../Services/onePass.service'
-import { ApiRequestModel } from '../../Models/apiRequestModel';
+import { Server } from '../../../models/server.model';
+import { OnePassService } from '../../../services/onepass.service'
+import { ApiRequestModel } from '../../../models/api-request.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { OnePassEncryptionService } from '../../Services/onePassEncryption.service';
+import { OnePassEncryptionService } from '../../../services/onepass-encryption.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 @Component({

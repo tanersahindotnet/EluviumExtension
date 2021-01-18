@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { OnePassService } from '../Services/onePass.service';
-import { ApiRequestModel } from '../Models/apiRequestModel';
+import { OnePassService } from '../../services/onepass.service';
+import { ApiRequestModel } from '../../models/api-request.model';
 import { Guid } from 'guid-typescript';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Languages } from '../Constants/languages';
+import { Languages } from '../../constants/languages';
 @Component({
   selector: 'app-verification',
   templateUrl: './verification.component.html',

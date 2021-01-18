@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ApiRequestModel } from '../../Models/apiRequestModel';
-import { StringEncryptionService } from '../../Services/stringEncryption.service';
+import { ApiRequestModel } from '../../../models/api-request.model';
+import { StringEncryptionService } from '../../../services/string-encryption.service';
 import { Router } from '@angular/router';
-import { OnePassService } from '../../Services/onePass.service';
+import { OnePassService } from '../../../services/onepass.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
-import { LoginResult } from '../../Constants/loginResult';
+import { LoginResult } from '../../../enums/login-result.enum';
 import { Guid } from 'guid-typescript';
 @Component({
   selector: 'app-first-login',

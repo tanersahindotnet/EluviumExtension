@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { AccountPromptDialogComponent } from '../dialog/account-prompt-dialog/account-prompt-dialog.component';
-import { OnePassService } from '../Services/onePass.service'
-import { StringEncryptionService } from '../Services/stringEncryption.service';
-import { ApiRequestModel } from '../Models/apiRequestModel';
+import { AccountPromptDialogComponent } from '../../dialog/account-prompt-dialog/account-prompt-dialog.component';
+import { OnePassService } from '../../services/onepass.service'
+import { StringEncryptionService } from '../../services/string-encryption.service';
+import { ApiRequestModel } from '../../models/api-request.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TranslateService} from '@ngx-translate/core';
-import { DevicesResult } from '../Models/deviceList';
+import { DevicesResult } from '../../models/device-list.model';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
