@@ -17,7 +17,7 @@ var randomizeInputValue = function(el){
 
 chrome.runtime.sendMessage({
 }, function(){
-  $("input:enabled, textarea:enabled").not(':button,:hidden,input[type=submit],input[readonly]').each(function(){
+  $("input:enabled").not(':button,:hidden,input[type=submit],input[readonly]').each(function(){
     randomizeInputValue(this);
   }); 
 });  
