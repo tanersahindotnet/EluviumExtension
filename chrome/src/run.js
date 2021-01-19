@@ -4,10 +4,10 @@ var randomizeInputValue = function(el){
     switch( $(el)[0].nodeName.toLowerCase() ) {
       case "input":
         var type = $(el).attr('type');
-        var value ='fakeValue';
+        var value = username;
         if(type == 'password')
         {
-          value = 'fakePass';
+          value = password;
         }
         $(el).focus().val(value);
         break;

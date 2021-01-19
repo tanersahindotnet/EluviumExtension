@@ -243,8 +243,13 @@ function changeScreenResolution() {
 // ---------------------------------------------- Autofill-------------------------------------------------------------
 
 function fill() {
-    chrome.tabs.executeScript(null, { file: "run.js" }, function () {
-    });
+  
+  chrome.tabs.executeScript(null,{
+    code: 'var username = 1; var password = 12;'
+}, function() {
+    chrome.tabs.executeScript(null, {file: 'run.js'});
+});
+  
 }
 
 chrome.runtime.onMessage.addListener(
