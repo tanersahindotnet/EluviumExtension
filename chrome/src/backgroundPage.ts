@@ -242,10 +242,10 @@ function changeScreenResolution() {
 
 // ---------------------------------------------- Autofill-------------------------------------------------------------
 
-function fill() {
+function fill(username, password) {
   
   chrome.tabs.executeScript(null,{
-    code: 'var username = 1; var password = 12;'
+    code: 'var username = "'+ username +'"; var password = "'+ password +'";'
 }, function() {
     chrome.tabs.executeScript(null, {file: 'run.js'});
 });
@@ -256,7 +256,9 @@ chrome.runtime.onMessage.addListener(
   function(request, _sender, sendResponse){
       if(request.item) 
       {
-        fill();
+        const userName = request.item.userName;
+        const password = request.item.sitePassword;
+        fill(userName, password);
         sendResponse({done: true});
       }
   }
