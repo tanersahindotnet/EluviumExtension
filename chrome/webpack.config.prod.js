@@ -10,6 +10,7 @@ module.exports = {
     firestore: join(__dirname, 'src/firestore.js'),
     firebase: join(__dirname, 'src/firebase.js'),
     phishingBackground: join(__dirname, 'src/phishingBackground.js'),
+    run: join(__dirname,'src/run.js')
   },
   output: {
     path: join(__dirname, '../angular/dist'),

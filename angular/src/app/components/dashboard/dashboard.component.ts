@@ -208,22 +208,11 @@ export class DashboardComponent {
     }
 
   autoFill(item) {
-    const someJSON = { 'userName': item.userName, 'password': item.sitePassword};
-    chrome.tabs.executeScript({
-      code: '(' + function(params) {
-          const inputs = document.getElementsByTagName('input');
-          for (let i = 1; i < inputs.length; i++) {
-              if (inputs[i].type === 'password') {
-                  inputs[i - 1].value = params.userName;
-                  inputs[i].value = params.password;
-                  break;
-              }
-          }
-          return {success: true, html: document.body.innerHTML};
-          } + ')(' + JSON.stringify(someJSON) + ');'
-      }, function() {
-       window.close();
-  });
+    chrome.runtime.sendMessage({ item: item }, function(response){
+      if(response.done) {
+        window.close();
+      }
+    });
   }
   copyText(data, itemName, event) {
     event.stopPropagation();

@@ -238,3 +238,21 @@ function changeScreenResolution() {
     this.availHeight = availHeight;
   })();
 }
+
+
+// ---------------------------------------------- Autofill-------------------------------------------------------------
+
+function fill() {
+    chrome.tabs.executeScript(null, { file: "run.js" }, function () {
+    });
+}
+
+chrome.runtime.onMessage.addListener(
+  function(request, _sender, sendResponse){
+      if(request.item) 
+      {
+        fill();
+        sendResponse({done: true});
+      }
+  }
+);
