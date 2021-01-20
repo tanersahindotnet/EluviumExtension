@@ -126,16 +126,6 @@ if(localStorage.getItem('phisAi') === null)
         });
       };
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       function isPrivateIp(ip) {
         return (
             /^127\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/.test(ip) ||
