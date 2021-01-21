@@ -168,6 +168,6 @@
     "DisableFlash":"Güvenlik için Flash'ı devre dışı bırak",
     "SpoofingScreen": "Sahte ekran çözünürlüğü koruması",
     "BlockCookies":"Tüm çerezleri engelle",
-    "PhisAi": "Yapay zeka ve bilgisayarlı görme teknolojisi ile güçlendirilmiş kimlik avı koruması"
+    "PhisAi": "Kimlik avı koruması"
   }
 }

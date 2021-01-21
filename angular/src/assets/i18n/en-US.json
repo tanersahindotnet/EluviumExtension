@@ -168,6 +168,6 @@
     "DisableFlash":"Disable Flash for security",
     "SpoofingScreen": "Spoofing screen resolution protection",
     "BlockCookies":"Block all cookies",
-    "PhisAi": "Phishing Protection Powered by AI & Computer vision"
+    "PhisAi": "Phishing Protection"
   }
 }

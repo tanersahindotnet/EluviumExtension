@@ -7,8 +7,6 @@ module.exports = {
   entry: {
     contentPage: join(__dirname, 'src/contentPage.ts'),
     backgroundPage: join(__dirname, 'src/backgroundPage.ts'),
-    firestore: join(__dirname, 'src/firestore.js'),
-    firebase: join(__dirname, 'src/firebase.js'),
     phishingBackground: join(__dirname, 'src/phishingBackground.js'),
     run: join(__dirname,'src/run.js')
   },

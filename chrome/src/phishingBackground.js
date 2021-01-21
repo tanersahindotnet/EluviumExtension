@@ -1,202 +1,179 @@
-if(localStorage.getItem('phisAi') === null)
-{
-    var config = {
-        apiKey: "AIzaSyD1FfiwIWzbbn0rhqQg6ZF2KzVBOiqU7oQ",
-        authDomain: "phish-ai-production.firebaseapp.com",
-        databaseURL: "https://phish-ai-production.firebaseio.com",
-        projectId: "phish-ai-production",
-        storageBucket: "gs://phish-ai-production.appspot.com/",
-        messagingSenderId: "976092427021"
-      };
-      var firebase = require('firebase');
-      firebase.initializeApp(config);
-      var db = firebase.firestore();
-      var domainsRef = db.collection('whitelist_domains');
-      
-      var tabIdMap = {};
-      var tabIgnored = {};
-      var tabMalicious = {};
-      
-      chrome.storage.local.get({
-        idnEnable: true,
-        aiEnable: true,
-        userGuid: null,
-        productKey: '',
-      }, function(items) {
-        const idnEnable = items.idnEnable;
-        const aiEnable = items.aiEnable;
-        var userGuid = items.userGuid;
-        var productKey = items.productKey;
-        if (items.userGuid == null) {
-            var userGuid = guid();
-            chrome.storage.local.set({
-                userGuid: userGuid
-            }, function(items) {
-                addListener(idnEnable, aiEnable, userGuid, productKey);
-            });
-        } else {
-            addListener(idnEnable, aiEnable, userGuid, productKey);
-        }
-      });
-      
-      function addListener(idnEnable, aiEnable, user_email, productKey) {
-        chrome.tabs.onUpdated.addListener(function mylistener(tabId, changedProps, tab) {
-            if (changedProps.status != "complete") {
-                return;
+if (localStorage.getItem('phisAi') === null) {
+    const resourceDomain = 'https://segasec.github.io/feed/phishing-domains.json';
+    const resourceUrl = 'https://segasec.github.io/feed/phishing-urls.json';
+    const browser = getBrowser();
+    const updateTimeOfLocalStorage = 300000;
+    const tabs = {};
+    let allDomains = [];
+    let allUrls = [];
+    let localStorageTimer;
+    let ignoreRiskPressed = false;
+    let currentTabURL;
+
+    function updateDomainsAndUrlsLists() {
+        const domainsPromise = isFeedUpdated('domain');
+        domainsPromise.then((isUpdated) => {
+            if (isUpdated) {
+                getUpdateInfo('domain');
             }
-            var prev_url = "";
-            if (tabId in tabIdMap) {
-                prev_url = tabIdMap[tabId];
+        });
+
+        const urlsPromise = isFeedUpdated('url');
+        urlsPromise.then((isUpdated) => {
+            if (isUpdated) {
+                getUpdateInfo('url');
             }
-            tabIdMap[tabId] = tab.url;
-            var domain = extractHostname(tab.url);
-      
-            if (isPageBlockedUrl(prev_url)) {
-                if (tabId in tabIgnored) {
-                    tabIgnored[tabId].push(domain);
-                } else {
-                    tabIgnored[tabId] = [domain];
+        });
+        setDomainUpdate();
+    }
+
+    function setDomainUpdate() {
+        const lastUpdate = new Date();
+        localStorage.setItem('zelda_lastUpdate', lastUpdate.toUTCString());
+    }
+
+    function isFeedUpdated(reqInfo) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('HEAD', reqInfo === 'domain' ? resourceDomain : resourceUrl, true);
+            xhr.send();
+            xhr.timeout = 4000;
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status !== 0) {
+                    const localData = reqInfo === 'domain' ? localStorage.getItem('zelda_blacklist_domains') : localStorage.getItem('zelda_blacklist_urls');
+                    //In case localStorage is empty (at the first time) or the feed was updated return true.
+                    (!localData || (localData && new Date(JSON.parse(localData)['lastModified']) < new Date(xhr.getResponseHeader('Last-Modified')))) ? resolve(true) : resolve(false);
                 }
-                return;
+            };
+            xhr.ontimeout = () => {
+                reject(false);
+            };
+        });
+    }
+
+    function getUpdateInfo(reqInfo) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', reqInfo === 'domain' ? resourceDomain : resourceUrl, true);
+        xhr.send();
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status !== 0) {
+                updateLocalStorage(xhr, reqInfo);
             }
-      
-            if ((tabId in tabIgnored) && (tabIgnored[tabId].indexOf(domain) > -1)) {
-                return;
-            }
-      
-            if (idnEnable && isDomainIDN(domain)) {
-                localStorage.setItem('warning','1');
-                chrome.tabs.update(tabId, {url: "index.html"});
-                return;
-            }
-      
-            if (aiEnable) {
-                if (isSystemUrl(tab.url) || isPrivateIp(domain)) {
+        };
+        return true;
+    }
+
+    function updateLocalStorage(xhr, reqInfo) {
+        const arrBlackListedUrls = JSON.parse(xhr.responseText);
+        const blacklistAndLastModified = {};
+        blacklistAndLastModified.lastModified = xhr.getResponseHeader('Last-Modified');
+        if (reqInfo === 'domain') {
+            blacklistAndLastModified.domains = arrBlackListedUrls;
+            localStorage.setItem('zelda_blacklist_domains', JSON.stringify(blacklistAndLastModified));
+            allDomains = blacklistAndLastModified.domains;
+        } else {
+            blacklistAndLastModified.urls = arrBlackListedUrls;
+            localStorage.setItem('zelda_blacklist_urls', JSON.stringify(blacklistAndLastModified));
+            allUrls = blacklistAndLastModified.urls;
+        }
+    }
+
+    function getDomainFromFullURL(url_string) {
+        const url = new URL(url_string);
+        return url.hostname;
+    }
+
+    /*
+        whitelist is for the check if the last domain was the error page
+     */
+    function addDomainToWhiteList(whiteList, currentDomain) {
+        if (ignoreRiskPressed) {
+            whiteList.add(currentDomain);
+        }
+    }
+
+    function isDomain() {
+        const currentDomain = getDomainFromFullURL(currentTabURL);
+        allDomains = JSON.parse(localStorage.getItem('zelda_blacklist_domains')).domains;
+        return allDomains.some(function (domain) {
+            return currentDomain === domain || currentDomain.endsWith('.' + domain);
+        });
+    }
+
+    function isUrl() {
+        allUrls = JSON.parse(localStorage.getItem('zelda_blacklist_urls')).urls;
+        return allUrls.some(function (domain) {
+            return currentTabURL.startsWith(domain);
+        });
+    }
+
+    function updateTabDetails(requestDetails) {
+        const tabId = requestDetails.tabId;
+        tabs[tabId] = {
+            curTab: requestDetails.url,
+            whitelist: tabs[tabId] ? tabs[tabId].whitelist : new Set(),
+            prevTab: tabs[tabId] ? tabs[tabId].curTab : ''
+        };
+        currentTabURL = tabs[tabId].curTab;
+    }
+
+    function isMaliciousTabUnderRisk(tabId) {
+        const currentDomain = getDomainFromFullURL(currentTabURL);
+        const tabWhiteList = tabs[tabId].whitelist;
+        return tabWhiteList.has(currentDomain);
+    }
+
+    function continueToSite(tabId) {
+        const currentDomain = getDomainFromFullURL(currentTabURL);
+        addDomainToWhiteList(tabs[tabId].whitelist, currentDomain);
+        ignoreRiskPressed = false;
+        browser.browserAction.setIcon({
+            path: '../icons/icon_green.png'
+        });
+    }
+
+    browser.webRequest.onBeforeRequest.addListener(
+        (requestDetails) => {
+            if (requestDetails.tabId >= 0) {
+                updateTabDetails(requestDetails);
+                const tabId = requestDetails.tabId;
+
+                // Validation if the path is in the whitelist of the tab
+                if (isMaliciousTabUnderRisk(tabId)) {
                     return;
                 }
-                db.collection('whitelist_domains').where('domain', '==', domain)
-                    .get()
-                    .then(function(querySnapshot) {
-                        if (querySnapshot.empty) {
-                            chrome.tabs.captureVisibleTab(function(screenshotUrl) {
-                                if (screenshotUrl === undefined) {
-                                    console.log('error: unable to take screenshot');
-                                    return;
-                                }
-      
-                                var xhr = new XMLHttpRequest();
-                                var FD = new FormData();
-      
-                                FD.append('url', tab.url);
-                                FD.append('domain', domain);
-                                FD.append('title', tab.title);
-                                FD.append('screenshotURL', screenshotUrl);
-                                FD.append('user_agent', navigator.userAgent);
-                                FD.append('user_email', user_email);
-      
-                                xhr.open("POST", "https://api.phish.ai/url/check");
-                                if (productKey != '') {
-                                    xhr.setRequestHeader("Authorization", "Bearer " + productKey);
-                                }
-                                xhr.onreadystatechange = function() { //Call a function when the state changes.
-                                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                                        res = JSON.parse(xhr.responseText);
-                                        if (res['reputation'] === 'bad') {
-                                            tabMalicious[tabId] = {zero_day: true, targeted_brand: res['target_brand']};
-                                            localStorage.setItem('warning','1');
-                                            chrome.tabs.update(tabId, {url: "index.html"});
-                                        }
-                                    } else {
-                                        console.log(xhr.responseText)
-                                    }
-                                };
-      
-                                xhr.send(FD);
-      
-                            });
-                        } else {
-                            return;
-                        }
-                    })
-                    .catch(function(error) {
-                        console.log('error while getting whitelisted domains: ' + error);
-                    });
+
+                if ((isDomain() || isUrl()) && !ignoreRiskPressed) {
+                    localStorage.setItem('warning','1');
+                    chrome.tabs.update(tabId, {url: "index.html"});
+                }
+                else {
+                    continueToSite(tabId);
+                    return { cancel: false };
+                }
             }
-      
-        });
-      };
-      
-      function isPrivateIp(ip) {
-        return (
-            /^127\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/.test(ip) ||
-            /^172\.(1[6-9]|2\d|30|31)\.([0-9]{1,3})\.([0-9]{1,3})$/.test(ip) ||
-            /^192\.168\.([0-9]{1,3})\.([0-9]{1,3})$/.test(ip) ||
-            /^10\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/.test(ip) ||
-            /^169\.254\.([0-9]{1,3})\.([0-9]{1,3})$/.test(ip) ||
-            /^localhost$/.test(ip) ||
-            /^$/.test(ip) ||
-            /^about:blank$/.test(ip)
-        )
-      }
-      
-      function guid() {
-        function s4() {
-            return Math.floor((1 + Math.random()) * 0x10000)
-                .toString(16)
-                .substring(1);
+        }, {
+        urls: ['<all_urls>'], types: ['main_frame']
+    }, ['blocking', 'requestBody']);
+
+    browser.runtime.onMessage.addListener((request) => {
+        if (request.ignoreRiskButton === true) {
+            ignoreRiskPressed = true;
         }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-      }
-      
-      var extractHostname = function(url) {
-        var hostname;
-        //find & remove protocol (http, ftp, etc.) and get hostname
-      
-        if (url.indexOf("://") > -1) {
-            hostname = url.split('/')[2];
-        }
-        else {
-            hostname = url.split('/')[0];
-        }
-      
-        //find & remove port number
-        hostname = hostname.split(':')[0];
-        //find & remove "?"
-        hostname = hostname.split('?')[0];
-      
-        return hostname;
-      };
-      
-      var isUnicode = function(str) {
-        for (var i = 0, n = str.length; i < n; i++) {
-            if (str.charCodeAt( i ) > 255) { return true; }
-        }
-        return false;
-      };
-      
-      var isPageBlockedUrl = function(url) {
-        var re = [/^chrome-extension:.*index.html#?$/,
-                  /^moz-extension:.*index.html#?$/]
-        for (var i = 0; i < re.length; i++) {
-            if (re[i].test(url)) {
-                return true;
-            }
-        }
-        return false;
-      };
-      
-      var isDomainIDN = function(domain) {
-        return (domain.startsWith('xn--') || domain.startsWith('www.xn--') || isUnicode(domain));
-      };
-      
-      var isSystemUrl = function(url) {
-        var re = [/^chrome-extension:/, /^chrome:/]
-        for (var i = 0; i < re.length; i++) {
-            if (re[i].test(url)) {
-                return true;
-            }
-        }
-        return false;
-      };
-      
+    });
+
+    function getBrowser() {
+        return window.msBrowser || window.browser || window.chrome;
+    }
+
+    (function () {
+        localStorageTimer = window.setInterval(updateDomainsAndUrlsLists, updateTimeOfLocalStorage);
+        updateDomainsAndUrlsLists();
+    })();
+
+    window.onbeforeunload = function () {
+        window.clearTimeout(localStorageTimer);
+        return null;
+    };
+
 }

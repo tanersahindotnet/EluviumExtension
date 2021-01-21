@@ -31,4 +31,9 @@ export class WarningComponent implements OnInit {
     window.history.go(-1);
     return false;
 }
+redirect()
+{
+  window.location.href = 'https://www.google.com/';
+}
+
 }
