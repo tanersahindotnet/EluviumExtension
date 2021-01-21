@@ -169,5 +169,11 @@
     "SpoofingScreen": "Spoofing screen resolution protection",
     "BlockCookies":"Block all cookies",
     "PhisAi": "Phishing Protection"
+  },
+  "Waning": {
+    "PhisDetected": "Warning - Phish Detected",
+    "MaliciousSite": "Malicious Site ahead!",
+    "UnsafeWebsite": "Attackers might try to trick you and steal your credentials.",
+    "Safety": "Take me to safety"
   }
 }

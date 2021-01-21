@@ -169,5 +169,11 @@
     "SpoofingScreen": "Sahte ekran çözünürlüğü koruması",
     "BlockCookies":"Tüm çerezleri engelle",
     "PhisAi": "Kimlik avı koruması"
+  },
+  "Waning": {
+    "PhisDetected": "Uyarı - Kimlik Avı Saldırısı",
+    "MaliciousSite": "Tehlikeli bir websitesi algılandı!",
+    "UnsafeWebsite": "Saldırgan sizi kandırıp bilgilerinizi çalabilir",
+    "Safety": "Beni Güvenli Bir Yere Götür"
   }
 }
