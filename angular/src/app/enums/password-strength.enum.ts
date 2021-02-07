@@ -5,4 +5,4 @@ export const enum PasswordCheckStrength {
   Good,
   Strong,
   VeryStrong
-};
+}

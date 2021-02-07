@@ -1,40 +1,61 @@
-<div class='center'>
-  <br>
-  <img src="../assets/logo.png" style="width:25%;height:25%;">
+<div class="center">
+  <br />
+  <img src="../assets/logo.png" style="width:25%;height:25%;" />
   <h2>{{ 'Generator.PasswordGenerator' | translate }}</h2>
 </div>
-<div class='leftAlignedDiv'>
-<section>
-  <mat-checkbox [(ngModel)]="lowercase" color="primary">{{ 'Generator.LowerCase' | translate }}</mat-checkbox>
-</section>
-<section>
-  <mat-checkbox [(ngModel)]="uppercase" color="primary">{{ 'Generator.UpperCase' | translate }}</mat-checkbox>
-</section>
-<section>
-  <mat-checkbox [(ngModel)]="numbers" color="primary">{{ 'Generator.Number' | translate }}</mat-checkbox>
-</section>
-<section>
-  <mat-checkbox [(ngModel)]="symbols" color="primary">{{ 'Generator.Symbol' | translate }}</mat-checkbox>
-</section>
-<section>
-  <mat-checkbox [(ngModel)]="others" color="primary">{{ 'Generator.Others' | translate }}</mat-checkbox>
-</section>
-<section>
-  <br>
-  Password Length: <mat-slider thumbLabel min="8" max="128" step="1" color="primary" [(ngModel)]="inputLength" value="12"></mat-slider>{{inputLength}}
-</section>
-<br>
-<button mat-raised-button color="primary"  (click)="generatePassword()">
-  <mat-icon class="example-tab-icon">refresh</mat-icon>
-  {{ 'Generator.Generate' | translate }}</button>
-<br>
-<br>
-<mat-form-field style="width:100%;">
-  <input matInput type="text" [(ngModel)]="password">
-    <button  mat-button matSuffix  aria-label="search" (click)="copyText()">
-      <mat-icon>content_copy</mat-icon>
+<div class="leftAlignedDiv">
+  <section>
+    <mat-checkbox [(ngModel)]="lowercase" color="primary"
+      >{{ 'Generator.LowerCase' | translate }}</mat-checkbox
+    >
+  </section>
+  <section>
+    <mat-checkbox [(ngModel)]="uppercase" color="primary"
+      >{{ 'Generator.UpperCase' | translate }}</mat-checkbox
+    >
+  </section>
+  <section>
+    <mat-checkbox [(ngModel)]="numbers" color="primary"
+      >{{ 'Generator.Number' | translate }}</mat-checkbox
+    >
+  </section>
+  <section>
+    <mat-checkbox [(ngModel)]="symbols" color="primary"
+      >{{ 'Generator.Symbol' | translate }}</mat-checkbox
+    >
+  </section>
+  <section>
+    <mat-checkbox [(ngModel)]="others" color="primary"
+      >{{ 'Generator.Others' | translate }}</mat-checkbox
+    >
+  </section>
+  <section>
+    <br />
+    Password Length:
+    <mat-slider
+      thumbLabel
+      min="8"
+      max="128"
+      step="1"
+      color="primary"
+      [(ngModel)]="inputLength"
+      value="12"
+    ></mat-slider
+    >{{inputLength}}
+  </section>
+  <br />
+  <button mat-raised-button color="primary" (click)="generatePassword()">
+    <mat-icon class="example-tab-icon">refresh</mat-icon>
+    {{ 'Generator.Generate' | translate }}
   </button>
-</mat-form-field>
+  <br />
+  <br />
+  <mat-form-field style="width:100%;">
+    <input matInput type="text" [(ngModel)]="password" />
+    <button mat-button matSuffix aria-label="search" (click)="copyText()">
+      <mat-icon>content_copy</mat-icon>
+    </button>
+  </mat-form-field>
 </div>
-<br>
+<br />
 <ngx-bottom-nav [items]="items"></ngx-bottom-nav>

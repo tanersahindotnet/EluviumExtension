@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-question-dialog',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./question-dialog.component.scss']
 })
 export class QuestionDialogComponent {
-  constructor() { }
+  constructor () {}
 }

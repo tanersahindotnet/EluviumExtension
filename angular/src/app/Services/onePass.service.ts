@@ -1,38 +1,42 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Constants } from '../constants/constants';
-import { RegisterEnum } from '../enums/register.enum';
-import { ApiRequestModel } from '../models/api-request.model';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Observable } from 'rxjs'
+import { Constants } from '../constants/constants'
+import { RegisterEnum } from '../enums/register.enum'
+import { ApiRequestModel } from '../models/api-request.model'
+import { Injectable } from '@angular/core'
 import { SessionResult } from '../models/session-result.model'
-import {OnePassDataResult} from '../models/onepass-data.model'
-import { CreditCard } from '../models/credit-card.model';
-import { WifiPassword } from '../models/wifi-password.model';
-import { Server } from '../models/server.model';
-import { Password } from '../models/password.model';
-import { ApiUser } from '../models/api-user.model';
-import { Guid } from 'guid-typescript';
+import { OnePassDataResult } from '../models/onepass-data.model'
+import { CreditCard } from '../models/credit-card.model'
+import { WifiPassword } from '../models/wifi-password.model'
+import { Server } from '../models/server.model'
+import { Password } from '../models/password.model'
+import { ApiUser } from '../models/api-user.model'
+import { Guid } from 'guid-typescript'
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class OnePassService {
-  private loginUser = 'LoginUser';
-  private getOnePassDataByUserId = 'GetOnePassDataByUserId';
-  private deletePassword = 'DeletePassword';
-  private deleteServer = 'DeleteServer';
-  private deleteCreditCard = 'DeleteCreditCard';
-  private deleteWifiPassword = 'DeleteWifiPassword';
-  private addOrUpdatePassword = 'AddOrUpdatePassword';
-  private addOrUpdateServer = 'AddOrUpdateServer';
-  private addOrUpdateWifiPassword = 'AddOrUpdateWifiPassword';
-  private addOrUpdateCreditCard = 'AddOrUpdateCreditCard';
-  private sendCode = 'SendCode';
-  private verify = 'Verify';
-  private deleteDevice = 'DeleteDevice';
-  private register = 'Register';
-  private token = 'token';
-  constructor(private http: HttpClient) {}
-  LoginUser(model: ApiRequestModel, deviceName: string, type: number): Observable<SessionResult> {
+  private loginUser = 'LoginUser'
+  private getOnePassDataByUserId = 'GetOnePassDataByUserId'
+  private deletePassword = 'DeletePassword'
+  private deleteServer = 'DeleteServer'
+  private deleteCreditCard = 'DeleteCreditCard'
+  private deleteWifiPassword = 'DeleteWifiPassword'
+  private addOrUpdatePassword = 'AddOrUpdatePassword'
+  private addOrUpdateServer = 'AddOrUpdateServer'
+  private addOrUpdateWifiPassword = 'AddOrUpdateWifiPassword'
+  private addOrUpdateCreditCard = 'AddOrUpdateCreditCard'
+  private sendCode = 'SendCode'
+  private verify = 'Verify'
+  private deleteDevice = 'DeleteDevice'
+  private register = 'Register'
+  private token = 'token'
+  constructor (private http: HttpClient) {}
+  LoginUser (
+    model: ApiRequestModel,
+    deviceName: string,
+    type: number
+  ): Observable<SessionResult> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumApiController +
@@ -46,15 +50,19 @@ export class OnePassService {
       '/' +
       deviceName +
       '/' +
-      type;
+      type
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.get<SessionResult>(requestedUrl, { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.get<SessionResult>(requestedUrl, {
+      headers: reqHeader
+    })
+    return result
   }
-  GetOnePassDataByUserId(model: ApiRequestModel): Observable<OnePassDataResult> {
+  GetOnePassDataByUserId (
+    model: ApiRequestModel
+  ): Observable<OnePassDataResult> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumOnePassApiController +
@@ -64,16 +72,18 @@ export class OnePassService {
       '/' +
       model.password +
       '/' +
-      model.deviceId;
+      model.deviceId
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.get<OnePassDataResult>(requestedUrl, { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.get<OnePassDataResult>(requestedUrl, {
+      headers: reqHeader
+    })
+    return result
   }
 
-  DeletePassword(model: ApiRequestModel, id: number): Observable<boolean> {
+  DeletePassword (model: ApiRequestModel, id: number): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumOnePassApiController +
@@ -83,16 +93,18 @@ export class OnePassService {
       '/' +
       model.password +
       '/' +
-      model.deviceId;
+      model.deviceId
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, id , { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.post<boolean>(requestedUrl, id, {
+      headers: reqHeader
+    })
+    return result
   }
 
-  DeleteServer(model: ApiRequestModel, id: number): Observable<boolean> {
+  DeleteServer (model: ApiRequestModel, id: number): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumOnePassApiController +
@@ -102,16 +114,18 @@ export class OnePassService {
       '/' +
       model.password +
       '/' +
-      model.deviceId;
+      model.deviceId
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, id, { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.post<boolean>(requestedUrl, id, {
+      headers: reqHeader
+    })
+    return result
   }
 
-  DeleteCreditCard(model: ApiRequestModel, id: number): Observable<boolean> {
+  DeleteCreditCard (model: ApiRequestModel, id: number): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumOnePassApiController +
@@ -121,16 +135,18 @@ export class OnePassService {
       '/' +
       model.password +
       '/' +
-      model.deviceId;
+      model.deviceId
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, id, { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.post<boolean>(requestedUrl, id, {
+      headers: reqHeader
+    })
+    return result
   }
 
-  DeleteWifiPassword(model: ApiRequestModel, id: number): Observable<boolean> {
+  DeleteWifiPassword (model: ApiRequestModel, id: number): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumOnePassApiController +
@@ -140,16 +156,21 @@ export class OnePassService {
       '/' +
       model.password +
       '/' +
-       model.deviceId;
+      model.deviceId
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, id, { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.post<boolean>(requestedUrl, id, {
+      headers: reqHeader
+    })
+    return result
   }
 
-  AddOrUpdatePassword(model: ApiRequestModel, password: Password): Observable<boolean> {
+  AddOrUpdatePassword (
+    model: ApiRequestModel,
+    password: Password
+  ): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumOnePassApiController +
@@ -159,16 +180,21 @@ export class OnePassService {
       '/' +
       model.password +
       '/' +
-      model.deviceId;
+      model.deviceId
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, password, { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.post<boolean>(requestedUrl, password, {
+      headers: reqHeader
+    })
+    return result
   }
 
-  AddOrUpdateServer(model: ApiRequestModel, server: Server): Observable<boolean> {
+  AddOrUpdateServer (
+    model: ApiRequestModel,
+    server: Server
+  ): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumOnePassApiController +
@@ -178,16 +204,21 @@ export class OnePassService {
       '/' +
       model.password +
       '/' +
-      model.deviceId;
+      model.deviceId
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, server, { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.post<boolean>(requestedUrl, server, {
+      headers: reqHeader
+    })
+    return result
   }
 
-  AddOrUpdateWifiPassword(model: ApiRequestModel, wifiPassword: WifiPassword): Observable<boolean> {
+  AddOrUpdateWifiPassword (
+    model: ApiRequestModel,
+    wifiPassword: WifiPassword
+  ): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumOnePassApiController +
@@ -197,16 +228,21 @@ export class OnePassService {
       '/' +
       model.password +
       '/' +
-      model.deviceId;
+      model.deviceId
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, wifiPassword , { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.post<boolean>(requestedUrl, wifiPassword, {
+      headers: reqHeader
+    })
+    return result
   }
 
-  AddOrUpdateCreditCard(model: ApiRequestModel, creditCard: CreditCard): Observable<boolean> {
+  AddOrUpdateCreditCard (
+    model: ApiRequestModel,
+    creditCard: CreditCard
+  ): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumOnePassApiController +
@@ -216,15 +252,17 @@ export class OnePassService {
       '/' +
       model.password +
       '/' +
-      model.deviceId;
+      model.deviceId
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, creditCard, { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.post<boolean>(requestedUrl, creditCard, {
+      headers: reqHeader
+    })
+    return result
   }
-  GetToken(model: ApiRequestModel): Observable<string> {
+  GetToken (model: ApiRequestModel): Observable<string> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumTokenController +
@@ -232,11 +270,11 @@ export class OnePassService {
       '/' +
       model.mail +
       '/' +
-      model.password;
-    const result = this.http.post(requestedUrl, null, {responseType: 'text'});
-    return result;
+      model.password
+    const result = this.http.post(requestedUrl, null, { responseType: 'text' })
+    return result
   }
-  DeleteDevice(model: ApiRequestModel): Observable<boolean> {
+  DeleteDevice (model: ApiRequestModel): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumApiController +
@@ -246,15 +284,21 @@ export class OnePassService {
       '/' +
       model.mail +
       '/' +
-      model.password;
+      model.password
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, model, { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.post<boolean>(requestedUrl, model, {
+      headers: reqHeader
+    })
+    return result
   }
-  SendCode(model: ApiRequestModel, guid: Guid, language: string): Observable<boolean> {
+  SendCode (
+    model: ApiRequestModel,
+    guid: Guid,
+    language: string
+  ): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumApiController +
@@ -265,17 +309,25 @@ export class OnePassService {
       language +
       '/' +
       model.mail +
-      '/'
-      + model.password;
+      '/' +
+      model.password
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, model, { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.post<boolean>(requestedUrl, model, {
+      headers: reqHeader
+    })
+    return result
   }
 
-  Verify(model: ApiRequestModel, guid: Guid, code: number, deviceName:string,deviceType:number): Observable<boolean> {
+  Verify (
+    model: ApiRequestModel,
+    guid: Guid,
+    code: number,
+    deviceName: string,
+    deviceType: number
+  ): Observable<boolean> {
     const requestedUrl =
       Constants.apiUrl +
       Constants.eluviumApiController +
@@ -290,24 +342,24 @@ export class OnePassService {
       code +
       '/' +
       guid +
-      '/'+
+      '/' +
       deviceName +
       '/' +
-      deviceType;
+      deviceType
     const reqHeader = new HttpHeaders({
       Authorization: 'Bearer ' + model.token,
       'Content-Type': 'application/json'
-    });
-    const result = this.http.post<boolean>(requestedUrl, model, { headers: reqHeader });
-    return result;
+    })
+    const result = this.http.post<boolean>(requestedUrl, model, {
+      headers: reqHeader
+    })
+    return result
   }
 
-  Register(model: ApiUser): Observable<RegisterEnum> {
+  Register (model: ApiUser): Observable<RegisterEnum> {
     const requestedUrl =
-      Constants.apiUrl +
-      Constants.eluviumApiController +
-      this.register;
-      const result = this.http.post<RegisterEnum>(requestedUrl, model);
-      return result;
+      Constants.apiUrl + Constants.eluviumApiController + this.register
+    const result = this.http.post<RegisterEnum>(requestedUrl, model)
+    return result
   }
 }

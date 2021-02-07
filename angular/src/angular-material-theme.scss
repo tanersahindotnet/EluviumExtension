@@ -31,14 +31,13 @@ $mat-eluvium: (
     A100: $black-87-opacity,
     A200: white,
     A400: white,
-    A700: white,
+    A700: white
   )
 );
 
-
 $primary: mat-palette($mat-eluvium);
-$accent:  mat-palette($mat-pink, A200, A100, A400);
-$warn:    mat-palette($mat-red, A700);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red, A700);
 
 $theme: mat-light-theme($primary, $accent);
 
@@ -46,11 +45,10 @@ $theme: mat-light-theme($primary, $accent);
 
 .m2app-dark {
   $primary: mat-palette($mat-pink, 700, 500, 900);
-  $accent:  mat-palette($mat-blue-grey, A200, A100, A400);
-  $warn:    mat-palette($mat-red, A700);
+  $accent: mat-palette($mat-blue-grey, A200, A100, A400);
+  $warn: mat-palette($mat-red, A700);
 
-  $theme:   mat-dark-theme($primary, $accent, $warn);
+  $theme: mat-dark-theme($primary, $accent, $warn);
 
   @include angular-material-theme($theme);
 }
-

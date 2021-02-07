@@ -1,7 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { bindCallback } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { TAB_ID } from '../../../../providers/tab-id.provider';
+import { Component, Inject } from '@angular/core'
+import { bindCallback } from 'rxjs'
+import { map } from 'rxjs/operators'
+import { TAB_ID } from '../../../../providers/tab-id.provider'
 
 @Component({
   selector: 'app-popup',
@@ -9,12 +9,14 @@ import { TAB_ID } from '../../../../providers/tab-id.provider';
   styleUrls: ['popup.component.scss']
 })
 export class PopupComponent {
-  message: string;
+  message: string
 
-  constructor(@Inject(TAB_ID) readonly tabId: number) {}
+  constructor (@Inject(TAB_ID) readonly tabId: number) {}
 
-  async onClick(): Promise<void> {
-    this.message = await bindCallback<string>(chrome.tabs.sendMessage.bind(this, this.tabId, 'request'))()
+  async onClick (): Promise<void> {
+    this.message = await bindCallback<string>(
+      chrome.tabs.sendMessage.bind(this, this.tabId, 'request')
+    )()
       .pipe(
         map(msg =>
           chrome.runtime.lastError
@@ -22,6 +24,6 @@ export class PopupComponent {
             : msg
         )
       )
-      .toPromise();
+      .toPromise()
   }
 }

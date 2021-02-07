@@ -5,61 +5,98 @@
       &nbsp;
       <p>{{ 'Account.MyAccount' | translate }}</p>
     </ng-template>
-    <div class='center'>
-      <br>
-      <img src="../assets/user.png" style="width:100px;height:100px;">
+    <div class="center">
+      <br />
+      <img src="../assets/user.png" style="width:100px;height:100px;" />
       <h2>{{fullName}}</h2>
       <p>{{'Account.Membership' | translate }} : {{registerDate}}</p>
       <p>{{'Common.MailAdress' | translate }} : {{mail}}</p>
       <p>{{ 'Account.ProductName' | translate }} : Eluvium Extension</p>
-      <button mat-raised-button class="whiteButton" style="width: 85%;" (click)="manageMyAccount()">
-        <mat-icon>account_circle</mat-icon> {{ 'Account.ManageMyAccount' | translate }}
+      <button
+        mat-raised-button
+        class="whiteButton"
+        style="width: 85%;"
+        (click)="manageMyAccount()"
+      >
+        <mat-icon>account_circle</mat-icon> {{ 'Account.ManageMyAccount' |
+        translate }}
       </button>
-      <br>
-      <br>
-      <button mat-raised-button (click)="lock()" class="whiteButton" style="width: 85%;">
+      <br />
+      <br />
+      <button
+        mat-raised-button
+        (click)="lock()"
+        class="whiteButton"
+        style="width: 85%;"
+      >
         <mat-icon>lock</mat-icon> {{ 'Account.LockNow' | translate }}
       </button>
-      <br>
-      <br>
-      <button mat-raised-button color="warn" class="redButton" style="width: 85%;" (click)="logout()">
+      <br />
+      <br />
+      <button
+        mat-raised-button
+        color="warn"
+        class="redButton"
+        style="width: 85%;"
+        (click)="logout()"
+      >
         <mat-icon>exit_to_app</mat-icon> {{ 'Account.LogoutNow' | translate }}
       </button>
-      <br>
+      <br />
     </div>
-    <br>
+    <br />
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">devices</mat-icon>
-      &nbsp;
-      {{ 'Account.Devices' | translate }}
+      &nbsp; {{ 'Account.Devices' | translate }}
     </ng-template>
     <div>
-      <br>
-      <img src="../assets/user.png" style="width:100px;height:100px;">
+      <br />
+      <img src="../assets/user.png" style="width:100px;height:100px;" />
       <h2>{{fullName}}</h2>
-      <br>
-      <br>
+      <br />
+      <br />
     </div>
     <cdk-virtual-scroll-viewport style="height:200px" itemSize="90">
-    <div style="float:left;margin-left:6%;margin-right:6%;">
-      <div style="text-align: left" *ngFor="let item of devices">
-        <img *ngIf="item.deviceType === 0" style="vertical-align:middle" src="../assets/browser.png">
-        <img *ngIf="item.deviceType === 1" style="vertical-align:middle" src="../assets/smartphone.png">
-        <img *ngIf="item.deviceType === 2" style="vertical-align:middle" src="../assets/computer.png">
-        <span style="vertical-align:middle">&nbsp;
-          <img *ngIf="item.deviceId === deviceId"  src="../assets/online.png">
-          {{item.deviceName}}
-          &nbsp;
-          <button mat-mini-fab color="warn" class="redButton" style="margin-top:4%;" (click)="disconnectDevice(item.deviceId)">
-            <mat-icon>logout</mat-icon>
-          </button>
-        </span>
+      <div style="float:left;margin-left:6%;margin-right:6%;">
+        <div style="text-align: left" *ngFor="let item of devices">
+          <img
+            *ngIf="item.deviceType === 0"
+            style="vertical-align:middle"
+            src="../assets/browser.png"
+          />
+          <img
+            *ngIf="item.deviceType === 1"
+            style="vertical-align:middle"
+            src="../assets/smartphone.png"
+          />
+          <img
+            *ngIf="item.deviceType === 2"
+            style="vertical-align:middle"
+            src="../assets/computer.png"
+          />
+          <span style="vertical-align:middle"
+            >&nbsp;
+            <img
+              *ngIf="item.deviceId === deviceId"
+              src="../assets/online.png"
+            />
+            {{item.deviceName}} &nbsp;
+            <button
+              mat-mini-fab
+              color="warn"
+              class="redButton"
+              style="margin-top:4%;"
+              (click)="disconnectDevice(item.deviceId)"
+            >
+              <mat-icon>logout</mat-icon>
+            </button>
+          </span>
+        </div>
+        <br />
       </div>
-      <br>
-    </div>
-  </cdk-virtual-scroll-viewport>
+    </cdk-virtual-scroll-viewport>
   </mat-tab>
 </mat-tab-group>
 <ngx-bottom-nav [items]="items"></ngx-bottom-nav>

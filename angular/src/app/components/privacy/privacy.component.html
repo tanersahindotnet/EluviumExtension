@@ -1,48 +1,83 @@
-<div class='center'>
-  <br>
-  <img src="../assets/logo.png" style="width:25%;height:25%;">
+<div class="center">
+  <br />
+  <img src="../assets/logo.png" style="width:25%;height:25%;" />
   <h2>{{ 'Common.SecuritySettings' | translate }}</h2>
 </div>
-<br>
-  <h3 class="center">Browser Protection</h3>
-  <section class="center">
-    <label class="toggle-switch">
-      <input type="checkbox" #toggle [(ngModel)]="browserProtection" (change)="protectionOnChange(toggle)">
-      <div class="slider"></div>
-    </label>
+<br />
+<h3 class="center">Browser Protection</h3>
+<section class="center">
+  <label class="toggle-switch">
+    <input
+      type="checkbox"
+      #toggle
+      [(ngModel)]="browserProtection"
+      (change)="protectionOnChange(toggle)"
+    />
+    <div class="slider"></div>
+  </label>
+</section>
+<br />
+<div style="text-align: left;margin-left:10%;">
+  <section>
+    <mat-checkbox
+      color="primary"
+      [(ngModel)]="phisAi"
+      #phisAiE
+      (change)="phisAiOnChange(phisAiE)"
+    >
+      {{ 'Privacy.PhisAi' | translate }}
+    </mat-checkbox>
   </section>
-  <br>
-    <div style="text-align: left;margin-left:10%;">
-      <section>
-        <mat-checkbox color="primary" [(ngModel)]="phisAi" #phisAiE (change)="phisAiOnChange(phisAiE)">
-          {{ 'Privacy.PhisAi' | translate }}
-        </mat-checkbox>
-      </section>
-      <section>
-        <mat-checkbox color="primary"  [(ngModel)]="blockCookies" #blockCookiesE (change)="blockCookiesOnChange(blockCookiesE)">
-          {{ 'Privacy.BlockCookies' | translate }}
-        </mat-checkbox>
-      </section>
-      <section>
-        <mat-checkbox color="primary"  [(ngModel)]="webRtc" #webRtcE (change)="webRtcOnChange(webRtcE)">
-          {{ 'Privacy.WebRTC' | translate }}
-        </mat-checkbox>
-      </section>
-      <section>
-        <mat-checkbox color="primary" [(ngModel)]="fingerprint" #fingerprintE (change)="fingerprintOnChange(fingerprintE)">
-          {{ 'Privacy.Fingerprint' | translate }}
-        </mat-checkbox>
-      </section>
-      <section>
-        <mat-checkbox color="primary" [(ngModel)]="clearCookies" #clearCookiesE (change)="clearCookiesOnChange(clearCookiesE)">
-          {{ 'Privacy.ClearCookies' | translate }}
-        </mat-checkbox>
-      </section>
-      <section>
-        <mat-checkbox color="primary" [(ngModel)]="spoofingScreen" #spoofingScreenE (change)="spoofingScreenOnChange(spoofingScreenE)">
-          {{ 'Privacy.SpoofingScreen' | translate }}
-        </mat-checkbox>
-      </section>
-    </div>
-    <br>
+  <section>
+    <mat-checkbox
+      color="primary"
+      [(ngModel)]="blockCookies"
+      #blockCookiesE
+      (change)="blockCookiesOnChange(blockCookiesE)"
+    >
+      {{ 'Privacy.BlockCookies' | translate }}
+    </mat-checkbox>
+  </section>
+  <section>
+    <mat-checkbox
+      color="primary"
+      [(ngModel)]="webRtc"
+      #webRtcE
+      (change)="webRtcOnChange(webRtcE)"
+    >
+      {{ 'Privacy.WebRTC' | translate }}
+    </mat-checkbox>
+  </section>
+  <section>
+    <mat-checkbox
+      color="primary"
+      [(ngModel)]="fingerprint"
+      #fingerprintE
+      (change)="fingerprintOnChange(fingerprintE)"
+    >
+      {{ 'Privacy.Fingerprint' | translate }}
+    </mat-checkbox>
+  </section>
+  <section>
+    <mat-checkbox
+      color="primary"
+      [(ngModel)]="clearCookies"
+      #clearCookiesE
+      (change)="clearCookiesOnChange(clearCookiesE)"
+    >
+      {{ 'Privacy.ClearCookies' | translate }}
+    </mat-checkbox>
+  </section>
+  <section>
+    <mat-checkbox
+      color="primary"
+      [(ngModel)]="spoofingScreen"
+      #spoofingScreenE
+      (change)="spoofingScreenOnChange(spoofingScreenE)"
+    >
+      {{ 'Privacy.SpoofingScreen' | translate }}
+    </mat-checkbox>
+  </section>
+</div>
+<br />
 <ngx-bottom-nav [items]="items"></ngx-bottom-nav>

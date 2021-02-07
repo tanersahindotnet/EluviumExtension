@@ -1,24 +1,37 @@
 <mat-toolbar color="primary">
-  <mat-icon class="navigationButton" (click)="back()" >arrow_back</mat-icon>
+  <mat-icon class="navigationButton" (click)="back()">arrow_back</mat-icon>
   <span>{{ 'Verification.MailVerification' | translate }}</span>
 </mat-toolbar>
 <mat-card>
   <mat-card-content>
-      <img src="../assets/logo.png" style="width:25%;height:25%;">
-      <p>{{ 'Verification.Explain' | translate }}</p>
-      <mat-form-field class="full-width-input">
-        <input matInput type="number" [(ngModel)]="code" required value="{{ 'Verification.Code' | translate }}">
-        <mat-error>
-          {{ 'Verification.EnterCode' | translate }}
-        </mat-error>
-      </mat-form-field>
-      <br>
-        <button type="button" mat-raised-button color="primary" (click)="resend()" >
-          <mat-icon class="example-tab-icon">send</mat-icon>
-          {{ 'Verification.Resend' | translate }}</button>
-          &nbsp;
-          <button mat-raised-button color="primary" [disabled]="verifyButtonDisabled" (click)="verify()">
-            <mat-icon class="example-tab-icon">verified</mat-icon>
-            {{ 'Verification.Verify' | translate }}</button>
+    <img src="../assets/logo.png" style="width:25%;height:25%;" />
+    <p>{{ 'Verification.Explain' | translate }}</p>
+    <mat-form-field class="full-width-input">
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="code"
+        required
+        value="{{ 'Verification.Code' | translate }}"
+      />
+      <mat-error>
+        {{ 'Verification.EnterCode' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <button type="button" mat-raised-button color="primary" (click)="resend()">
+      <mat-icon class="example-tab-icon">send</mat-icon>
+      {{ 'Verification.Resend' | translate }}
+    </button>
+    &nbsp;
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="verifyButtonDisabled"
+      (click)="verify()"
+    >
+      <mat-icon class="example-tab-icon">verified</mat-icon>
+      {{ 'Verification.Verify' | translate }}
+    </button>
   </mat-card-content>
 </mat-card>

@@ -1,76 +1,149 @@
 <mat-toolbar color="primary">
-  <mat-icon class="navigationButton" (click)="returnResult()">arrow_back</mat-icon>
+  <mat-icon class="navigationButton" (click)="returnResult()"
+    >arrow_back</mat-icon
+  >
   <span>{{ 'Common.CreditCard' | translate }}</span>
 </mat-toolbar>
 <mat-card>
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div style="text-align: center;">
-        <img src="../assets/logo.png" style="width:30%;height:30%;">
+        <img src="../assets/logo.png" style="width:30%;height:30%;" />
       </div>
       <mat-form-field class="full-width-input">
-        <input matInput placeholder="{{ 'Common.Title' | translate }}" formControlName="title" required autofocus>
-        <mat-error  >
+        <input
+          matInput
+          placeholder="{{ 'Common.Title' | translate }}"
+          formControlName="title"
+          required
+          autofocus
+        />
+        <mat-error>
           {{ 'Common.ProvideTitle' | translate }}
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width-input">
-        <input matInput type="text" formControlName="cardHolder" placeholder="{{ 'EditCreditCard.CardHolder' | translate }}" required #cardHolder>
-        <mat-error  >
+        <input
+          matInput
+          type="text"
+          formControlName="cardHolder"
+          placeholder="{{ 'EditCreditCard.CardHolder' | translate }}"
+          required
+          #cardHolder
+        />
+        <mat-error>
           {{ 'EditCreditCard.ProvideCardHolder' | translate }}
         </mat-error>
-        <button mat-button matSuffix aria-label="search" (click)="copyText(cardHolder.value)">
+        <button
+          mat-button
+          matSuffix
+          aria-label="search"
+          (click)="copyText(cardHolder.value)"
+        >
           <mat-icon>content_copy</mat-icon>
         </button>
       </mat-form-field>
-      <br>
+      <br />
       <mat-form-field class="full-width-input">
-        <input matInput type="text" formControlName="cardNumber" placeholder="{{ 'EditCreditCard.CardNumber' | translate }}" required
-          #cardNumber>
-        <mat-error  >
+        <input
+          matInput
+          type="text"
+          formControlName="cardNumber"
+          placeholder="{{ 'EditCreditCard.CardNumber' | translate }}"
+          required
+          #cardNumber
+        />
+        <mat-error>
           {{ 'EditCreditCard.ProvideCardNumber' | translate }}
         </mat-error>
-        <button mat-button matSuffix aria-label="search" (click)="copyText(cardNumber.value)">
+        <button
+          mat-button
+          matSuffix
+          aria-label="search"
+          (click)="copyText(cardNumber.value)"
+        >
           <mat-icon>content_copy</mat-icon>
         </button>
       </mat-form-field>
-      <br>
+      <br />
       <div style="width:100%;">
-        <mat-form-field  style="width:45%;">
-          <input matInput type="text" formControlName="month" placeholder="{{ 'EditCreditCard.Month' | translate }}" required #month>
-          <mat-error  >
+        <mat-form-field style="width:45%;">
+          <input
+            matInput
+            type="text"
+            formControlName="month"
+            placeholder="{{ 'EditCreditCard.Month' | translate }}"
+            required
+            #month
+          />
+          <mat-error>
             {{ 'EditCreditCard.ProvideMonth' | translate }}
           </mat-error>
-          <button mat-button matSuffix aria-label="search" (click)="copyText(month.value)">
+          <button
+            mat-button
+            matSuffix
+            aria-label="search"
+            (click)="copyText(month.value)"
+          >
             <mat-icon>content_copy</mat-icon>
           </button>
         </mat-form-field>
-        &nbsp;    &nbsp;
-        <mat-form-field  style="width:45%;" >
-          <input matInput type="text" formControlName="year" placeholder="{{ 'EditCreditCard.Year' | translate }}" required #year>
-          <mat-error  >
+        &nbsp; &nbsp;
+        <mat-form-field style="width:45%;">
+          <input
+            matInput
+            type="text"
+            formControlName="year"
+            placeholder="{{ 'EditCreditCard.Year' | translate }}"
+            required
+            #year
+          />
+          <mat-error>
             {{ 'EditCreditCard.ProvideYear' | translate }}
           </mat-error>
-          <button mat-button matSuffix aria-label="search" (click)="copyText(year.value)">
+          <button
+            mat-button
+            matSuffix
+            aria-label="search"
+            (click)="copyText(year.value)"
+          >
             <mat-icon>content_copy</mat-icon>
           </button>
         </mat-form-field>
       </div>
       <mat-form-field class="full-width-input">
-        <input matInput type="text" formControlName="code" placeholder="{{ 'EditCreditCard.Code' | translate }}" required #code>
-        <mat-error  >
+        <input
+          matInput
+          type="text"
+          formControlName="code"
+          placeholder="{{ 'EditCreditCard.Code' | translate }}"
+          required
+          #code
+        />
+        <mat-error>
           {{ 'EditCreditCard.ProvideCode' | translate }}
         </mat-error>
-        <button mat-button matSuffix aria-label="search" (click)="copyText(code.value)">
+        <button
+          mat-button
+          matSuffix
+          aria-label="search"
+          (click)="copyText(code.value)"
+        >
           <mat-icon>content_copy</mat-icon>
         </button>
       </mat-form-field>
-      <br>
+      <br />
       <mat-form-field class="full-width-input">
-        <textarea matInput placeholder="{{ 'Common.Notes' | translate }}" formControlName="notes"></textarea>
+        <textarea
+          matInput
+          placeholder="{{ 'Common.Notes' | translate }}"
+          formControlName="notes"
+        ></textarea>
       </mat-form-field>
-      <button mat-raised-button color="primary" class='right'>{{ 'Common.Submit' | translate }}</button>
+      <button mat-raised-button color="primary" class="right">
+        {{ 'Common.Submit' | translate }}
+      </button>
     </form>
-    <br>
+    <br />
   </mat-card-content>
 </mat-card>
