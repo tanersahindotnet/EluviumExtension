@@ -13,7 +13,7 @@
         </div>
       </ng-template>
 
-      <mat-card *ngFor="let item of activeTabs" (click)="autoFill(item);">
+      <mat-card *ngFor="let item of activeTabs" (click)="autoFill(item,$event);">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image">
             <img src="../assets/password.png">
@@ -53,7 +53,7 @@
               &nbsp;
               <mat-icon (click)="copyText(item.sitePassword,'Password',$event)">vpn_key</mat-icon>
               &nbsp;
-              <mat-icon (click)="autoFill(item)">dynamic_form</mat-icon>
+              <mat-icon (click)="autoFill(item,$event)">dynamic_form</mat-icon>
               &nbsp;
               <mat-icon class='deleteIconColor' (click)="deletePassword(item,$event)">delete</mat-icon>
             </mat-card-title>

@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Eluvium",
   "short_name": "Eluvium",
-  "version": "1.9.0",
+  "version": "2.0.0",
   "description": "Eluvium Extension",
   "permissions": [
     "activeTab",

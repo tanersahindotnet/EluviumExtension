@@ -207,7 +207,8 @@ export class DashboardComponent {
       });
     }
 
-  autoFill(item) {
+  autoFill(item, event) {
+    event.preventDefault();
     chrome.runtime.sendMessage({ item: item }, function(response){
       if(response.done) {
         window.close();
