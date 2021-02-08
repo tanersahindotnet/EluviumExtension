@@ -71,7 +71,7 @@
     "tslint": "^6.1.2",
     "typescript": "^3.9.5",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11",
+    "webpack-cli": "^4.5.0",
     "webpack-extension-reloader": "^1.1.4"
   }
 }
