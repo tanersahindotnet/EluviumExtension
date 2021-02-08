@@ -261,5 +261,4 @@ chrome.runtime.onMessage.addListener(function (request, _sender, sendResponse) {
     fill(userName, password)
     sendResponse({ done: true })
   }
-  return true
 })
