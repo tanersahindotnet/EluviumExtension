@@ -13,6 +13,7 @@ import { LoginResult } from '../../enums/login-result.enum'
 import { MatDialog } from '@angular/material/dialog'
 import { QuestionDialogComponent } from '../../dialog/question-dialog/question-dialog.component'
 import { TranslateService } from '@ngx-translate/core'
+import { UrlEnum } from 'src/app/enums/url.enum'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -49,7 +50,7 @@ export class DashboardComponent {
     const token = localStorage.getItem('token')
     this._password = localStorage.getItem('password')
     if (this._password === null) {
-      router.navigate(['login'])
+      router.navigate([UrlEnum.LOGIN])
     }
     if (token === null || !token) {
       this.setToken()
@@ -373,7 +374,7 @@ export class DashboardComponent {
         localStorage.removeItem('accountPasswordHashed')
         localStorage.removeItem('onePassPasswordHashed')
         localStorage.removeItem('token')
-        this.router.navigate(['firstLogin'])
+        this.router.navigate([UrlEnum.FIRSTLOGIN])
       }
     })
   }

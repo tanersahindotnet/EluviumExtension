@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router'
 import { Languages } from '../../constants/languages'
+import { UrlEnum } from 'src/app/enums/url.enum'
 @Component({
   selector: 'app-verification',
   templateUrl: './verification.component.html',
@@ -33,7 +34,7 @@ export class VerificationComponent {
       .subscribe(p => {
         if (p) {
           localStorage.removeItem('tempPass')
-          this.router.navigate(['login'])
+          this.router.navigate([UrlEnum.LOGIN])
         } else {
           let wrongInfo, fail
           this.translate.get('Common.WrongInfo').subscribe(p => (wrongInfo = p))
@@ -75,7 +76,7 @@ export class VerificationComponent {
       })
   }
   back () {
-    this.router.navigate(['firstLogin'])
+    this.router.navigate([UrlEnum.FIRSTLOGIN])
   }
   private getProgramLanguage (): string {
     const lang = localStorage.getItem('language')

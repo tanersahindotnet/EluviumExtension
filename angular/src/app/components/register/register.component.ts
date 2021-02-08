@@ -12,6 +12,7 @@ import { ProgressBarMode } from '@angular/material/progress-bar'
 import { RegisterEnum } from '../../enums/register.enum'
 import { StringEncryptionService } from '../../services/string-encryption.service'
 import { Guid } from 'guid-typescript'
+import { UrlEnum } from 'src/app/enums/url.enum'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -75,7 +76,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('mail', mail.value)
         localStorage.setItem('accountPasswordHashed', accountEncrypted)
         localStorage.setItem('password', accountPassword.value)
-        this.router.navigate(['dashboard'])
+        this.router.navigate([UrlEnum.DASHBOARD])
       }
       if (p === RegisterEnum.MailUsed) {
         let mailUsed, fail

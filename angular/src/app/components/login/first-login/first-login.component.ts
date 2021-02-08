@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 import { TranslateService } from '@ngx-translate/core'
 import { LoginResult } from '../../../enums/login-result.enum'
 import { Guid } from 'guid-typescript'
+import { UrlEnum } from 'src/app/enums/url.enum'
 @Component({
   selector: 'app-first-login',
   templateUrl: './first-login.component.html',
@@ -89,7 +90,7 @@ export class FirstLoginComponent {
           localStorage.setItem('accountPasswordHashed', accountPasswordHashed)
           localStorage.setItem('password', accountPassword)
           this.setTimer()
-          this.router.navigate(['dashboard'])
+          this.router.navigate([UrlEnum.DASHBOARD])
         }
       })
   }
@@ -108,7 +109,7 @@ export class FirstLoginComponent {
     request.mail = mail
     request.password = accountPassword
     request.token = localStorage.getItem('token')
-    this.router.navigate(['verify'])
+    this.router.navigate([UrlEnum.VERIFY])
   }
   private getDeviceId () {
     const deviceId = localStorage.getItem('deviceId')

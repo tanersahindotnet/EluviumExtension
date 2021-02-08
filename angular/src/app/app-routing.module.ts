@@ -10,17 +10,18 @@ import { VerificationComponent } from './components/verification/verification.co
 import { RegisterComponent } from './components/register/register.component'
 import { PrivacyComponent } from './components/privacy/privacy.component'
 import { WarningComponent } from './components/warning/warning.component'
+import { UrlEnum } from './enums/url.enum'
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'firstLogin', component: FirstLoginComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'generator', component: GeneratorComponent },
-  { path: 'setting', component: SettingComponent },
-  { path: 'account', component: AccountComponent },
-  { path: 'verify', component: VerificationComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'privacy', component: PrivacyComponent },
-  { path: 'warning', component: WarningComponent }
+  { path: UrlEnum.DASHBOARD, component: DashboardComponent },
+  { path: UrlEnum.FIRSTLOGIN, component: FirstLoginComponent },
+  { path: UrlEnum.LOGIN, component: LoginComponent },
+  { path: UrlEnum.GENERATOR, component: GeneratorComponent },
+  { path: UrlEnum.SETTING, component: SettingComponent },
+  { path: UrlEnum.ACCOUNT, component: AccountComponent },
+  { path: UrlEnum.VERIFY, component: VerificationComponent },
+  { path: UrlEnum.REGISTER, component: RegisterComponent },
+  { path: UrlEnum.PRIVACY, component: PrivacyComponent },
+  { path: UrlEnum.WARNING, component: WarningComponent }
 ]
 
 @NgModule({

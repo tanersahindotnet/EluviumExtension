@@ -4,6 +4,7 @@ import { StringEncryptionService } from '../../../services/string-encryption.ser
 import { Router } from '@angular/router'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { TranslateService } from '@ngx-translate/core'
+import { UrlEnum } from 'src/app/enums/url.enum'
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,7 @@ export class LoginComponent {
         {
           localStorage.setItem('password', password)
           this.setTimer()
-          this.router.navigate(['dashboard'])
+          this.router.navigate([UrlEnum.DASHBOARD])
         }
       } else {
         let wrongInfo, fail
