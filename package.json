@@ -31,7 +31,7 @@
     "@angular/router": "^10.0.5",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
-    "core-js": "^2.6.11",
+    "core-js": "^3.8.3",
     "crypto-js": "^4.0.0",
     "guid-typescript": "^1.0.9",
     "jasmine": "^3.6.1",
