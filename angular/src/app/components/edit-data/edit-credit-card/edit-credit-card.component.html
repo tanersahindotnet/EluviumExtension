@@ -1,0 +1,114 @@
+<mat-toolbar color="primary">
+  <mat-icon class="navigationButton" (click)="returnResult()"
+    >arrow_back</mat-icon
+  >
+  <span>{{ 'Common.CreditCard' | translate }}</span>
+</mat-toolbar>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()"  #creditForm="ngForm">
+      <div style="text-align: center;">
+        <img src="../assets/logo.png" class="logo" />
+      </div>
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          placeholder="{{ 'Common.Title' | translate }}"
+          formControlName="title"
+          required
+          autofocus
+        />
+        <mat-error>
+          {{ 'Common.ProvideTitle' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          type="text"
+          formControlName="cardHolder"
+          placeholder="{{ 'EditCreditCard.CardHolder' | translate }}"
+          required
+          #cardHolder
+        />
+        <mat-error>
+          {{ 'EditCreditCard.ProvideCardHolder' | translate }}
+        </mat-error>
+        <mat-icon matSuffix  (click)="copyText(cardHolder.value)">content_copy</mat-icon>
+      </mat-form-field>
+      <br />
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          type="text"
+          formControlName="cardNumber"
+          placeholder="{{ 'EditCreditCard.CardNumber' | translate }}"
+          required
+          #cardNumber
+        />
+        <mat-error>
+          {{ 'EditCreditCard.ProvideCardNumber' | translate }}
+        </mat-error>
+        <mat-icon matSuffix  (click)="copyText(cardNumber.value)">content_copy</mat-icon>
+      </mat-form-field>
+      <br />
+      <div style="width:100%;">
+        <mat-form-field class="formFieldWidth">
+          <input
+            matInput
+            type="text"
+            formControlName="month"
+            placeholder="{{ 'EditCreditCard.Month' | translate }}"
+            required
+            #month
+          />
+          <mat-error>
+            {{ 'EditCreditCard.ProvideMonth' | translate }}
+          </mat-error>
+          <mat-icon matSuffix  (click)="copyText(month.value)">content_copy</mat-icon>
+        </mat-form-field>
+        &nbsp; &nbsp;
+        <mat-form-field class="formFieldWidth">
+          <input
+            matInput
+            type="text"
+            formControlName="year"
+            placeholder="{{ 'EditCreditCard.Year' | translate }}"
+            required
+            #year
+          />
+          <mat-error>
+            {{ 'EditCreditCard.ProvideYear' | translate }}
+          </mat-error>
+          <mat-icon matSuffix  (click)="copyText(year.value)">content_copy</mat-icon>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          type="text"
+          formControlName="code"
+          placeholder="{{ 'EditCreditCard.Code' | translate }}"
+          required
+          #code
+        />
+        <mat-error>
+          {{ 'EditCreditCard.ProvideCode' | translate }}
+        </mat-error>
+        <mat-icon matSuffix  (click)="copyText(code.value)">content_copy</mat-icon>
+      </mat-form-field>
+      <br />
+      <mat-form-field class="full-width-input">
+        <textarea
+          matInput
+          placeholder="{{ 'Common.Notes' | translate }}"
+          formControlName="notes"
+        ></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="right">
+        {{ 'Common.Submit' | translate }}
+      </button>
+    </form>
+    <br />
+  </mat-card-content>
+</mat-card>

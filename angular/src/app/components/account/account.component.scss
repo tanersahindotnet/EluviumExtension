@@ -1,0 +1,79 @@
+.center {
+  text-align: center;
+}
+
+p {
+  font-size: small;
+}
+
+.whiteButton:hover {
+  background-color: #dcdcdc;
+}
+
+.redButton:hover {
+  background-color: #d00000;
+  cursor:pointer;
+}
+
+.redButtonIcon:hover {
+  color: #d00000;
+  cursor:pointer;
+}
+
+div {
+  text-align: center;
+}
+
+img {
+  vertical-align: middle;
+}
+
+span {
+  vertical-align: middle;
+}
+
+.profilePicture {
+  width: 100px;
+  height: 100px;
+}
+
+.wideButton {
+  width: 28%;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.blueButton {
+  background-color: #3737d4;
+  color: white;
+}
+
+.blueButton:hover {
+  background-color: #1111bd;
+}
+
+.orangeButton {
+  background-color: darkorange;
+  color: white;
+}
+
+.orangeButton:hover {
+  background-color: rgb(201, 113, 5);
+}
+
+.middleAlign {
+  vertical-align: middle
+}
+
+.viewportAlign {
+  float: left;
+}
+.browser-icon {
+  width: 32px; height: 32px;
+}
+.browser-button{
+  padding: 12px;
+}
+.browser-button:hover {
+background-color: rgb(207, 207, 207);
+}

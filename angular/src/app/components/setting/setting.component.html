@@ -1,0 +1,47 @@
+<div class="center">
+  <br />
+  <img src="../assets/logo.png" class="smallLogo" />
+  <h2>{{ 'Settings.ProgramSettings' | translate }}</h2>
+  <div style="display:flex;justify-content: center;">
+    <mat-form-field appearance="fill" class="matFormFieldWidth" style="width:25%">
+      <mat-label>{{ 'Settings.VaulthTimeout' | translate }}</mat-label>
+      <mat-select (selectionChange)="intervalChanged($event.value)" [value]="interval">
+        <mat-option value="5">{{ 'Settings.Minute5' | translate }}</mat-option>
+        <mat-option value="15">{{ 'Settings.Minute15' | translate }}</mat-option>
+        <mat-option value="30">{{ 'Settings.Minute30' | translate }}</mat-option>
+        <mat-option value="60">{{ 'Settings.Minute60' | translate }}</mat-option>
+        <mat-option value="240">{{ 'Settings.Minute240' | translate }}</mat-option>
+        <mat-option value="0">{{ 'Settings.Minute0' | translate }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp; &nbsp;
+    <mat-form-field appearance="fill" class="matFormFieldWidth" style="width:25%">
+      <mat-label>{{ 'Settings.ProgramLanguage' | translate }}</mat-label>
+      <mat-select (selectionChange)="languageChanged($event.value)" [value]="language">
+        <mat-option value="en-US">{{ 'Settings.English' | translate }}</mat-option>
+        <mat-option value="tr-TR">{{ 'Settings.Turkish' | translate }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div style="display: grid;">
+    <mat-checkbox color="primary" [(ngModel)]="savePopup" (ngModelChange)="savePopupChanged($event)">{{ 'Settings.SavePopup' | translate }}</mat-checkbox>
+    <br>
+    <mat-checkbox color="primary" [(ngModel)]="autoSubmit" (ngModelChange)="autoSubmitChanged($event)">{{ 'Settings.AutoSubmit' | translate }}</mat-checkbox>
+  </div>
+  <div style="display:flex; justify-content: center; margin-left:5%;margin-right: 5%;margin-top:2%">
+    <button mat-raised-button class="matFormFieldWidth blueButton" (click)="getHelp()">
+      <mat-icon>help</mat-icon> {{ 'Settings.HelpFeedback' | translate }}
+    </button>
+    &nbsp; &nbsp;&nbsp;
+    <button mat-raised-button class="matFormFieldWidth blueButton" (click)="aboutDialog()">
+      <mat-icon>info</mat-icon>{{ 'Settings.AboutSoftware' | translate }}
+    </button>
+  </div>
+  <br>
+  <button mat-raised-button class="matFormFieldWidth orangeButton" (click)="rateExtension()">
+    <mat-icon>star</mat-icon> {{ 'Settings.RateExtension' | translate }}
+  </button>
+</div>
+<br />
+<br />
+<app-bottom-nav></app-bottom-nav>

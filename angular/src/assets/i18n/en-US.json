@@ -1,0 +1,174 @@
+{
+  "Common": {
+    "Password": "Password",
+    "ProvidePassword": "Please provide a password",
+    "ProvideMail": "Please provide a mail adress",
+    "MailAdress": "Mail Adress",
+    "Cancel": "Cancel",
+    "Okay": "Okay",
+    "Warning": "Warning",
+    "AreYouSure": "Are You Sure You Want to Continue The Process?",
+    "CreditCard": "Credit Card",
+    "Wifi": "Wifi",
+    "Server": "Server",
+    "Title": "Title",
+    "ProvideTitle": "Please provide a valid Title",
+    "Submit": "Submit",
+    "Username": "Username",
+    "ProvideUsername": "Please provide a username",
+    "Notes": "Notes",
+    "Login": "Login",
+    "NoAccount": "Don't have any account? Sign Up!",
+    "Success": "Success",
+    "Fail": "Fail",
+    "WrongInfo": "Wrong Login Info",
+    "RecordAdded": "Record Added Successfully",
+    "RecordUpdated": "Record Updated Successfully",
+    "SomethingWrong": "Something Went Wrong. Please Check Your Connection and Informations",
+    "RecordDeleted": "Record Deleted Successfully",
+    "ExpiredLicense": "Your License Expired",
+    "SecuritySettings": "Security Settings",
+    "WrongFile": "Please select the correct file"
+  },
+  "Account": {
+    "MyAccount": "My Account",
+    "Membership": "Membership Date",
+    "ProductName": "Product Name",
+    "ExpirationDate": "Expiration Date",
+    "ManageMyAccount": "My Account",
+    "LockNow": "Lock",
+    "LogoutNow": "Logout",
+    "Devices": "Devices",
+    "Disconnected": "Disconnected From Device",
+    "DisconnectedComputer": "Computer Disconnected",
+    "DisconnectedPhone": "Phone Disconnected",
+    "ImportData": "Import Passwords",
+    "ImportYourPasswords": "Easily bring your passwords from your browser to Eluvium"
+  },
+  "Dashboard": {
+    "LoginTab": "Login Tab",
+    "NoActiveLogin": "There is no active login for now",
+    "NoPassword": "There is no registered password",
+    "NoCreditCard": "There is no registered credit card",
+    "NoWifi": "There is no registered wifi password",
+    "NoServer": "There is no registered server information"
+  },
+  "AccountPrompt": {
+    "EnterPasswordToContinue": "Enter Your Eluvium Password Before Continue to Process"
+  },
+  "EmptyList": {
+    "ListEmpty": "The List Is Empty"
+  },
+  "EditCreditCard": {
+    "CardHolder": "Card Holder",
+    "ProvideCardHolder": "Please provide a card holder name",
+    "Brand": "Brand",
+    "CardNumber": "Credit Card Number",
+    "ProvideCardNumber": "Please provide a credit card number",
+    "Month": "Month",
+    "ProvideMonth": "Please provide a month",
+    "Year": "Year",
+    "ProvideYear": "Please provide a year",
+    "Code": "Code",
+    "ProvideCode": "Please provide a code"
+  },
+  "EditPassword": {
+    "Name": "Website Name (eg instagram)",
+    "ProvideName": "Please provide a Name"
+  },
+  "EditServer": {
+    "Hostname": "Hostname",
+    "ProvideHostName": "Please provide a hostname"
+  },
+  "EditWifi": {
+    "ProvideSsid": "Please provide a ssid"
+  },
+  "FirstLogin": {
+    "Welcome": "Welcome to Eluvium",
+    "Account": "Account Password"
+  },
+  "Login": {
+    "LoginEluvium": "Login Eluvium",
+    "LogoutAccount": "Logout From My Account"
+  },
+  "Generator": {
+    "PasswordGenerator": "Password Generator",
+    "LowerCase": "Add Lowercase Characters",
+    "UpperCase": "Add Uppercase Characters",
+    "Number": "Add Numeric Characters",
+    "Symbol": "Symbols (!+&?/...)",
+    "Others": "Add Special Characters",
+    "Generate": "Generate",
+    "PasswordCopied": "Password Copied"
+  },
+  "Settings": {
+    "AutoSubmit": "Enable Auto Form Submit (Form Auto Pop-up Will Not Work)",
+    "Open": "Open",
+    "Closed": "Closed",
+    "ProgramSettings": "Program Settings",
+    "VaulthTimeout": "Vaulth Timeout",
+    "Minute5": "5 Minute",
+    "Minute15": "15 Minute",
+    "Minute30": "30 Minute",
+    "Minute60": "60 Minute",
+    "Minute240": "4 Hour",
+    "Minute0": "Never",
+    "ProgramLanguage": "Program Language",
+    "English": "English",
+    "Turkish": "Turkish",
+    "RateExtension": "Rate The Extension",
+    "HelpFeedback": "Help & Feedback",
+    "AboutSoftware": "About",
+    "SavePopup": "Show a Save Password Pop-up"
+  },
+  "Navigation": {
+    "Vault": "Vault",
+    "Generator": "Generator",
+    "Account": "Account",
+    "Settings": "Settings",
+    "Security": "Security"
+  },
+  "Verification": {
+    "MailVerification": "Mail Verification",
+    "Code": "Code",
+    "EnterCode": "Please enter the code",
+    "Verify": "Verify",
+    "Resend": "Resend",
+    "Explain": "Confirmation code sended to your mail adress. Please enter the code to proceed",
+    "CodeSended": "Code sended to your mail adress",
+    "Back": "Back"
+  },
+  "Register": {
+    "FullName": "Full Name",
+    "RegisterEluvium": "Register Eluvium",
+    "ProvideFullName": "Please enter the full name",
+    "YouHaveAccount": "You Have Already an Account? Login",
+    "Register": "Register",
+    "VeryWeak": "Very Weak",
+    "Weak": "Weak",
+    "Good": "Good",
+    "Strong": "Strong",
+    "VeryStrong": "Very Strong",
+    "Short": "Too short",
+    "Next": "Next",
+    "Previous": "Previous",
+    "UseSame": "Use Same Password",
+    "MailUsed": "That mail associated with an Eluvium account",
+    "LowStrength": "Your password is not powerful enough. Try to use lowercase and uppercase characters with numbers"
+  },
+  "Privacy": {
+    "BrowserProtection": "Browser Protection",
+    "BlockAds": "Block Ads tracers and other tracers",
+    "Fingerprint": "Fingerprint Protection",
+    "ClearCookies": "Clear cookies, cache, history, form details on close",
+    "DisableFlash": "Disable Flash for security",
+    "SpoofingScreen": "Spoofing screen resolution protection",
+    "BlockCookies": "Block all cookies"
+  },
+  "Waning": {
+    "PhisDetected": "Warning - Phish Detected",
+    "MaliciousSite": "Malicious Site ahead!",
+    "UnsafeWebsite": "Attackers might try to trick you and steal your credentials.",
+    "Safety": "Take me to safety"
+  }
+}

@@ -1,0 +1,35 @@
+.center {
+  text-align: center;
+}
+
+button:hover {
+  background-color: #dcdcdc;
+}
+
+.smallLogo {
+  width: 20%;
+  height: 20%;
+}
+
+.matFormFieldWidth {
+  width: 40%;
+}
+
+.blueButton {
+  background-color: #3737d4;
+  color: white;
+}
+
+.blueButton:hover {
+  background-color: #1111bd;
+}
+
+.orangeButton {
+  background-color: darkorange;
+  color: white;
+}
+
+.orangeButton:hover {
+  background-color: rgb(201, 113, 5);
+}
+/*# sourceMappingURL=setting.component.css.map */

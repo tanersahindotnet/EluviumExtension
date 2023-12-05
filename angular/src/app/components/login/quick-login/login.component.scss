@@ -1,0 +1,19 @@
+mat-card {
+  min-width: 250px;
+  text-align: center;
+}
+mat-form-field {
+  display: block;
+}
+.right {
+  float: right;
+}
+
+.right:hover {
+  background-color: rgb(197, 2, 2);
+}
+
+.smallLogo {
+  width:25%;
+  height:25%;
+}

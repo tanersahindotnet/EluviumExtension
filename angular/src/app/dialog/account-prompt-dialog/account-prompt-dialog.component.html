@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{ 'Common.Password' | translate }}</h2>
+<mat-dialog-content class="mat-typography">
+  <p>{{ 'AccountPrompt.EnterPasswordToContinue' | translate }}</p>
+  <mat-form-field class="full-width-input">
+    <input matInput type="password" required #password />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>{{ 'Common.Cancel' | translate }}</button>
+  <button mat-button [mat-dialog-close]="password.value" cdkFocusInitial>
+    {{ 'Common.Okay' | translate }}
+  </button>
+</mat-dialog-actions>

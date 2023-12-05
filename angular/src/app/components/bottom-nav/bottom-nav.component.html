@@ -1,0 +1,28 @@
+<mat-toolbar class="toolbarNav">
+  <button style="background-color:#f5f5f5" mat-flat-button routerLink="/dashboard" routerLinkActive="active-link">
+    <mat-icon class="material-icons color_blue">
+      lock</mat-icon>
+    <span>
+      {{ 'Navigation.Vault' | translate }}
+    </span>
+  </button>
+  <button style="background-color:#f5f5f5" mat-flat-button routerLink="/generator" routerLinkActive="active-link">
+    <mat-icon class="material-icons color_blue">refresh
+    </mat-icon>
+    <span>
+      {{ 'Navigation.Generator' | translate }}
+    </span>
+  </button>
+  <button style="background-color:#f5f5f5" mat-flat-button routerLink="/account" routerLinkActive="active-link">
+    <mat-icon class="material-icons color_blue">account_circle</mat-icon>
+    <span>
+      {{ 'Navigation.Account' | translate }}
+    </span>
+  </button>
+  <button style="background-color:#f5f5f5" mat-flat-button routerLink="/setting" routerLinkActive="active-link">
+    <mat-icon class="material-icons color_blue">settings</mat-icon>
+    <span>
+      {{ 'Navigation.Settings' | translate }}
+    </span>
+  </button>
+</mat-toolbar>

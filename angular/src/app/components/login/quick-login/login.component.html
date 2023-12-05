@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <img src="../assets/logo.png" class="smallLogo" />
+      <h3>{{ 'Login.LoginEluvium' | translate }}</h3>
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="onePassPassword"
+          autofocus
+          required
+        />
+        <mat-error>
+          {{ 'Common.ProvidePassword' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="warn" class="right">
+        <mat-icon class="example-tab-icon">login</mat-icon>
+        {{ 'Common.Login' | translate }}
+      </button>
+    </form>
+    <br />
+    <br />
+    <br />
+    <a [routerLink]="['/firstLogin']" routerLinkActive="router-link-active"
+      >{{ 'Login.LogoutAccount' | translate }}</a
+    >
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,33 @@
+mat-card {
+  min-width: 280px;
+  text-align: center;
+}
+mat-form-field {
+  display: block;
+}
+.right {
+  float: right;
+}
+
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.mat-progress-bar {
+  height: 15px;
+}
+.smallLogo {
+  width:25%;
+  height:25%;
+}
+.warningText {
+  position: absolute;
+  padding: 10px;
+  color: white;
+}

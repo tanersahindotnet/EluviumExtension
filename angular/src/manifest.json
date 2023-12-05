@@ -1,0 +1,42 @@
+{
+  "manifest_version": 2,
+  "name": "Eluvium",
+  "short_name": "Eluvium",
+  "version": "2.6.0",
+  "description": "Eluvium Extension",
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "privacy",
+    "tabs",
+    "browsingData",
+    "contentSettings",
+    "<all_urls>",
+    "webRequest",
+    "webRequestBlocking",
+    "contextMenus",
+    "http://*/",
+    "https://*/"
+  ],
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Eluvium Extension",
+    "default_icon": "assets/logo.png"
+  },
+  "content_scripts": [
+    {
+      "js": ["contentPage.js"],
+      "matches": ["<all_urls>"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "scripts": ["backgroundPage.js"],
+    "persistent": true
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

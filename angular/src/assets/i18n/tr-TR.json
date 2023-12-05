@@ -1,0 +1,174 @@
+{
+  "Common": {
+    "Password": "Şifre",
+    "ProvidePassword": "Lütfen Şifreyi Giriniz",
+    "ProvideMail": "Lütfen mail adresi giriniz",
+    "MailAdress": "E-Posta Adresi",
+    "Cancel": "İptal",
+    "Okay": "Tamam",
+    "Warning": "Uyarı",
+    "AreYouSure": "Bu işleme devam etmek istediğinize emin misiniz?",
+    "CreditCard": "Kredi Kartı",
+    "Wifi": "Wifi",
+    "Server": "Sunucu",
+    "Title": "Başlık",
+    "ProvideTitle": "Lütfen başlığı giriniz",
+    "Submit": "Ekle",
+    "Username": "Kullanıcı Adı",
+    "ProvideUsername": "Lütfen kullanıcı adını giriniz",
+    "Notes": "Notlar",
+    "Login": "Giriş",
+    "NoAccount": "Hesabınız yok mu? Kayıt Ol",
+    "Success": "İşlem Başarılı",
+    "Fail": "Başarısız",
+    "WrongInfo": "Hatalı Giriş Bilgisi",
+    "RecordAdded": "Kayıt Başarıyla Eklendi",
+    "RecordUpdated": "Kayıt Başarıyla Güncellendi",
+    "SomethingWrong": "Bir Sorun Oluştu. Lütfen İnternet Bağlantınızı Ve Girdiğiniz Bilgileri Kontrol Ediniz",
+    "RecordDeleted": "Kayıt Başarıyla Silindi",
+    "ExpiredLicense": "Lisansınızın Kullanım Süresi Dolmuştur",
+    "SecuritySettings": "Güvenlik Ayarları",
+    "WrongFile": "Lütfen uygun formattaki dosyayı seçiniz"
+  },
+  "Account": {
+    "MyAccount": "Hesabım",
+    "Membership": "Üyelik Tarihi",
+    "ProductName": "Ürün Adı",
+    "ExpirationDate": "Bitiş Tarihi",
+    "ManageMyAccount": "Hesabım",
+    "LockNow": "Kilitle",
+    "LogoutNow": "Çıkış Yap",
+    "Devices": "Cihazlar",
+    "Disconnected": "Cihazdan Çıkış Yapıldı",
+    "DisconnectedComputer": "Bağlı Bilgisayar Kaldırıldı",
+    "DisconnectedPhone": "Bağlı Mobil Cihaz Kaldırıldı",
+    "ImportData": "Şifreleri İçe Aktar",
+    "ImportYourPasswords": "Parolalarınızı tarayıcınızdan Eluvium'a kolayca getirin"
+  },
+  "Dashboard": {
+    "LoginTab": "Giriş Sekmesi",
+    "NoActiveLogin": "Şuanda aktif bir giriş bilgisi bulunmuyor",
+    "NoPassword": "Kayıtlı şifre bulunmamaktadır",
+    "NoCreditCard": "Kayıtlı kredi kartı bulunmamaktadır",
+    "NoWifi": "Kayıtlı wifi şifresi bulunmamaktadır",
+    "NoServer": "Kayıtlı sunucu bilgisi bulunmamaktadır"
+  },
+  "AccountPrompt": {
+    "EnterPasswordToContinue": "İşleme devam etmek için Eluvium hesap şifrenizi giriniz"
+  },
+  "EmptyList": {
+    "ListEmpty": "Herhangi bir kayıt bulunamadı"
+  },
+  "EditCreditCard": {
+    "CardHolder": "Kart Sahibi Ad Soyad",
+    "ProvideCardHolder": "Lütfen kart sahibi ad soyad bilgisini giriniz",
+    "Brand": "Marka",
+    "CardNumber": "Kart Numarası",
+    "ProvideCardNumber": "Lütfen kart numarasını giriniz",
+    "Month": "Ay",
+    "ProvideMonth": "Lütfen ay bilgisini giriniz",
+    "Year": "Yıl",
+    "ProvideYear": "Lütfen yıl bilgisini giriniz",
+    "Code": "Kod",
+    "ProvideCode": "Lütfen kod bilgisini giriniz"
+  },
+  "EditPassword": {
+    "Name": "Websitesi adı (örn: instagram)",
+    "ProvideName": "Lütfen isim giriniz"
+  },
+  "EditServer": {
+    "Hostname": "Host",
+    "ProvideHostName": "Lütfen host bilgisini giriniz"
+  },
+  "FirstLogin": {
+    "Welcome": "Eluvium'a Hoşgeldiniz",
+    "Account": "Hesap Şifresi"
+  },
+  "EditWifi": {
+    "ProvideSsid": "Lütfen ssid bilgisini giriniz"
+  },
+  "Login": {
+    "LoginEluvium": "Eluvium Giriş Yap",
+    "LogoutAccount": "Hesabımdan Çıkış Yap"
+  },
+  "Generator": {
+    "PasswordGenerator": "Şifre Oluşturucu",
+    "LowerCase": "Küçük Harf Ekle",
+    "UpperCase": "Büyük Harf Ekle",
+    "Number": "Rakam Ekle",
+    "Symbol": "Semboller (!+&?/...)",
+    "Others": "Özel Karakterler Ekle",
+    "Generate": "Oluştur",
+    "PasswordCopied": "Şifre Kopyalandı"
+  },
+  "Settings": {
+    "ProgramSettings": "Program Ayarları",
+    "VaulthTimeout": "Zaman Aşımı",
+    "Minute5": "5 Dakika",
+    "Minute15": "15 Dakika",
+    "Minute30": "30 Dakika",
+    "Minute60": "60 Dakika",
+    "Minute240": "4 Saat",
+    "Minute0": "Asla",
+    "ProgramLanguage": "Program Dili",
+    "English": "İngilizce",
+    "Turkish": "Türkçe",
+    "AutoSubmit": "Otomatik Giriş (Otomatik Pop-up Çalışmayacaktır)",
+    "Open": "Açık",
+    "Closed": "Kapalı",
+    "RateExtension": "Eklentiye Puan Ver",
+    "HelpFeedback": "Yardım & Geri Bildirim",
+    "AboutSoftware": "Hakkında",
+    "SavePopup": "Şifre Kaydedilsin mi Şeklinde Pop-up Çıkart"
+  },
+  "Navigation": {
+    "Vault": "Kasa",
+    "Generator": "Oluşturucu",
+    "Account": "Hesap",
+    "Settings": "Ayarlar",
+    "Security": "Güvenlik"
+  },
+  "Verification": {
+    "MailVerification": "E-Posta Doğrulama",
+    "Code": "Kod",
+    "EnterCode": "Lütfen kodu giriniz",
+    "Verify": "Doğrula",
+    "Resend": "Tekrar Gönder",
+    "Explain": "Doğrulama kodu mail adresinize gönderildi. İşleme devam etmek için kodu giriniz",
+    "CodeSended": "Kod mail adresinize gönderildi",
+    "Back": "Geri"
+  },
+  "Register": {
+    "FullName": "Ad Soyad",
+    "RegisterEluvium": "Eluvium Kayıt Ol",
+    "ProvideFullName": "Lütfen ad soyad bilgisini giriniz",
+    "YouHaveAccount": "Zaten bir hesabınız mı var? Giriş yap.",
+    "Register": "Kayıt Ol",
+    "VeryWeak": "Çok Zayıf",
+    "Weak": "Zayıf",
+    "Good": "İyi",
+    "Strong": "Güçlü",
+    "VeryStrong": "Çok Güçlü",
+    "Short": "Çok kısa",
+    "Next": "İleri",
+    "Previous": "Geri",
+    "UseSame": "Aynı Şifreyi Kullan",
+    "MailUsed": "Bu mail adresine kayıtlı bir hesap zaten var",
+    "LowStrength": "Şifreniz yeteri kadar güçlü değil. Büyük ve küçük harf ve rakam kullanmayı deneyin"
+  },
+  "Privacy": {
+    "BrowserProtection": "Tarayıcı Koruması",
+    "BlockAds": "Reklam izleyicilerini ve diğer izleyicileri engelle",
+    "Fingerprint": "Parmak izi koruması",
+    "ClearCookies": "Kapanırken çerezleri, önbelleği, geçmişi ve form ayrıntılarını temizle",
+    "DisableFlash": "Güvenlik için Flash'ı devre dışı bırak",
+    "SpoofingScreen": "Sahte ekran çözünürlüğü koruması",
+    "BlockCookies": "Tüm çerezleri engelle"
+  },
+  "Waning": {
+    "PhisDetected": "Uyarı - Kimlik Avı Saldırısı",
+    "MaliciousSite": "Tehlikeli bir websitesi algılandı!",
+    "UnsafeWebsite": "Saldırgan sizi kandırıp bilgilerinizi çalabilir",
+    "Safety": "Beni Güvenli Bir Yere Götür"
+  }
+}
